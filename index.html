@@ -174,7 +174,7 @@
             font-size: 60px; 
             color: #ddd; 
         }
-
+ 
         .brand { 
             color: var(--accent); 
             font-size: 12px; 
@@ -212,7 +212,7 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
         }
-
+ 
         /* MODAL MEJORADO */
         .modal { 
             display: none; 
@@ -564,13 +564,13 @@
     </style>
 </head>
 <body>
-
+ 
 <div class="container">
     <header>
         <h1>🌟 PerfumesFC 🌟</h1>
         <p>Las mejores fragancias al mejor precio</p>
     </header>
-
+ 
     <div class="filters">
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="🔍 Buscar perfume o marca...">
@@ -589,7 +589,7 @@
             🛒 Mi Pedido <span class="cart-badge" id="cartCount">0</span>
         </button>
     </div>
-
+ 
     <div id="productsContainer" class="products-grid">
         <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
             <div class="spinner"></div>
@@ -597,7 +597,7 @@
         </div>
     </div>
 </div>
-
+ 
 <!-- MODAL CARRITO -->
 <div class="modal" id="cartModal">
     <div class="modal-box">
@@ -646,10 +646,10 @@
         </div>
     </div>
 </div>
-
+ 
 <!-- TOAST NOTIFICATION -->
 <div class="toast" id="toast"></div>
-
+ 
 <script>
     // ============================================
     // CONFIGURACIÓN
@@ -658,13 +658,13 @@
     const SHEET_NAME = 'Catalogo publico';
     const WHATSAPP = '541140550053';
     const STORAGE_KEY = 'perfumesFC_cart';
-
+ 
     // ============================================
     // VARIABLES GLOBALES
     // ============================================
     let allProducts = [];
     let cart = [];
-
+ 
     // ============================================
     // FUNCIÓN PRINCIPAL: CARGAR DATOS
     // ============================================
@@ -678,7 +678,7 @@
             const rows = csv.split('\n').filter((row, i) => i > 0 && row.trim() !== '');
             
             let lastBrand = "";
-
+ 
             allProducts = rows.map(row => {
                 const col = parseCSVLine(row);
                 
@@ -686,7 +686,7 @@
                 if (col[0] && col[0].trim() !== "" && col[0] !== '""') {
                     lastBrand = col[0].replace(/"/g, '').trim().replace(/\s+/g, ' ');
                 }
-
+ 
                 // Validar que tenga nombre y precio
                 if (!col[1] || col[1].trim() === '""' || !col[4]) return null;
                 
@@ -702,7 +702,7 @@
                     img: col[5]?.replace(/"/g, '').trim() || ''
                 };
             }).filter(p => p !== null && p.priceNum > 0);
-
+ 
             // Cargar marcas en el filtro
             const brandFilter = document.getElementById('brandFilter');
             brandFilter.innerHTML = '<option value="">Todas las marcas</option>';
@@ -713,7 +713,7 @@
                 opt.textContent = b;
                 brandFilter.appendChild(opt);
             });
-
+ 
             render(allProducts);
             
         } catch (e) {
@@ -730,7 +730,7 @@
             `;
         }
     }
-
+ 
     // ============================================
     // PARSEAR LÍNEA CSV
     // ============================================
@@ -749,7 +749,7 @@
         result.push(cur);
         return result;
     }
-
+ 
     // ============================================
     // NORMALIZAR TEXTO (para búsqueda sin acentos)
     // ============================================
@@ -758,7 +758,7 @@
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "");
     }
-
+ 
     // ============================================
     // RENDERIZAR PRODUCTOS
     // ============================================
@@ -802,7 +802,7 @@
             });
         });
     }
-
+ 
     // ============================================
     // ESCAPAR HTML (prevenir XSS)
     // ============================================
@@ -811,7 +811,7 @@
         div.textContent = text;
         return div.innerHTML;
     }
-
+ 
     // ============================================
     // AGREGAR AL CARRITO
     // ============================================
@@ -846,7 +846,7 @@
         // Mostrar toast
         showToast("✅ Producto agregado al pedido");
     }
-
+ 
     // ============================================
     // MOSTRAR TOAST NOTIFICATION
     // ============================================
@@ -858,7 +858,7 @@
             toast.classList.remove('show');
         }, 3000);
     }
-
+ 
     // ============================================
     // ACTUALIZAR CANTIDAD
     // ============================================
@@ -868,7 +868,7 @@
         saveCart();
         refreshCartView();
     }
-
+ 
     // ============================================
     // ELIMINAR DEL CARRITO
     // ============================================
@@ -879,7 +879,7 @@
         refreshCartView();
         showToast("🗑️ Producto eliminado");
     }
-
+ 
     // ============================================
     // VACIAR CARRITO
     // ============================================
@@ -894,7 +894,7 @@
             showToast("🗑️ Pedido vaciado");
         }
     }
-
+ 
     // ============================================
     // ABRIR MODAL CARRITO
     // ============================================
@@ -903,7 +903,7 @@
         document.getElementById('cartModal').classList.add('active');
         document.querySelector('.modal-content').scrollTop = 0;
     }
-
+ 
     // ============================================
     // REFRESCAR VISTA DEL CARRITO
     // ============================================
@@ -951,14 +951,14 @@
         const total = cart.reduce((sum, item) => sum + (item.priceNum * (item.quantity || 1)), 0);
         document.getElementById('cartTotal').textContent = "$" + total.toLocaleString('es-AR', { minimumFractionDigits: 0 });
     }
-
+ 
     // ============================================
     // CERRAR MODAL CARRITO
     // ============================================
     function closeCart() {
         document.getElementById('cartModal').classList.remove('active');
     }
-
+ 
     // ============================================
     // VALIDAR FORMULARIO
     // ============================================
@@ -1006,7 +1006,7 @@
         
         return isValid;
     }
-
+ 
     // ============================================
     // ENVIAR PEDIDO
     // ============================================
@@ -1063,7 +1063,7 @@
         
         showToast("📱 Redirigiendo a WhatsApp...");
     }
-
+ 
     // ============================================
     // ACTUALIZAR CONTADOR DEL CARRITO
     // ============================================
@@ -1071,7 +1071,7 @@
         const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
         document.getElementById('cartCount').textContent = totalItems;
     }
-
+ 
     // ============================================
     // GUARDAR CARRITO EN LOCALSTORAGE
     // ============================================
@@ -1082,7 +1082,7 @@
             console.error('Error al guardar pedido:', e);
         }
     }
-
+ 
     // ============================================
     // CARGAR CARRITO DESDE LOCALSTORAGE
     // ============================================
@@ -1098,7 +1098,7 @@
             cart = [];
         }
     }
-
+ 
     // ============================================
     // FILTRAR PRODUCTOS
     // ============================================
@@ -1130,7 +1130,7 @@
         
         render(filtered);
     }
-
+ 
     // ============================================
     // LIMPIAR FILTROS
     // ============================================
@@ -1140,22 +1140,21 @@
         document.getElementById('priceFilter').value = '';
         render(allProducts);
     }
-
+ 
     // ============================================
     // EVENT LISTENERS
     // ============================================
     document.getElementById('searchInput').addEventListener('input', filterProducts);
     document.getElementById('brandFilter').addEventListener('change', filterProducts);
     document.getElementById('priceFilter').addEventListener('change', filterProducts);
-
+ 
     // Cerrar modal al hacer click fuera
     document.getElementById('cartModal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeCart();
         }
     });
-
-    // ============================================
+     // ============================================
     // INICIALIZACIÓN
     // ============================================
     loadCart();
