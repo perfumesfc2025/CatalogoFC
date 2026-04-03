@@ -587,8 +587,10 @@
                     <div class="product-name">${product.name}</div>
                     <div class="product-size">${product.size}</div>
                     <div class="price">${product.priceFormatted}</div>
-                    <button class="add-to-cart" onclick="addToCart(${index})">
-                        Agregar al carrito
+                   // Busca esta línea en displayProducts
+<button class="add-to-cart" onclick="addToCart('${product.name.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">
+    Agregar al carrito
+</button>
                     </button>
                 </div>
             `).join('');
