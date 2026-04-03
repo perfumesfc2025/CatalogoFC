@@ -498,6 +498,7 @@
                 const name = columns[1]?.trim();
                 const size = columns[2]?.trim();
                 const priceText = columns[4]?.trim();
+                const imageFile = col[5]?.trim();
                 
                 // Solo agregar si tiene marca, nombre y precio
                 if (brand && name && priceText && priceText !== '$0,00') {
