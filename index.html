@@ -571,27 +571,27 @@
         }
 
         // Mostrar productos
-        function displayProducts(products) {
-            const container = document.getElementById('productsContainer');
-            currentVisibleProducts = products; // Guardamos lo que se está mostrando en pantalla
-            
-            if (products.length === 0) {
-                container.innerHTML = '<div class="no-products">No se encontraron productos 😔</div>';
-                return;
-            }
-            
-            container.innerHTML = products.map((product, index) => `
-                <div class="product-card">
-                    <div class="product-image">💎</div>
-                    <div class="brand">${product.brand}</div>
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-size">${product.size}</div>
-                    <div class="price">${product.priceFormatted}</div>
-                    <button class="add-to-cart" onclick="addToCart(${index}, event)">
-                        Agregar al carrito
-                    </button>
-                </div>
-            `).join('');
+        function displayProducts(list) {
+    const container = document.getElementById('productsContainer');
+    if (list.length === 0) {
+        container.innerHTML = "<p>No se encontró nada.</p>";
+        return;
+    }
+    container.innerHTML = list.map(p => `
+        <div class="product-card">
+            <div class="product-image">
+                ${p.image ? 
+                    `<img src="img/${p.image}" alt="${p.name}" style="width:100%; height:100%; object-fit: contain;">` : 
+                    `💎`} 
+            </div>
+            <div class="brand">${p.brand}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="price">${p.priceFormatted}</div>
+            <button class="add-to-cart" onclick="addToCart(event, '${p.name.replace(/'/g, "\\'")}')">
+                Agregar al carrito
+            </button>
+        </div>
+    `).join('');
         }
 
         // Filtrar y ordenar
