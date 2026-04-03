@@ -1,4 +1,4 @@
-           <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -103,6 +103,11 @@
             transition: all 0.3s;
         }
 
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
         .cart-button {
             background: var(--success);
             color: white;
@@ -114,6 +119,12 @@
             cursor: pointer;
             transition: all 0.3s;
             position: relative;
+        }
+
+        .cart-button:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
         }
 
         .cart-count {
@@ -145,6 +156,13 @@
             border-radius: 15px;
             padding: 20px;
             transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: var(--accent);
         }
 
         .product-image {
@@ -157,6 +175,7 @@
             justify-content: center;
             margin-bottom: 15px;
             font-size: 4em;
+            color: #667eea;
         }
 
         .brand {
@@ -164,6 +183,7 @@
             color: var(--accent);
             font-weight: bold;
             text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 5px;
         }
 
@@ -173,6 +193,12 @@
             color: var(--primary);
             margin-bottom: 10px;
             min-height: 50px;
+        }
+
+        .product-size {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
         }
 
         .price {
@@ -195,47 +221,190 @@
             transition: all 0.3s;
         }
 
+        .add-to-cart:hover {
+            background: var(--dark);
+            transform: scale(1.05);
+        }
+
+        .add-to-cart:active {
+            transform: scale(0.95);
+        }
+
         .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,0.7);
             z-index: 1000;
             align-items: center;
             justify-content: center;
         }
 
-        .modal.active { display: flex; }
+        .modal.active {
+            display: flex;
+        }
 
         .modal-content {
             background: white;
             border-radius: 20px;
             max-width: 500px;
             width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
             padding: 30px;
             position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #999;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+
+        .cart-items {
+            margin: 20px 0;
         }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            padding: 15px;
             background: var(--light);
-            padding: 10px;
+            border-radius: 10px;
             margin-bottom: 10px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-brand {
+            font-size: 0.8em;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin: 5px 0;
+        }
+
+        .cart-item-price {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
             border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .remove-item:hover {
+            background: #c0392b;
+        }
+
+        .cart-total {
+            border-top: 2px solid var(--accent);
+            padding-top: 20px;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .cart-total-label {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .cart-total-amount {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--success);
+            margin-top: 10px;
         }
 
         .whatsapp-button {
             width: 100%;
             background: #25D366;
             color: white;
-            padding: 15px;
             border: none;
+            padding: 15px;
             border-radius: 10px;
+            font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
             margin-top: 20px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-button:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 30px;
+            font-size: 1.2em;
+            color: var(--primary);
+        }
+
+        .no-products {
+            text-align: center;
+            padding: 60px 30px;
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .filters {
+                padding: 15px;
+            }
+
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                width: 95%;
+            }
         }
     </style>
 </head>
@@ -266,30 +435,295 @@
         </div>
 
         <div class="products" id="productsContainer">
-            <div class="loading">⏳ Cargando productos...</div>
+            <div class="loading">⏳ Cargando productos desde Google Sheets...</div>
         </div>
     </div>
 
     <div class="modal" id="cartModal">
         <div class="modal-content">
-            <button style="float:right; cursor:pointer;" onclick="closeCart()">✖</button>
+            <button class="close-modal" onclick="closeCart()">×</button>
             <h2>🛒 Tu Carrito</h2>
-            <div id="cartItems"></div>
-            <div style="text-align:right; font-weight:bold; margin-top:10px;">
-                Total: <span id="cartTotal" style="color:var(--success); font-size:1.5em;">$0</span>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-total">
+                <div class="cart-total-label">Total:</div>
+                <div class="cart-total-amount" id="cartTotal">$0</div>
             </div>
-            <button class="whatsapp-button" onclick="sendToWhatsApp()">📱 Pedir por WhatsApp</button>
+            <button class="whatsapp-button" onclick="sendToWhatsApp()">
+                📱 Enviar pedido por WhatsApp
+            </button>
         </div>
     </div>
 
     <script>
+        // Configuración
         const SHEET_ID = '1M28nZtrk1kFN-KdXTIjUFQ2AucK8cegr1weMa7J9GTk';
         const SHEET_NAME = 'Catalogo publico';
         const WHATSAPP_NUMBER = '541140550053';
 
         let allProducts = [];
         let cart = [];
+        let currentVisibleProducts = []; // Guarda los productos que el usuario ve actualmente en pantalla
 
+        // Cargar productos desde Google Sheets
         async function loadProducts() {
             try {
-                const url = `
+                const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+                const response = await fetch(url);
+                const csvText = await response.text();
+                
+                allProducts = parseCSV(csvText);
+                populateBrandFilter();
+                displayProducts(allProducts);
+            } catch (error) {
+                document.getElementById('productsContainer').innerHTML = `
+                    <div class="no-products">
+                        ❌ Error al cargar productos. Por favor, verifica que el Google Sheet esté publicado correctamente.
+                    </div>
+                `;
+                console.error('Error:', error);
+            }
+        }
+
+        // Parsear CSV
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const products = [];
+            
+            for (let i = 3; i < lines.length; i++) { // Empezar desde fila 4 (índice 3)
+                const line = lines[i].trim();
+                if (!line) continue;
+                
+                const columns = parseCSVLine(line);
+                const brand = columns[0]?.trim();
+                const name = columns[1]?.trim();
+                const size = columns[2]?.trim();
+                const priceText = columns[4]?.trim();
+                
+                // Solo agregar si tiene marca, nombre y precio
+                if (brand && name && priceText && priceText !== '$0,00') {
+                    const price = parsePrice(priceText);
+                    
+                    products.push({
+                        brand: brand,
+                        name: name,
+                        size: size || '',
+                        price: price,
+                        priceFormatted: formatPrice(price)
+                    });
+                }
+            }
+            
+            return products;
+        }
+
+        // Parsear línea de CSV (maneja comas dentro de comillas)
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current);
+            
+            return result;
+        }
+
+        // Parsear precio (formato argentino: $56.985,00)
+        function parsePrice(priceText) {
+            let cleaned = priceText.replace(/[$\s]/g, '');
+            cleaned = cleaned.replace(/\./g, '');
+            cleaned = cleaned.replace(/,/g, '.');
+            return parseFloat(cleaned);
+        }
+
+        // Formatear precio (formato argentino)
+        function formatPrice(price) {
+            return '$' + price.toLocaleString('es-AR', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        // Poblar filtro de marcas
+        function populateBrandFilter() {
+            const brands = [...new Set(allProducts.map(p => p.brand))].sort();
+            const select = document.getElementById('brandFilter');
+            
+            brands.forEach(brand => {
+                const option = document.createElement('option');
+                option.value = brand;
+                option.textContent = brand;
+                select.appendChild(option);
+            });
+        }
+
+        // Mostrar productos
+        function displayProducts(products) {
+            const container = document.getElementById('productsContainer');
+            currentVisibleProducts = products; // Guardamos lo que se está mostrando en pantalla
+            
+            if (products.length === 0) {
+                container.innerHTML = '<div class="no-products">No se encontraron productos 😔</div>';
+                return;
+            }
+            
+            container.innerHTML = products.map((product, index) => `
+                <div class="product-card">
+                    <div class="product-image">💎</div>
+                    <div class="brand">${product.brand}</div>
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-size">${product.size}</div>
+                    <div class="price">${product.priceFormatted}</div>
+                    <button class="add-to-cart" onclick="addToCart(${index}, event)">
+                        Agregar al carrito
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Filtrar y ordenar
+        function filterAndSort() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedBrand = document.getElementById('brandFilter').value;
+            const sortBy = document.getElementById('sortSelect').value;
+            
+            let filtered = allProducts.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                                    product.brand.toLowerCase().includes(searchTerm);
+                const matchesBrand = !selectedBrand || product.brand === selectedBrand;
+                return matchesSearch && matchesBrand;
+            });
+            
+            // Ordenar
+            filtered.sort((a, b) => {
+                if (sortBy === 'name') {
+                    return a.name.localeCompare(b.name);
+                } else if (sortBy === 'price-low') {
+                    return a.price - b.price;
+                } else if (sortBy === 'price-high') {
+                    return b.price - a.price;
+                }
+                return 0;
+            });
+            
+            displayProducts(filtered);
+        }
+
+        // Agregar al carrito
+        function addToCart(index, event) {
+            // Obtenemos el producto directamente de la lista visible
+            const product = currentVisibleProducts[index];
+            
+            if (product) {
+                cart.push(product);
+                updateCartCount();
+                
+                // Animación visual del botón
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = '✓ Agregado';
+                button.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 1000);
+            }
+        }
+
+        // Actualizar contador del carrito
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        // Abrir carrito
+        function openCart() {
+            const modal = document.getElementById('cartModal');
+            const itemsContainer = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '<div class="empty-cart">Tu carrito está vacío 🛒</div>';
+                document.getElementById('cartTotal').textContent = '$0';
+            } else {
+                itemsContainer.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-brand">${item.brand}</div>
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.priceFormatted}</div>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${index})">🗑️</button>
+                    </div>
+                `).join('');
+                
+                const total = cart.reduce((sum, item) => sum + item.price, 0);
+                document.getElementById('cartTotal').textContent = formatPrice(total);
+            }
+            
+            modal.classList.add('active');
+        }
+
+        // Cerrar carrito
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+
+        // Eliminar del carrito
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            openCart(); // Refrescar vista
+        }
+
+        // Enviar a WhatsApp
+        function sendToWhatsApp() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            
+            let message = '🛒 *PEDIDO DE PERFUMES*\n\n';
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. *${item.brand}* - ${item.name}\n`;
+                message += `   ${item.size}\n`;
+                message += `   Precio: ${item.priceFormatted}\n\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            message += `\n💰 *TOTAL: ${formatPrice(total)}*`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterAndSort);
+        document.getElementById('brandFilter').addEventListener('change', filterAndSort);
+        document.getElementById('sortSelect').addEventListener('change', filterAndSort);
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCart();
+            }
+        });
+
+        // Cargar productos al inicio
+        loadProducts();
+    </script>
+</body>
+</html>
