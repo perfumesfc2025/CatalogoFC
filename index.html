@@ -1,10 +1,11 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Perfumes Pro</title>
     <style>
+        /* --- ESTILOS --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #2c3e50;
@@ -13,25 +14,20 @@
             --light: #f8f9fa;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             overflow: hidden;
         }
-        header {
-            background: #1a252f;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
+        header { background: #1a252f; color: white; padding: 25px; text-align: center; }
         .filters {
             background: #f1f1f1;
             padding: 15px 25px;
@@ -42,112 +38,55 @@
         }
         .search-box { flex: 1; min-width: 200px; }
         .search-box input {
-            width: 100%;
-            padding: 10px 15px;
-            border-radius: 20px;
-            border: 2px solid #ddd;
+            width: 100%; padding: 10px 15px; border-radius: 20px; border: 2px solid #ddd;
         }
         select { padding: 10px; border-radius: 20px; border: 2px solid #ddd; }
         .cart-btn {
-            background: var(--success);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            position: relative;
+            background: var(--success); color: white; border: none;
+            padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; position: relative;
         }
         .cart-badge {
-            position: absolute;
-            top: -5px; right: -5px;
-            background: #e74c3c;
-            color: white;
-            width: 20px; height: 20px;
-            border-radius: 50%;
-            font-size: 11px;
-            display: flex; align-items: center; justify-content: center;
+            position: absolute; top: -5px; right: -5px; background: #e74c3c;
+            color: white; width: 20px; height: 20px; border-radius: 50%;
+            font-size: 11px; display: flex; align-items: center; justify-content: center;
         }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 25px;
-        }
-        .card {
-            border: 1px solid #eee;
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 25px; }
+        
+        /* Contenedor de Imagen Optimizado */
+        .card { border: 1px solid #eee; border-radius: 15px; padding: 15px; text-align: center; transition: 0.3s; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
-        /* Contenedor de Imagen */
         .img-container {
-            width: 100%;
-            height: 180px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f9f9f9;
-            border-radius: 10px;
-            overflow: hidden;
+            width: 100%; height: 200px; margin-bottom: 15px;
+            display: flex; align-items: center; justify-content: center;
+            background: #f9f9f9; border-radius: 10px; overflow: hidden;
         }
-        .img-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .img-container .placeholder { font-size: 50px; }
+        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .img-container .placeholder { font-size: 60px; color: #ddd; }
 
         .brand { color: var(--accent); font-size: 12px; font-weight: bold; text-transform: uppercase; }
-        .p-name { font-weight: bold; margin: 5px 0; height: 40px; overflow: hidden; }
-        .price { color: var(--success); font-size: 1.3em; font-weight: bold; margin: 10px 0; }
-        .btn-add {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-        }
+        .p-name { font-weight: bold; margin: 5px 0; height: 45px; overflow: hidden; color: var(--primary); }
+        .price { color: var(--success); font-size: 1.4em; font-weight: bold; margin: 10px 0; }
+        .btn-add { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        /* Modal */
-        .modal {
-            display: none; position: fixed; top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.8); z-index: 999; justify-content: center; align-items: center;
-        }
+        /* Modal Carrito */
+        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; }
         .modal.active { display: flex; }
-        .modal-box {
-            background: white; width: 90%; max-width: 450px; padding: 25px; border-radius: 20px;
-            max-height: 80vh; overflow-y: auto;
-        }
-        .cart-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px; border-bottom: 1px solid #eee;
-        }
-        .wa-btn {
-            width: 100%; background: #25D366; color: white; border: none;
-            padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 20px;
-        }
+        .modal-box { background: white; width: 90%; max-width: 450px; padding: 25px; border-radius: 20px; max-height: 80vh; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+        .wa-btn { width: 100%; background: #25D366; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>🌟 Catálogo de Perfumes 🌟</h1>
+        <h1>🌟 Mi Catálogo de Perfumes 🌟</h1>
     </header>
 
     <div class="filters">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Buscar perfume o marca...">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre o marca...">
         </div>
         <select id="brandFilter"><option value="">Todas las marcas</option></select>
         <button class="cart-btn" onclick="openCart()">
@@ -157,17 +96,17 @@
 
     <div id="productsContainer" class="products-grid">
         <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
-            <p>⏳ Cargando catálogo...</p>
+            <p>⏳ Cargando productos desde la base de datos...</p>
         </div>
     </div>
 </div>
 
 <div class="modal" id="cartModal">
     <div class="modal-box">
-        <button style="float:right; border:none; background:none; cursor:pointer;" onclick="closeCart()">❌</button>
-        <h2>Tu Pedido</h2>
-        <div id="cartItems" style="margin: 20px 0;"></div>
-        <div style="text-align:right; font-size: 1.2em; font-weight: bold;">
+        <button style="float:right; border:none; background:none; font-size:20px; cursor:pointer;" onclick="closeCart()">❌</button>
+        <h2 style="margin-bottom:15px;">Tu Pedido</h2>
+        <div id="cartItems"></div>
+        <div style="text-align:right; font-size: 1.3em; font-weight: bold; margin-top:15px; border-top: 2px solid #f1f1f1; padding-top:10px;">
             Total: <span id="cartTotal" style="color:var(--success)">$0</span>
         </div>
         <button class="wa-btn" onclick="sendWA()">📱 Enviar por WhatsApp</button>
@@ -186,9 +125,10 @@
         try {
             const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
             const response = await fetch(url);
+            if (!response.ok) throw new Error('Error al conectar');
             const csv = await response.text();
             
-            const rows = csv.split('\n').slice(3); // Salta encabezados
+            const rows = csv.split('\n').slice(3); // Salta las primeras 3 filas
             allProducts = rows.map(row => {
                 const col = parseCSVLine(row);
                 if (!col[0] || !col[1] || !col[4]) return null;
@@ -196,14 +136,13 @@
                 return {
                     brand: col[0].replace(/"/g, '').trim(),
                     name: col[1].replace(/"/g, '').trim(),
-                    size: col[2]?.replace(/"/g, '') || '',
                     priceStr: col[4].replace(/"/g, '').trim(),
                     priceNum: parseFloat(col[4].replace(/[$\s.]/g, '').replace(',', '.')),
-                    img: col[5]?.replace(/"/g, '').trim() || '' // Columna F
+                    img: col[5]?.replace(/"/g, '').trim() || '' // Columna F: Nombre del archivo
                 };
             }).filter(p => p !== null);
 
-            // Cargar marcas
+            // Cargar marcas en el selector
             const brands = [...new Set(allProducts.map(p => p.brand))].sort();
             brands.forEach(b => {
                 const opt = document.createElement('option');
@@ -213,7 +152,7 @@
 
             render(allProducts);
         } catch (e) {
-            document.getElementById('productsContainer').innerHTML = "Error al cargar datos. Revisa si el Excel está publicado.";
+            document.getElementById('productsContainer').innerHTML = "⚠️ Error al cargar productos. Revisa si el Excel está publicado en la web.";
         }
     }
 
@@ -230,18 +169,18 @@
     function render(list) {
         const container = document.getElementById('productsContainer');
         if (list.length === 0) {
-            container.innerHTML = "No se encontraron productos.";
+            container.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>No se encontraron productos.</p>";
             return;
         }
         container.innerHTML = list.map(p => `
             <div class="card">
                 <div class="img-container">
-                    ${p.img ? `<img src="img/${p.img}" alt="${p.name}">` : `<span class="placeholder">💎</span>`}
+                    ${p.img ? `<img src="img/${p.img}" alt="${p.name}" onerror="this.innerHTML='💎'">` : `<span class="placeholder">💎</span>`}
                 </div>
                 <div class="brand">${p.brand}</div>
                 <div class="p-name">${p.name}</div>
                 <div class="price">${p.priceStr}</div>
-                <button class="btn-add" onclick="add('${p.name.replace(/'/g, "\\'")}')">Agregar</button>
+                <button class="btn-add" onclick="add('${p.name.replace(/'/g, "\\'")}')">Agregar al carrito</button>
             </div>
         `).join('');
     }
@@ -252,21 +191,21 @@
             cart.push(p);
             document.getElementById('cartCount').innerText = cart.length;
             const btn = event.target;
-            btn.innerText = "✅ ¡Listo!";
-            btn.style.background = "#27ae60";
-            setTimeout(() => { btn.innerText = "Agregar"; btn.style.background = ""; }, 700);
+            const oldTxt = btn.innerText;
+            btn.innerText = "✅ ¡Agregado!"; btn.style.background = "#27ae60";
+            setTimeout(() => { btn.innerText = oldTxt; btn.style.background = ""; }, 800);
         }
     }
 
     function openCart() {
         const list = document.getElementById('cartItems');
         if (cart.length === 0) {
-            list.innerHTML = "Tu carrito está vacío.";
+            list.innerHTML = "<p style='text-align:center; padding:20px;'>El carrito está vacío 🛒</p>";
         } else {
             list.innerHTML = cart.map((item, i) => `
                 <div class="cart-item">
-                    <div><b>${item.name}</b><br><small>${item.brand}</small></div>
-                    <div>${item.priceStr} <button onclick="del(${i})" style="border:none; cursor:pointer;">🗑️</button></div>
+                    <div><b>${item.brand}</b><br><small>${item.name}</small></div>
+                    <div><b>${item.priceStr}</b> <button onclick="del(${i})" style="border:none; background:none; cursor:pointer; margin-left:10px;">🗑️</button></div>
                 </div>
             `).join('');
         }
@@ -282,12 +221,12 @@
         if (cart.length === 0) return;
         let msg = "🛒 *NUEVO PEDIDO*\n\n";
         cart.forEach((p, i) => msg += `${i+1}. ${p.brand} - ${p.name} (${p.priceStr})\n`);
-        msg += `\n*TOTAL: ${document.getElementById('cartTotal').innerText}*`;
+        msg += `\n💰 *TOTAL: ${document.getElementById('cartTotal').innerText}*`;
         window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`);
     }
 
-    // Buscador
-    document.getElementById('searchInput').addEventListener('input', () => {
+    // Buscador y Filtro
+    const filterData = () => {
         const val = document.getElementById('searchInput').value.toLowerCase();
         const brand = document.getElementById('brandFilter').value;
         const filtered = allProducts.filter(p => 
@@ -295,11 +234,10 @@
             (!brand || p.brand === brand)
         );
         render(filtered);
-    });
+    };
 
-    document.getElementById('brandFilter').addEventListener('change', () => {
-        document.getElementById('searchInput').dispatchEvent(new Event('input'));
-    });
+    document.getElementById('searchInput').addEventListener('input', filterData);
+    document.getElementById('brandFilter').addEventListener('change', filterData);
 
     loadData();
 </script>
