@@ -675,59 +675,56 @@
             if (!response.ok) throw new Error('Error al conectar con Google Sheets');
             
             const csv = await response.text();
-            const rows = csv.split('\n').filter((row, i) => i > 0 && row.trim() !== '');
+            // Saltamos 3 filas para asegurar que entramos en la zona de datos
+            const rows = csv.split('\n').slice(3); 
             
             let lastBrand = "";
  
             allProducts = rows.map(row => {
                 const col = parseCSVLine(row);
                 
-                // Si la columna A tiene marca, la guardamos
+                // 1. Detectar Marca (Columna A)
                 if (col[0] && col[0].trim() !== "" && col[0] !== '""') {
-                    lastBrand = col[0].replace(/"/g, '').trim().replace(/\s+/g, ' ');
+                    lastBrand = col[0].replace(/"/g, '').trim();
                 }
  
-                // Validar que tenga nombre y precio
-                if (!col[1] || col[1].trim() === '""' || !col[4]) return null;
+                // 2. Validar Nombre (Columna B)
+                if (!col[1] || col[1].trim() === '""' || col[1].trim() === '') return null;
                 
-                // Parsear precio de forma segura
-                const priceStr = col[4].replace(/"/g, '').trim();
-                const priceNum = parseFloat(col[4].replace(/[$\s.]/g, '').replace(',', '.')) || 0;
+                // 3. Parsear precio (Columna E / índice 4)
+                // Si la columna E está vacía, le asignamos 0 para no romper el código
+                const priceRaw = col[4] ? col[4].replace(/"/g, '').trim() : "0";
+                const priceNum = parseFloat(priceRaw.replace(/[$\s.]/g, '').replace(',', '.')) || 0;
                 
                 return {
-                    brand: lastBrand,
+                    brand: lastBrand || "Sin Marca",
                     name: col[1].replace(/"/g, '').trim(),
-                    priceStr: priceStr,
+                    priceStr: priceRaw === "0" ? "Consultar" : priceRaw,
                     priceNum: priceNum,
                     img: col[5]?.replace(/"/g, '').trim() || ''
                 };
-            }).filter(p => p !== null && p.priceNum > 0);
- 
-            // Cargar marcas en el filtro
+            }).filter(p => p !== null); // Quitamos el p.priceNum > 0 para ver si al menos cargan los nombres
+
+            // Cargar marcas en el selector
             const brandFilter = document.getElementById('brandFilter');
             brandFilter.innerHTML = '<option value="">Todas las marcas</option>';
             const brands = [...new Set(allProducts.map(p => p.brand))].sort();
             brands.forEach(b => {
-                const opt = document.createElement('option');
-                opt.value = b;
-                opt.textContent = b;
-                brandFilter.appendChild(opt);
+                if(b) {
+                    const opt = document.createElement('option');
+                    opt.value = b;
+                    opt.textContent = b;
+                    brandFilter.appendChild(opt);
+                }
             });
  
             render(allProducts);
             
         } catch (e) {
-            console.error('Error al cargar productos:', e);
-            document.getElementById('productsContainer').innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
-                    <div style="font-size: 60px; margin-bottom: 20px;">⚠️</div>
-                    <h3>Error al cargar el catálogo</h3>
-                    <p style="color: #999; margin-top: 10px;">Por favor, recargá la página</p>
-                    <button onclick="location.reload()" style="margin-top: 20px; padding: 12px 25px; background: var(--accent); color: white; border: none; border-radius: 20px; cursor: pointer; font-weight: bold;">
-                        🔄 Recargar
-                    </button>
-                </div>
-            `;
+            console.error('Error detallado:', e);
+            document.getElementById('productsContainer').innerHTML = `<p>Error: ${e.message}</p>`;
+        }
+    }
         }
     }
  
