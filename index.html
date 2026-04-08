@@ -660,6 +660,49 @@
     const STORAGE_KEY = 'perfumesFC_cart';
  
     // ============================================
+    // 🔥 MAPEO DE IMÁGENES - SOLUCIÓN AL PROBLEMA
+    // ============================================
+    // Acá mapeás el NOMBRE EXACTO del producto a tu archivo de imagen
+    // Ejemplo: 'Perfume ABC 100ml' -> 'perfume-abc.jpg'
+    const IMAGE_MAPPING = {
+        // FORMATO: 'Nombre exacto del producto': 'nombre-archivo-imagen.jpg',
+        
+        // Ejemplo:
+        // 'SCANDAL JEAN PAUL GAULTIER EDP 80ML': 'scandal-gaultier.jpg',
+        // 'SAUVAGE DIOR EDT 100ML': 'sauvage-dior.jpg',
+        
+        // Agregá acá todos tus productos con fotos:
+        // COPIA-PEGA cada producto desde tu Excel y su respectiva imagen
+    };
+
+    // ============================================
+    // 🔥 FUNCIÓN PARA OBTENER NOMBRE DE IMAGEN
+    // ============================================
+    function getImageName(product) {
+        // 1. PRIORIDAD: Mapeo manual (lo que vos definís arriba)
+        if (IMAGE_MAPPING[product.name]) {
+            return IMAGE_MAPPING[product.name];
+        }
+        
+        // 2. Si el CSV tiene nombre de imagen en col[5] (columna F), usar ese
+        if (product.img && product.img.trim() !== '') {
+            return product.img;
+        }
+        
+        // 3. FALLBACK: Generar nombre automático del producto
+        // (esto es para productos nuevos sin foto todavía)
+        const autoName = product.name
+            .toLowerCase()
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // quitar acentos
+            .replace(/[^a-z0-9\s]/g, '') // quitar caracteres especiales
+            .trim()
+            .replace(/\s+/g, '-') // espacios a guiones
+            .substring(0, 50); // máximo 50 caracteres
+        
+        return autoName + '.jpg';
+    }
+
+    // ============================================
     // VARIABLES GLOBALES
     // ============================================
     let allProducts = [];
@@ -694,13 +737,18 @@
             const priceRaw = col[4] ? col[4].replace(/"/g, '').trim() : "0";
             const priceNum = parseFloat(priceRaw.replace(/[$. ]/g, '').replace(',', '.')) || 0;
             
-            return {
+            const product = {
                 brand: lastBrand || "Importados",
                 name: col[1].replace(/"/g, '').trim(),
                 priceStr: priceRaw,
                 priceNum: priceNum,
-                img: col[5]?.replace(/"/g, '').trim() || '' 
+                img: col[5]?.replace(/"/g, '').trim() || '' // columna F del Excel
             };
+            
+            // 🔥 APLICAR MAPEO DE IMAGEN
+            product.finalImage = getImageName(product);
+            
+            return product;
         }).filter(p => p !== null);
 
         // Actualizar selector de marcas
@@ -769,8 +817,8 @@
         container.innerHTML = list.map(p => `
             <div class="card">
                 <div class="img-container">
-                    ${p.img 
-                        ? `<img src="img/${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.parentElement.innerHTML='<span class=\\'placeholder\\'>💎</span>'">` 
+                    ${p.finalImage 
+                        ? `<img src="img/${p.finalImage}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.parentElement.innerHTML='<span class=\\'placeholder\\'>💎</span>'">` 
                         : `<span class="placeholder">💎</span>`
                     }
                 </div>
@@ -1151,4 +1199,3 @@
 </script>
 </body>
 </html>
-
