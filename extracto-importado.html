@@ -333,11 +333,11 @@ function renderNotes(p){
 function imgKey(num){
   return num.toLowerCase().replace('°','').replace(/\s+/g,'').replace('-','');
 }
-function imgSrc(num){ return 'img/ei-'+imgKey(num)+'.jpg'; }
+function imgSrc(num){ return 'img/ei-'+imgKey(num)+'.png'; }
 
 function cardHTML(p,vi){
   var key=imgKey(p.num);
-  var imgH='<img src="img/ei-'+key+'.jpg" alt="'+escH(p.nombre)+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.25,.46,.45,.94)" '+
+  var imgH='<img src="img/ei-'+key+'.png" alt="'+escH(p.nombre)+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.25,.46,.45,.94)" '+
     'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+ 
     '<div style="display:none;width:100%;height:100%;align-items:flex-end;justify-content:center;gap:16px;padding:24px">'+
     '<div class="bp-side">'+svgOrig(p.cat)+'<span class="bp-lbl">Original</span></div>'+
@@ -384,7 +384,7 @@ function openPM(num){
   document.getElementById('pmStock').innerHTML=stBadge(p.s30,'30')+stBadge(p.s50,'50')+stBadge(p.s100,'100');
   var key=imgKey(p.num);
   document.getElementById('pmImg').innerHTML=
-    '<img src="img/ei-'+key+'.jpg" alt="'+escH(p.nombre)+'" style="width:100%;max-height:320px;object-fit:cover;border-radius:2px" '+
+    '<img src="img/ei-'+key+'.png" alt="'+escH(p.nombre)+'" style="width:100%;max-height:320px;object-fit:cover;border-radius:2px" '+
     'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+ 
     '<div style="display:none;align-items:flex-end;justify-content:center;gap:20px;width:100%;padding:16px">'+
     '<div class="pm-bot">'+svgOrig(p.cat)+'<span class="pm-bot-lbl">Original</span></div>'+
