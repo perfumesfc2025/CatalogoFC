@@ -184,7 +184,7 @@ header{background:#e8e0d0;padding:48px 24px 38px;text-align:center;position:rela
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.469 2 2 6.469 2 11.99c0 1.944.563 3.757 1.536 5.287L2 22l4.932-1.519A9.958 9.958 0 0011.99 22C17.511 22 22 17.531 22 12.01 22 6.469 17.511 2 11.99 2z"/></svg>
           Consultar por WhatsApp
         </a>
-        <div class="pm-seal"><div class="seal-dot">&#x2713;</div>Presentaci&#xF3;n alternativa &middot; Identificada por n&#xFA;mero en el envase</div>
+        <div class="pm-seal"><div class="seal-dot">&#x2713;</div>Presentación alternativa · Identificada por número en el envase</div>
       </div>
     </div>
   </div>
@@ -206,118 +206,222 @@ function svgExt(cat){
 }
 
 function stBadge(s,ml){
-  if(s==='ok')  return '<span class="sb sb-ok">'+ml+'ml &middot; Disponible</span>';
-  if(s==='low') return '<span class="sb sb-low">'+ml+'ml &middot; &#218;ltimas unidades</span>';
-  return '<span class="sb sb-no">'+ml+'ml &middot; Sin stock</span>';
+  if(s==='ok')  return '<span class="sb sb-ok">'+ml+'ml · Disponible</span>';
+  if(s==='low') return '<span class="sb sb-low">'+ml+'ml · Últimas unidades</span>';
+  return '<span class="sb sb-no">'+ml+'ml · Sin stock</span>';
 }
 function stTag(p){
   if(p.s30==='ok'||p.s50==='ok'||p.s100==='ok') return '<span class="ctag stok">Disponible</span>';
-  if(p.s30==='low'||p.s50==='low'||p.s100==='low') return '<span class="ctag slow">&#218;ltimas unidades</span>';
+  if(p.s30==='low'||p.s50==='low'||p.s100==='low') return '<span class="ctag slow">Últimas unidades</span>';
   return '<span class="ctag sno">Sin stock</span>';
 }
 
 var DB=[
-  {num:"N\xB01",  nombre:"212",cat:"Femenino",familia:"Almizcle floral amaderado",salida:["Azahar del naranjo","Bergamota","Mandarina"],corazon:["Azucena","Fresia","Gardenia","Jazm\xEDn","Rosa","Peon\xEDa"],fondo:["Almizcle","S\xE1ndalo"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB02",  nombre:"212 Sexy",cat:"Femenino",familia:"\xC1mbar floral",salida:["Pimienta rosa","Mandarina","Bergamota"],corazon:["Gardenia","Rosa"],fondo:["Vainilla","Almizcle","S\xE1ndalo","Caramelo","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB03",  nombre:"212 VIP",cat:"Femenino",familia:"\xC1mbar vainilla",salida:["Ron","Maracuy\xE1"],corazon:["Gardenia","Almizcle"],fondo:["Vainilla","Haba tonka"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB04",  nombre:"212 H\xE9roes",cat:"Femenino",familia:"Floral frutal",salida:["C\xEDtricos"],corazon:["Flores blancas","Peon\xEDa"],fondo:["S\xE1ndalo","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB05",  nombre:"212 VIP Rose",cat:"Femenino",familia:"Floral frutal",salida:["Champagne ros\xE9","Pimienta rosa"],corazon:["Flor del duraznero","Rosa"],fondo:["Almizcle blanco","Notas amaderadas"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB06",  nombre:"5th Avenue",cat:"Femenino",familia:"Floral",salida:["Flor del tilo","Lirio","Magnolia","Bergamota"],corazon:["Jazm\xEDn","Nardos","Rosa de Bulgaria","Durazno"],fondo:["Almizcle","Iris","S\xE1ndalo","\xC1mbar","Vainilla"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB07",  nombre:"Acqua di Gio",cat:"Femenino",familia:"Floral frutal",salida:["Peon\xEDa","Lim\xF3n","Durazno","Violeta"],corazon:["Lirio","Jacinto","Jazm\xEDn","Rosa"],fondo:["Almizcle","Cedro","S\xE1ndalo"],s30:"ok",s50:"no",s100:"ok"},
-  {num:"N\xB08",  nombre:"Acqua di Gioia",cat:"Femenino",familia:"Floral acu\xE1tica",salida:["Lim\xF3n de Amalfi","Menta"],corazon:["Jazm\xEDn de agua"],fondo:["Cedro","L\xE1dano","Az\xFAcar moreno"],s30:"ok",s50:"no",s100:"low"},
-  {num:"N\xB09",  nombre:"Addict",cat:"Femenino",familia:"\xC1mbar floral",salida:["Zarzamora","Mandarina","Acacia"],corazon:["Jazm\xEDn","Reina de la noche","Rosa"],fondo:["Vainilla","Haba tonka","S\xE1ndalo"],s30:"ok",s50:"low",s100:"ok"},
-  {num:"N\xB010", nombre:"Alien",cat:"Femenino",familia:"\xC1mbar amaderada",salida:["Jazm\xEDn"],corazon:["Notas amaderadas"],fondo:["\xC1mbar"],s30:"no",s50:"no",s100:"ok"},
-  {num:"N\xB011", nombre:"Alien Goddess",cat:"Femenino",familia:"\xC1mbar floral",salida:["Agua de coco","Bergamota"],corazon:["Jazm\xEDn","Heliotropo"],fondo:["Vainilla Bourbon","Cachemira"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB012", nombre:"Amarige",cat:"Femenino",familia:"Floral",salida:["Naranja","Durazno","Neroli","Violeta"],corazon:["Nardos","Mimosa","Gardenia","Ylang-ylang","Jazm\xEDn"],fondo:["S\xE1ndalo","Vainilla","\xC1mbar","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB013", nombre:"Amor Amor",cat:"Femenino",familia:"Floral frutal",salida:["Grosellas","Naranja","Mandarina","Bergamota"],corazon:["Rosa","Chabacano","Jazm\xEDn","Lirio"],fondo:["Vainilla","Haba tonka","Almizcle","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB014", nombre:"\xC1ngel Mugler",cat:"Femenino",familia:"\xC1mbar vainilla",salida:["Algod\xF3n de az\xFAcar","Coco","Mel\xF3n","Pi\xF1a","Mandarina"],corazon:["Miel","Zarzamora","Durazno","Jazm\xEDn","Orqu\xEDdea"],fondo:["Pachu\xEDl","Chocolate","Caramelo","Vainilla","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB015", nombre:"\xC1ngel o Demonio",cat:"Femenino",familia:"\xC1mbar floral",salida:["Azafr\xE1n","Tomillo","Mandarina"],corazon:["Azucena","Ylang-ylang","Orqu\xEDdea"],fondo:["Vainilla","Haba tonka","Palo de rosa","Musgo de roble"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB016", nombre:"Anais Anais",cat:"Femenino",familia:"Floral",salida:["Azucena blanca","Jacinto","Lavanda","Bergamota"],corazon:["Azucena","Lirio","Jazm\xEDn","Clavel","Iris"],fondo:["Musgo de roble","Almizcle","Cuero","S\xE1ndalo","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB017", nombre:"Because It's You",cat:"Femenino",familia:"Floral frutal",salida:["Frambuesa","Lim\xF3n","Neroli"],corazon:["Rosa"],fondo:["Vainilla","Almizcle","Amberwood"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB018", nombre:"Black Opium",cat:"Femenino",familia:"\xC1mbar vainilla",salida:["Pera","Pimienta rosa","Flor de azahar"],corazon:["Caf\xE9","Jazm\xEDn","Almendra amarga","Regaliz"],fondo:["Vainilla","Pachu\xEDl","Madera de cachemira","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB019", nombre:"Black Opium Over Red",cat:"Femenino",familia:"Floral frutal Gourmand",salida:["Cereza","Mandarina verde"],corazon:["Jazm\xEDn","Flor de azahar","T\xE9 negro"],fondo:["Vainilla","Caf\xE9","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB020", nombre:"Black Orchid",cat:"Femenino",familia:"\xC1mbar floral",salida:["Trufa","Gardenia","Grosellas","Ylang-ylang","Bergamota"],corazon:["Orqu\xEDdea","Especias","Gardenia","Flor de loto"],fondo:["Chocolate","Pachu\xEDl","Vainilla","Incienso","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB021", nombre:"Bonbon",cat:"Femenino",familia:"Floral frutal Gourmand",salida:["Durazno","Mandarina","Naranja"],corazon:["Caramelo","Flor de azahar","Jazm\xEDn"],fondo:["\xC1mbar","S\xE1ndalo","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB022", nombre:"Born in Roma",cat:"Femenino",familia:"Oriental floral",salida:["Grosellas","Pimienta rosa","Bergamota"],corazon:["Jazm\xEDn"],fondo:["Vainilla Bourbon","Cachemira","Madera de gaiac"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB023", nombre:"Bright Crystal",cat:"Femenino",familia:"Floral frutal",salida:["Yuzu","Granada","Hielo"],corazon:["Peon\xEDa","Flor de loto","Magnolia"],fondo:["Almizcle","Caoba","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB024", nombre:"CH (2015)",cat:"Femenino",familia:"\xC1mbar floral",salida:["Pomelo","Bergamota","Lim\xF3n"],corazon:["Flor de azahar","Rosa","Jazm\xEDn"],fondo:["Cuero","Prali\xFD","Pachu\xEDl","S\xE1ndalo","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB025", nombre:"Chance Eau de Parfum",cat:"Femenino",familia:"Chipre floral",salida:["Pimienta rosa"],corazon:["Jazm\xEDn","Iris"],fondo:["Pachu\xEDl","Almizcle","Vainilla"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB026", nombre:"Chanel N\xB05",cat:"Femenino",familia:"Floral ald\xEAhídica",salida:["Ald\xEAhidos","Ylang-ylang","Neroli","Bergamota","Durazno"],corazon:["Iris","Jazm\xEDn","Rosa","Lirio"],fondo:["S\xE1ndalo","Vainilla","Musgo de roble","Vetiver","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB027", nombre:"CK Be",cat:"Femenino",familia:"Almizcle floral amaderado",salida:["Lavanda","Bergamota","Menta","Enebro"],corazon:["Durazno","Jazm\xEDn","Fresia","Magnolia"],fondo:["Almizcle","S\xE1ndalo","Cedro","Vainilla","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB028", nombre:"CK Eternity",cat:"Femenino",familia:"Floral",salida:["Notas verdes","Fresia","Salvia","C\xEDtricos"],corazon:["Clavel","Azucena","Lirio","Narciso","Rosa","Jazm\xEDn"],fondo:["Almizcle","S\xE1ndalo","\xC1mbar","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB029", nombre:"CK Euphoria",cat:"Femenino",familia:"\xC1mbar floral",salida:["Granada","Caqu\xEDi","Acordes verdes"],corazon:["Orqu\xEDdea negra","Flor de loto","Champaca"],fondo:["Caoba","\xC1mbar","Violeta negra","Crema batida"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB030", nombre:"Coco Mademoiselle",cat:"Femenino",familia:"\xC1mbar floral",salida:["Naranja","Mandarina","Bergamota","Flor de azahar"],corazon:["Rosa turca","Jazm\xEDn","Mimosa","Ylang-ylang"],fondo:["Pachu\xEDl","Almizcle blanco","Vainilla","Vetiver","Haba tonka"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB031", nombre:"DKNY Be Delicious",cat:"Femenino",familia:"Floral frutal",salida:["Pepino","Pomelo","Magnolia"],corazon:["Manzana verde","Lirio","Nardos","Violeta","Rosa"],fondo:["Notas amaderadas","S\xE1ndalo","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB032", nombre:"Eros Versace",cat:"Femenino",familia:"Almizcle floral amaderado",salida:["Lim\xF3n siciliano","Granada","Bergamota"],corazon:["Flores de azahar","Jazm\xEDn sambac","Peon\xEDa"],fondo:["Almizcle","Ambroxan","Notas amaderadas","S\xE1ndalo"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB033", nombre:"Fantasy",cat:"Femenino",familia:"Floral frutal Gourmand",salida:["Kiwi","Lichi rojo","Membrillo"],corazon:["Chocolate blanco","Pastelito","Orqu\xEDdea","Jazm\xEDn"],fondo:["Almizcle","Ra\xEDz de lirio","Notas amaderadas"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB034", nombre:"Flowerbomb",cat:"Femenino",familia:"Almizcle floral amaderado",salida:["T\xE9","Bergamota","Osmanto"],corazon:["Orqu\xEDdea","Jazm\xEDn","Rosa","Fresia"],fondo:["Pachu\xEDl","Almizcle","Vainilla"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB035", nombre:"Good Girl",cat:"Femenino",familia:"\xC1mbar floral",salida:["Almendra","Caf\xE9","Bergamota","Lim\xF3n"],corazon:["Nardos","Jazm\xEDn sambac","Flor de azahar","Rosa de Bulgaria"],fondo:["Haba tonka","Cacao","Vainilla","Prali\xFD","S\xE1ndalo","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB036", nombre:"Good Girl Blush Elixir",cat:"Femenino",familia:"Chipre floral",salida:["Bergamota","Mandarina"],corazon:["Ylang-ylang","Rosa"],fondo:["Vainilla","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB037", nombre:"Hypnotic Poison",cat:"Femenino",familia:"\xC1mbar vainilla",salida:["Coco","Ciruela","Chabacano"],corazon:["Palo de rosa","Jazm\xEDn","Nardos","Rosa"],fondo:["Vainilla","Almendra","S\xE1ndalo","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB038", nombre:"J'Adore",cat:"Femenino",familia:"Floral frutal",salida:["Pera","Magnolia","Durazno","Mandarina","Bergamota"],corazon:["Jazm\xEDn","Lirio","Nardos","Rosa","Orqu\xEDdea"],fondo:["Almizcle","Vainilla","Zarzamora","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB039", nombre:"La Vida es Bella",cat:"Femenino",familia:"Floral frutal Gourmand",salida:["Grosellas negras","Pera"],corazon:["Iris","Jazm\xEDn","Flor de azahar"],fondo:["Prali\xFD","Vainilla","Pachu\xEDl","Haba tonka"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB040", nombre:"Lady Million",cat:"Femenino",familia:"Floral frutal",salida:["Frambuesa","Neroli","Lim\xF3n de Amalfi"],corazon:["Jazm\xEDn","Naranja africana","Gardenia"],fondo:["Miel blanca","Pachu\xEDl","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB041", nombre:"L'Interdit",cat:"Femenino",familia:"\xC1mbar floral",salida:["Pera","Bergamota"],corazon:["Nardos","Flor de azahar","Jazm\xEDn sambac"],fondo:["Pachu\xEDl","Vainilla","Ambroxan","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB042", nombre:"Libre YSL",cat:"Femenino",familia:"\xC1mbar Foug\xE8re",salida:["Lavanda","Mandarina","Grosellas","Petit grain"],corazon:["Lavanda","Flor de azahar","Jazm\xEDn"],fondo:["Vainilla de Madagascar","Almizcle","Cedro","\xC1mbar gris"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB043", nombre:"Light Blue",cat:"Femenino",familia:"Floral frutal",salida:["Lim\xF3n siciliano","Manzana","Cedro","Campanilla"],corazon:["Bamb\xFA","Jazm\xEDn","Rosa blanca"],fondo:["Cedro","Almizcle","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB044", nombre:"Miss Dior",cat:"Femenino",familia:"Chipre floral",salida:["Mandarina italiana"],corazon:["Rosa","Jazm\xEDn egipcio"],fondo:["Pachu\xEDl","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB045", nombre:"Miss Dior Ch\xE9rie",cat:"Femenino",familia:"Chipre frutal",salida:["Cereza","Fresa","Pi\xF1a","Mandarina"],corazon:["Caramelo","Rosa","Jazm\xEDn","Violeta"],fondo:["Pachu\xEDl","Almizcle","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB046", nombre:"Mon Paris",cat:"Femenino",familia:"Chipre frutal",salida:["Fresa","Frambuesa","Pera","Bergamota"],corazon:["Peon\xEDa","Jazm\xEDn sambac","Datura","Flor de azahar"],fondo:["Pachu\xEDl","Almizcle blanco","Vainilla","Ambroxan","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB047", nombre:"My Way",cat:"Femenino",familia:"Floral",salida:["Flor de azahar","Bergamota"],corazon:["Nardos","Jazm\xEDn de la India"],fondo:["Vainilla de Madagascar","Almizcle blanco","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB048", nombre:"Olympea",cat:"Femenino",familia:"\xC1mbar floral",salida:["Jazm\xEDn de agua","Mandarina verde","Jengibre"],corazon:["Vainilla","Sal"],fondo:["\xC1mbar gris","Madera de cachemira","S\xE1ndalo"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB049", nombre:"Scandal JPG",cat:"Femenino",familia:"Chipre floral",salida:["Naranja sanguina","Mandarina"],corazon:["Miel","Gardenia","Jazm\xEDn","Durazno"],fondo:["Cera de abeja","Caramelo","Pachu\xEDl","Regaliz"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB050", nombre:"Si Giorgio Armani",cat:"Femenino",familia:"Chipre frutal",salida:["Casis"],corazon:["Rosa de mayo","Fresia"],fondo:["Vainilla","Pachu\xEDl","Notas amaderadas","Ambroxan"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB051", nombre:"The One",cat:"Femenino",familia:"\xC1mbar floral",salida:["Durazno","Lichi","Mandarina","Bergamota"],corazon:["Azucena","Ciruela","Jazm\xEDn","Lirio"],fondo:["Vainilla","\xC1mbar","Almizcle","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB052", nombre:"Tommy Girl",cat:"Femenino",familia:"Floral frutal",salida:["Manzano en flor","Camelia","Mandarina","Grosellas"],corazon:["Lim\xF3n","Madreselva","Rosa","Menta","Violeta"],fondo:["Magnolia","Jazm\xEDn","Cedro","S\xE1ndalo","Cuero"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB053", nombre:"Tr\xE9sor",cat:"Femenino",familia:"\xC1mbar floral",salida:["Durazno","Rosa","Lila","Pi\xF1a","Bergamota"],corazon:["Rosa","Iris","Heliotropo","Jazm\xEDn"],fondo:["Durazno","Vainilla","S\xE1ndalo","\xC1mbar","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB054", nombre:"Very Good Girl",cat:"Femenino",familia:"Floral frutal",salida:["Lichi","Grosella roja"],corazon:["Rosa"],fondo:["Vainilla","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB055", nombre:"Wanted Girl",cat:"Femenino",familia:"\xC1mbar floral",salida:["Flor de azahar","Jengibre","Pimienta rosa","Granada"],corazon:["Dulce de leche","Datura"],fondo:["Haba tonka","Pachu\xEDl","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  // MASCULINAS
-  {num:"N\xB0101",nombre:"212 Masc.",cat:"Masculino",familia:"Almizcle amaderado floral",salida:["Notas verdes","Pomelo","Especias","Bergamota","Lavanda"],corazon:["Jengibre","Violeta","Gardenia","Salvia"],fondo:["Almizcle","S\xE1ndalo","Incienso","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0102",nombre:"A-Men",cat:"Masculino",familia:"\xC1mbar amaderada",salida:["Lavanda","Menta","Cilantro","Bergamota"],corazon:["Caramelo","Pachu\xEDl","Miel","Leche","Cedro","Jazm\xEDn"],fondo:["Caf\xE9","Pachu\xEDl","Vainilla","\xC1mbar","S\xE1ndalo","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0103",nombre:"A-Men Pure Coffee",cat:"Masculino",familia:"\xC1mbar",salida:["Caf\xE9","Tabaco"],corazon:["Pachu\xEDl","Cacao"],fondo:["\xC1mbar","Almizcle","Amaderado"],s30:"ok",s50:"low",s100:"ok"},
-  {num:"N\xB0104",nombre:"A-Men Pure Havane",cat:"Masculino",familia:"\xC1mbar vainilla",salida:["Miel blanca","Tabaco"],corazon:["Vainilla","Cacao","Pachu\xEDl"],fondo:["\xC1mbar","L\xE1dano","Styrax"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0105",nombre:"A-Men Pure Malt",cat:"Masculino",familia:"\xC1mbar amaderada",salida:["Notas afrutadas","Naranja","Bergamota"],corazon:["Malta","Whisky","Pachu\xEDl","Caf\xE9","Cedro"],fondo:["Turba","Vainilla","\xC1mbar","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0106",nombre:"Acqua di Gio Masc.",cat:"Masculino",familia:"Arom\xE1tica acu\xE1tica",salida:["Lima","Bergamota","Jazm\xEDn","Naranja","Neroli"],corazon:["Notas marinas","Jazm\xEDn","Calone","Fresia","Romero"],fondo:["Almizcle","Cedro","Musgo de roble","Pachu\xEDl","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0107",nombre:"Acqua di Gio Profumo",cat:"Masculino",familia:"Arom\xE1tica acu\xE1tica",salida:["Notas marinas","Bergamota"],corazon:["Romero","Salvia","Geranio"],fondo:["Incienso","Pachu\xEDl"],s30:"ok",s50:"low",s100:"ok"},
-  {num:"N\xB0108",nombre:"Allure Homme",cat:"Masculino",familia:"\xC1mbar amaderada",salida:["Lim\xF3n","Durazno","Jengibre","Lavanda","Bergamota"],corazon:["Pimienta","Cedro","Pachu\xEDl","Rosa","Jazm\xEDn"],fondo:["Vainilla","Haba tonka","S\xE1ndalo","\xC1mbar","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0109",nombre:"Armani Code Masc.",cat:"Masculino",familia:"\xC1mbar especiada",salida:["Lim\xF3n","Bergamota"],corazon:["An\xEDs estrellado","Flor del olivo","Madera de gaiac"],fondo:["Cuero","Haba tonka","Tabaco"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0110",nombre:"Aventus Creed",cat:"Masculino",familia:"Chipre frutal",salida:["Pi\xF1a","Bergamota","Grosellas","Manzana"],corazon:["Abedul","Pachu\xEDl","Jazm\xEDn","Rosa"],fondo:["Almizcle","Musgo de roble","\xC1mbar gris","Vainilla"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0111",nombre:"Bad Boy",cat:"Masculino",familia:"\xC1mbar especiada",salida:["Pimienta negra","Pimienta blanca","Bergamota"],corazon:["Salvia","Cedro"],fondo:["Haba tonka","Cacao","Amberwood"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0112",nombre:"Bleu de Chanel",cat:"Masculino",familia:"Amaderada arom\xE1tica",salida:["Toronja","Lim\xF3n","Menta","Pimienta rosa"],corazon:["Jengibre","Nuez moscada","Jazm\xEDn"],fondo:["Incienso","Vetiver","Cedro","S\xE1ndalo","Pachu\xEDl","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0113",nombre:"Boss Bottled",cat:"Masculino",familia:"Amaderada especiada",salida:["Manzana","Ciruela","Lim\xF3n","Bergamota","Geranio"],corazon:["Canela","Caoba","Clavel"],fondo:["Vainilla","S\xE1ndalo","Cedro","Vetiver","Olivo"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0114",nombre:"Bvlgari Man in Black",cat:"Masculino",familia:"\xC1mbar floral",salida:["Especias","Ron","Tabaco"],corazon:["Cuero","Iris","Nardos"],fondo:["Haba tonka","Madera de gaiac","Benj\xFA\xED"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0115",nombre:"Eros Versace Masc.",cat:"Masculino",familia:"Arom\xE1tica Foug\xE8re",salida:["Menta","Manzana verde","Lim\xF3n"],corazon:["Haba tonka","Ambroxan","Geranio"],fondo:["Vainilla","Cedro de Virginia","Cedro del Atlas","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0116",nombre:"Fahrenheit",cat:"Masculino",familia:"Arom\xE1tica Foug\xE8re",salida:["Lavanda","Cedro","Mandarina","Bergamota","Lim\xF3n"],corazon:["Hojas de violeta","Nuez moscada","Cedro","Jazm\xEDn"],fondo:["Cuero","Vetiver","Almizcle","\xC1mbar","Pachu\xEDl","Haba tonka"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0117",nombre:"Invictus",cat:"Masculino",familia:"Amaderada acu\xE1tica",salida:["Notas marinas","Toronja","Mandarina"],corazon:["Hoja de laurel","Jazm\xEDn"],fondo:["\xC1mbar gris","Madera de gaiac","Musgo de roble","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0118",nombre:"La Nuit de L'Homme",cat:"Masculino",familia:"Amaderada especiada",salida:["Cardamomo"],corazon:["Lavanda","Cedro","Bergamota"],fondo:["Vetiver","Alcaravea"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0119",nombre:"Le Male JPG",cat:"Masculino",familia:"\xC1mbar Foug\xE8re",salida:["Lavanda","Menta","Cardamomo","Bergamota"],corazon:["Canela","Flor de azahar","Alcaravea"],fondo:["Vainilla","Haba tonka","\xC1mbar","S\xE1ndalo","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0120",nombre:"Light Blue Masc.",cat:"Masculino",familia:"C\xEDtrica arom\xE1tica",salida:["Pomelo","Bergamota","Mandarina siciliana","Enebro"],corazon:["Pimienta","Romero","Palo de rosa"],fondo:["Almizcle","Incienso","Musgo de roble"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0121",nombre:"One Million",cat:"Masculino",familia:"Amaderada especiada",salida:["Mandarina roja","Pomelo","Menta"],corazon:["Canela","Notas especiadas","Rosa"],fondo:["\xC1mbar","Cuero","Notas amaderadas","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0122",nombre:"Sauvage",cat:"Masculino",familia:"Arom\xE1tica Foug\xE8re",salida:["Bergamota de Calabria","Pimienta"],corazon:["Pimienta de Sichuan","Lavanda","Pimienta rosa","Vetiver","Geranio"],fondo:["Ambroxan","Cedro","L\xE1dano"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0123",nombre:"Sauvage Elixir",cat:"Masculino",familia:"Arom\xE1tica",salida:["Nuez moscada","Canela","Cardamomo","Pomelo"],corazon:["Lavanda"],fondo:["Regaliz","S\xE1ndalo","\xC1mbar","Pachu\xEDl","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0124",nombre:"Spicebomb",cat:"Masculino",familia:"Amaderada especiada",salida:["Pimienta rosa","Elem\xED","Bergamota","Pomelo"],corazon:["Canela","Azafr\xE1n","Piment\xF3n dulce"],fondo:["Tabaco","Cuero","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0125",nombre:"Stronger with You",cat:"Masculino",familia:"Arom\xE1tica Foug\xE8re",salida:["Cardamomo","Pimienta rosa","Hojas de violeta"],corazon:["Pi\xF1a","Canela","Mel\xF3n","Salvia","Lavanda"],fondo:["Vainilla","Casta\xF1a","Amberwood","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0126",nombre:"Terre d'Herm\xE8s",cat:"Masculino",familia:"Amaderada especiada",salida:["Naranja","Pomelo"],corazon:["Pimienta","Pelargonio","S\xEDlex"],fondo:["Vetiver","Cedro","Pachu\xEDl","Benj\xFA\xED"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0127",nombre:"The One Masc.",cat:"Masculino",familia:"Amaderada especiada",salida:["Pomelo","Cilantro","Albahaca"],corazon:["Jengibre","Cardamomo","Flor de azahar"],fondo:["\xC1mbar","Tabaco","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0128",nombre:"Ultra Male JPG",cat:"Masculino",familia:"\xC1mbar Foug\xE8re",salida:["Pera","Lavanda","Menta","Bergamota","Lim\xF3n"],corazon:["Canela","Esclarea","Alcaravea"],fondo:["Vainilla negra","\xC1mbar","Pachu\xEDl","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  // UNISEX
-  {num:"N\xB0201",nombre:"Amber Oud Gold",cat:"Unisex",familia:"Oriental vainilla",salida:["Bergamota","Notas verdes"],corazon:["Mel\xF3n","Pi\xF1a","\xC1mbar","Acuerdo goloso"],fondo:["Almizcle vainilla","Notas amaderadas"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0202",nombre:"Baccarat Rouge 540",cat:"Unisex",familia:"Oriental floral",salida:["Azafr\xE1n","Jazm\xEDn"],corazon:["\xC1mbar gris","Hediona"],fondo:["Resina de abeto","Cedro","Az\xFAcar","Ambroxan","Musgo"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0203",nombre:"Bade'e al Oud Honor&Glory",cat:"Unisex",familia:"Oriental",salida:["Pi\xF1a","Cr\xE8me br\xFBl\xE9e"],corazon:["Canela","C\xFArcuma","Benj\xFA\xED","Pimienta negra"],fondo:["Vainilla","S\xE1ndalo","Cachemira","Musgo"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0204",nombre:"CK One",cat:"Unisex",familia:"C\xEDtrica arom\xE1tica",salida:["Lim\xF3n","Bergamota","Pi\xF1a","Mandarina","Cardamomo","Papaya"],corazon:["Lirio","Jazm\xEDn","Violeta","Nuez moscada","Rosa","Fresia"],fondo:["Almizcle","Cedro","S\xE1ndalo","Musgo de roble","T\xE9 verde","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0205",nombre:"Erba Pura",cat:"Unisex",familia:"Oriental frutal",salida:["Naranja siciliana","Bergamota","Lima"],corazon:["Frutas"],fondo:["Almizcle blanco","Vainilla","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0206",nombre:"Ishq al Shuyukh Silver",cat:"Unisex",familia:"Oriental",salida:["Lim\xF3n","Bergamota"],corazon:["Pi\xF1a","Pimienta negra"],fondo:["Vainilla","Amberwood","Cedro","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0207",nombre:"Khamra Qahwa",cat:"Unisex",familia:"Oriental vainilla",salida:["Canela","Cardamomo","Jengibre"],corazon:["Prali\xFD","Frutas confitadas","Flores blancas"],fondo:["Vainilla","Haba tonka","Caf\xE9","Benj\xFA\xED","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0208",nombre:"Lost Cherry",cat:"Unisex",familia:"\xC1mbar floral",salida:["Almendra amarga","Cereza negra","Cherry Liqueur"],corazon:["Cereza \xE1cida","Ciruela","Rosa turca","Jazm\xEDn sambac"],fondo:["Vainilla","Haba tonka","Canela","S\xE1ndalo","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0209",nombre:"Noir de Noir",cat:"Unisex",familia:"Chipre",salida:["Azafr\xE1n"],corazon:["Rosa negra","Trufa","Notas florales"],fondo:["Pachu\xEDl","Vainilla","Madera de oud","Musgo de roble"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0210",nombre:"Ombr\xE9 Leather",cat:"Unisex",familia:"Cuero",salida:["Cardamomo"],corazon:["Cuero","Jazm\xEDn sambac"],fondo:["\xC1mbar","Musgo","Pachu\xEDl"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0211",nombre:"Oud Wood",cat:"Unisex",familia:"\xC1mbar amaderada",salida:["Cardamomo","Oud"],corazon:["Madera de oud","Rosa"],fondo:["S\xE1ndalo","Vainilla","\xC1mbar"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0212",nombre:"Santal 33",cat:"Unisex",familia:"Amaderada arom\xE1tica",salida:["Mirto","Cardamomo","Violeta"],corazon:["\xC1mbar","Cuero","Iris"],fondo:["Vainilla","S\xE1ndalo","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
-  {num:"N\xB0213",nombre:"Tobacco Vanille",cat:"Unisex",familia:"\xC1mbar especiada",salida:["Hojas de tabaco","Notas especiadas"],corazon:["Vainilla","Cacao","Haba tonka","Flor del tabaco"],fondo:["Frutos secos","Notas amaderadas"],s30:"ok",s50:"ok",s100:"ok"},
-  // BODY SPLASH
-  {num:"BS-1",nombre:"Love",cat:"Femenino",familia:"Body Splash \xB7 Frutal",salida:["Cereza","Durazno"],corazon:[],fondo:["Vainilla","Almizcle"],s30:"no",s50:"ok",s100:"no"},
-  {num:"BS-2",nombre:"Pasi\xF3n",cat:"Femenino",familia:"Body Splash \xB7 Floral frutal",salida:["Ciruela","Fresia","Manzanilla"],corazon:[],fondo:["Almizcle"],s30:"no",s50:"ok",s100:"no"},
+  {num:"N°1",nombre:"212",cat:"Femenino",familia:"Almizcle floral amaderado",salida:["Azahar del naranjo","Bergamota","Mandarina"],corazon:["Azucena","Fresia","Gardenia","Jazmín","Rosa","Peonía"],fondo:["Almizcle","Sándalo"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°2",nombre:"212 Sexy",cat:"Femenino",familia:"Ámbar floral",salida:["Pimienta rosa","Mandarina","Bergamota"],corazon:["Gardenia","Rosa"],fondo:["Vainilla","Almizcle","Sándalo","Caramelo","Pachulí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°3",nombre:"212 VIP",cat:"Femenino",familia:"Ámbar vainilla",salida:["Ron","Maracuyá"],corazon:["Gardenia","Almizcle"],fondo:["Vainilla","Haba tonka"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°4",nombre:"212 Héroes",cat:"Femenino",familia:"Floral frutal",salida:["Cítricos"],corazon:["Flores blancas","Peonía"],fondo:["Sándalo","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°5",nombre:"212 VIP Rose",cat:"Femenino",familia:"Floral frutal",salida:["Champagne rosé","Pimienta rosa"],corazon:["Flor del duraznero","Rosa"],fondo:["Almizcle blanco","Notas amaderadas"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°6",nombre:"5th Avenue",cat:"Femenino",familia:"Floral",salida:["Flor del tilo","Lirio","Magnolia","Bergamota"],corazon:["Jazmín","Nardos","Rosa","Durazno"],fondo:["Almizcle","Iris","Sándalo","Ámbar","Vainilla"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°7",nombre:"Acqua di Gio Fem.",cat:"Femenino",familia:"Floral frutal",salida:["Peonía","Limón","Durazno","Violeta"],corazon:["Lirio","Jacinto","Jazmín","Rosa"],fondo:["Almizcle","Cedro","Sándalo"],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°8",nombre:"Acqua di Gioia",cat:"Femenino",familia:"Floral acuática",salida:["Limón de Amalfi","Menta"],corazon:["Jazmín de agua"],fondo:["Cedro","Ládano","Azúcar moreno"],s30:"ok",s50:"no",s100:"low"},
+  {num:"N°9",nombre:"Addict",cat:"Femenino",familia:"Ámbar floral",salida:["Zarzamora","Mandarina","Acacia"],corazon:["Jazmín","Reina de la noche","Rosa"],fondo:["Vainilla","Haba tonka","Sándalo"],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°10",nombre:"Alien",cat:"Femenino",familia:"Ámbar amaderada",salida:["Jazmín"],corazon:["Notas amaderadas"],fondo:["Ámbar"],s30:"no",s50:"no",s100:"ok"},
+  {num:"N°11",nombre:"Alien Goddess",cat:"Femenino",familia:"Ámbar floral",salida:["Agua de coco","Bergamota"],corazon:["Jazmín","Heliotropo"],fondo:["Vainilla Bourbon","Cachemira"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°12",nombre:"Amarige",cat:"Femenino",familia:"Floral",salida:["Naranja","Durazno","Neroli","Violeta"],corazon:["Nardos","Mimosa","Gardenia","Ylang-ylang","Jazmín"],fondo:["Sándalo","Vainilla","Ámbar","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°13",nombre:"Amor Amor",cat:"Femenino",familia:"Floral frutal",salida:["Grosellas","Naranja","Mandarina","Bergamota"],corazon:["Rosa","Chabacano","Jazmín","Lirio"],fondo:["Vainilla","Haba tonka","Almizcle","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°14",nombre:"Ángel Mugler",cat:"Femenino",familia:"Ámbar vainilla",salida:["Algodón de azúcar","Coco","Melón"],corazon:["Miel","Zarzamora","Jazmín"],fondo:["Pachulí","Chocolate","Caramelo","Vainilla","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°15",nombre:"Ángel o Demonio",cat:"Femenino",familia:"Ámbar floral",salida:["Azafrán","Tomillo","Mandarina"],corazon:["Azucena","Ylang-ylang","Orquídea"],fondo:["Vainilla","Haba tonka","Palo de rosa"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°16",nombre:"Anais Anais",cat:"Femenino",familia:"Floral",salida:["Azucena blanca","Jacinto","Lavanda","Bergamota"],corazon:["Azucena","Lirio","Jazmín","Clavel","Iris"],fondo:["Musgo de roble","Almizcle","Cuero","Sándalo","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°17",nombre:"Because It\'s You",cat:"Femenino",familia:"Floral frutal",salida:["Frambuesa","Limón","Neroli"],corazon:["Rosa"],fondo:["Vainilla","Almizcle","Amberwood"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°18",nombre:"Black Opium",cat:"Femenino",familia:"Ámbar vainilla",salida:["Pera","Pimienta rosa","Flor de azahar"],corazon:["Café","Jazmín","Almendra amarga"],fondo:["Vainilla","Pachulí","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°19",nombre:"Black Opium Over Red",cat:"Femenino",familia:"Floral frutal Gourmand",salida:["Cereza","Mandarina verde"],corazon:["Jazmín","Flor de azahar","Té negro"],fondo:["Vainilla","Café","Pachulí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°20",nombre:"Black Orchid",cat:"Femenino",familia:"Ámbar floral",salida:["Trufa","Gardenia","Grosellas","Ylang-ylang"],corazon:["Orquídea","Especias","Flor de loto"],fondo:["Chocolate","Pachulí","Vainilla","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°21",nombre:"Bonbon",cat:"Femenino",familia:"Floral frutal Gourmand",salida:["Durazno","Mandarina","Naranja"],corazon:["Caramelo","Flor de azahar","Jazmín"],fondo:["Ámbar","Sándalo","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°22",nombre:"Born in Roma",cat:"Femenino",familia:"Oriental floral",salida:["Grosellas","Pimienta rosa","Bergamota"],corazon:["Jazmín"],fondo:["Vainilla Bourbon","Cachemira","Madera de gaiac"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°23",nombre:"Bright Crystal",cat:"Femenino",familia:"Floral frutal",salida:["Yuzu","Granada","Hielo"],corazon:["Peonía","Flor de loto","Magnolia"],fondo:["Almizcle","Caoba","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°24",nombre:"CH (2015)",cat:"Femenino",familia:"Ámbar floral",salida:["Pomelo","Bergamota","Limón"],corazon:["Flor de azahar","Rosa","Jazmín"],fondo:["Cuero","Pralinó","Pachulí","Sándalo","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°25",nombre:"Chance EDP",cat:"Femenino",familia:"Chipre floral",salida:["Pimienta rosa"],corazon:["Jazmín","Iris"],fondo:["Pachulí","Almizcle","Vainilla"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°26",nombre:"Chanel N°5",cat:"Femenino",familia:"Floral aldehídica",salida:["Aldehídos","Ylang-ylang","Neroli","Bergamota"],corazon:["Iris","Jazmín","Rosa","Lirio"],fondo:["Sándalo","Vainilla","Musgo de roble","Vetiver","Pachulí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°27",nombre:"CK Be",cat:"Unisex",familia:"Almizcle floral amaderado",salida:["Lavanda","Bergamota","Menta","Enebro"],corazon:["Durazno","Jazmín","Fresia","Magnolia"],fondo:["Almizcle","Sándalo","Cedro","Vainilla","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°28",nombre:"CK Eternity Fem.",cat:"Femenino",familia:"Floral",salida:["Notas verdes","Fresia","Salvia","Cítricos"],corazon:["Clavel","Azucena","Lirio","Narciso","Rosa","Jazmín"],fondo:["Almizcle","Sándalo","Ámbar","Pachulí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°29",nombre:"CK Euphoria Fem.",cat:"Femenino",familia:"Ámbar floral",salida:["Granada","Caquí","Acordes verdes"],corazon:["Orquídea negra","Flor de loto"],fondo:["Caoba","Ámbar","Violeta negra"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°30",nombre:"Coco Mademoiselle",cat:"Femenino",familia:"Ámbar floral",salida:["Naranja","Mandarina","Bergamota","Flor de azahar"],corazon:["Rosa turca","Jazmín","Mimosa","Ylang-ylang"],fondo:["Pachulí","Almizcle blanco","Vainilla","Vetiver","Haba tonka"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°31",nombre:"DKNY Be Delicious",cat:"Femenino",familia:"Floral frutal",salida:["Pepino","Pomelo","Magnolia"],corazon:["Manzana verde","Lirio","Nardos","Violeta","Rosa"],fondo:["Notas amaderadas","Sándalo","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°32",nombre:"Eros Fem.",cat:"Femenino",familia:"Almizcle floral amaderado",salida:["Limón siciliano","Granada","Bergamota"],corazon:["Flores de azahar","Jazmín sambac","Peonía"],fondo:["Almizcle","Ambroxan","Sándalo"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°33",nombre:"Fantasy",cat:"Femenino",familia:"Floral frutal Gourmand",salida:["Kiwi","Lichi rojo","Membrillo"],corazon:["Chocolate blanco","Orquídea","Jazmín"],fondo:["Almizcle","Raíz de lirio","Notas amaderadas"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°34",nombre:"Flowerbomb",cat:"Femenino",familia:"Almizcle floral amaderado",salida:["Té","Bergamota","Osmanto"],corazon:["Orquídea","Jazmín","Rosa","Fresia"],fondo:["Pachulí","Almizcle","Vainilla"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°35",nombre:"Good Girl",cat:"Femenino",familia:"Ámbar floral",salida:["Almendra","Café","Bergamota","Limón"],corazon:["Nardos","Jazmín sambac","Rosa de Bulgaria"],fondo:["Haba tonka","Cacao","Vainilla","Pralinó","Sándalo","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°36",nombre:"Good Girl Blush Elixir",cat:"Femenino",familia:"Chipre floral",salida:["Bergamota","Mandarina"],corazon:["Ylang-ylang","Rosa"],fondo:["Vainilla","Pachulí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°37",nombre:"Hypnotic Poison",cat:"Femenino",familia:"Ámbar vainilla",salida:["Coco","Ciruela","Chabacano"],corazon:["Palo de rosa","Jazmín","Nardos","Rosa"],fondo:["Vainilla","Almendra","Sándalo","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°38",nombre:"J\'Adore",cat:"Femenino",familia:"Floral frutal",salida:["Pera","Magnolia","Durazno","Mandarina"],corazon:["Jazmín","Lirio","Nardos","Rosa","Orquídea"],fondo:["Almizcle","Vainilla","Zarzamora","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°39",nombre:"La Vida es Bella",cat:"Femenino",familia:"Floral frutal Gourmand",salida:["Grosellas negras","Pera"],corazon:["Iris","Jazmín","Flor de azahar"],fondo:["Pralinó","Vainilla","Pachulí","Haba tonka"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°40",nombre:"Lady Million",cat:"Femenino",familia:"Floral frutal",salida:["Frambuesa","Neroli","Limón de Amalfi"],corazon:["Jazmín","Gardenia"],fondo:["Miel blanca","Pachulí","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°41",nombre:"L\'Interdit",cat:"Femenino",familia:"Ámbar floral",salida:["Pera","Bergamota"],corazon:["Nardos","Flor de azahar","Jazmín sambac"],fondo:["Pachulí","Vainilla","Ambroxan","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°42",nombre:"Libre YSL",cat:"Femenino",familia:"Ámbar Fougère",salida:["Lavanda","Mandarina","Grosellas"],corazon:["Lavanda","Flor de azahar","Jazmín"],fondo:["Vainilla de Madagascar","Almizcle","Cedro","Ámbar gris"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°43",nombre:"Light Blue Fem.",cat:"Femenino",familia:"Floral frutal",salida:["Limón siciliano","Manzana","Cedro"],corazon:["Bambú","Jazmín","Rosa blanca"],fondo:["Cedro","Almizcle","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°44",nombre:"Miss Dior",cat:"Femenino",familia:"Chipre floral",salida:["Mandarina italiana"],corazon:["Rosa","Jazmín egipcio"],fondo:["Pachulí","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°45",nombre:"Miss Dior Chérie",cat:"Femenino",familia:"Chipre frutal",salida:["Cereza","Fresa","Piña","Mandarina"],corazon:["Caramelo","Rosa","Jazmín","Violeta"],fondo:["Pachulí","Almizcle","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°46",nombre:"Mon Paris",cat:"Femenino",familia:"Chipre frutal",salida:["Fresa","Frambuesa","Pera","Bergamota"],corazon:["Peonía","Jazmín sambac","Flor de azahar"],fondo:["Pachulí","Almizcle blanco","Vainilla","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°47",nombre:"My Way",cat:"Femenino",familia:"Floral",salida:["Flor de azahar","Bergamota"],corazon:["Nardos","Jazmín de la India"],fondo:["Vainilla de Madagascar","Almizcle blanco","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°48",nombre:"Olympea",cat:"Femenino",familia:"Ámbar floral",salida:["Jazmín de agua","Mandarina verde","Jengibre"],corazon:["Vainilla","Sal"],fondo:["Ámbar gris","Madera de cachemira","Sándalo"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°49",nombre:"Scandal JPG",cat:"Femenino",familia:"Chipre floral",salida:["Naranja sanguina","Mandarina"],corazon:["Miel","Gardenia","Jazmín","Durazno"],fondo:["Cera de abeja","Caramelo","Pachulí","Regaliz"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°50",nombre:"Si Armani",cat:"Femenino",familia:"Chipre frutal",salida:["Casis"],corazon:["Rosa de mayo","Fresia"],fondo:["Vainilla","Pachulí","Notas amaderadas","Ambroxan"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°51",nombre:"The One Fem.",cat:"Femenino",familia:"Ámbar floral",salida:["Durazno","Lichi","Mandarina","Bergamota"],corazon:["Azucena","Ciruela","Jazmín","Lirio"],fondo:["Vainilla","Ámbar","Almizcle","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°52",nombre:"Tommy Girl",cat:"Femenino",familia:"Floral frutal",salida:["Manzano en flor","Camelia","Mandarina"],corazon:["Limón","Madreselva","Rosa","Menta","Violeta"],fondo:["Magnolia","Jazmín","Cedro","Sándalo","Cuero"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°53",nombre:"Trésor",cat:"Femenino",familia:"Ámbar floral",salida:["Durazno","Rosa","Lila","Bergamota"],corazon:["Rosa","Iris","Heliotropo","Jazmín"],fondo:["Durazno","Vainilla","Sándalo","Ámbar","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°54",nombre:"Very Good Girl",cat:"Femenino",familia:"Floral frutal",salida:["Lichi","Grosella roja"],corazon:["Rosa"],fondo:["Vainilla","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°55",nombre:"Wanted Girl",cat:"Femenino",familia:"Ámbar floral",salida:["Flor de azahar","Jengibre","Pimienta rosa"],corazon:["Dulce de leche","Datura"],fondo:["Haba tonka","Pachulí","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°56",nombre:"212 Masc.",cat:"Masculino",familia:"Almizcle amaderado floral",salida:["Notas verdes","Pomelo","Especias","Bergamota"],corazon:["Jengibre","Violeta","Gardenia","Salvia"],fondo:["Almizcle","Sándalo","Incienso","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°57",nombre:"A-Men",cat:"Masculino",familia:"Ámbar amaderada",salida:["Lavanda","Menta","Cilantro","Bergamota"],corazon:["Caramelo","Pachulí","Miel","Cedro"],fondo:["Café","Pachulí","Vainilla","Ámbar","Sándalo","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°58",nombre:"A-Men Pure Coffee",cat:"Masculino",familia:"Ámbar",salida:["Café","Tabaco"],corazon:["Pachulí","Cacao"],fondo:["Ámbar","Almizcle"],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°59",nombre:"A-Men Pure Havane",cat:"Masculino",familia:"Ámbar vainilla",salida:["Miel blanca","Tabaco"],corazon:["Vainilla","Cacao","Pachulí"],fondo:["Ámbar","Ládano"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°60",nombre:"A-Men Pure Malt",cat:"Masculino",familia:"Ámbar amaderada",salida:["Notas afrutadas","Naranja","Bergamota"],corazon:["Malta","Whisky","Pachulí","Café","Cedro"],fondo:["Turba","Vainilla","Ámbar","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°61",nombre:"Acqua di Gio Masc.",cat:"Masculino",familia:"Aromática acuática",salida:["Lima","Bergamota","Jazmín","Naranja","Neroli"],corazon:["Notas marinas","Jazmín","Fresia","Romero"],fondo:["Almizcle","Cedro","Musgo de roble","Pachulí","Ámbar"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°62",nombre:"Acqua di Gio Profumo",cat:"Masculino",familia:"Aromática acuática",salida:["Notas marinas","Bergamota"],corazon:["Romero","Salvia","Geranio"],fondo:["Incienso","Pachulí"],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°63",nombre:"Allure Homme",cat:"Masculino",familia:"Ámbar amaderada",salida:["Limón","Durazno","Jengibre","Lavanda","Bergamota"],corazon:["Pimienta","Cedro","Pachulí","Rosa"],fondo:["Vainilla","Haba tonka","Sándalo","Ámbar","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°64",nombre:"Armani Code Masc.",cat:"Masculino",familia:"Ámbar especiada",salida:["Limón","Bergamota"],corazon:["Anís estrellado","Flor del olivo"],fondo:["Cuero","Haba tonka","Tabaco"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°65",nombre:"Aventus Creed",cat:"Masculino",familia:"Chipre frutal",salida:["Piña","Bergamota","Grosellas","Manzana"],corazon:["Abedul","Pachulí","Jazmín","Rosa"],fondo:["Almizcle","Musgo de roble","Ámbar gris","Vainilla"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°66",nombre:"Bad Boy",cat:"Masculino",familia:"Ámbar especiada",salida:["Pimienta negra","Pimienta blanca","Bergamota"],corazon:["Salvia","Cedro"],fondo:["Haba tonka","Cacao","Amberwood"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°67",nombre:"Bleu de Chanel",cat:"Masculino",familia:"Amaderada aromática",salida:["Toronja","Limón","Menta","Pimienta rosa"],corazon:["Jengibre","Nuez moscada","Jazmín"],fondo:["Incienso","Vetiver","Cedro","Sándalo","Pachulí","Almizcle"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°68",nombre:"Boss Bottled",cat:"Masculino",familia:"Amaderada especiada",salida:["Manzana","Ciruela","Limón","Bergamota"],corazon:["Canela","Caoba","Clavel"],fondo:["Vainilla","Sándalo","Cedro","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°69",nombre:"Bvlgari Man in Black",cat:"Masculino",familia:"Ámbar floral",salida:["Especias","Ron","Tabaco"],corazon:["Cuero","Iris","Nardos"],fondo:["Haba tonka","Madera de gaiac","Benjuí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°70",nombre:"Eros Masc.",cat:"Masculino",familia:"Aromática Fougère",salida:["Menta","Manzana verde","Limón"],corazon:["Haba tonka","Ambroxan","Geranio"],fondo:["Vainilla","Cedro de Virginia","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°71",nombre:"Fahrenheit",cat:"Masculino",familia:"Aromática Fougère",salida:["Lavanda","Cedro","Mandarina","Bergamota"],corazon:["Hojas de violeta","Nuez moscada","Cedro","Jazmín"],fondo:["Cuero","Vetiver","Almizcle","Ámbar","Pachulí","Haba tonka"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°72",nombre:"Invictus",cat:"Masculino",familia:"Amaderada acuática",salida:["Notas marinas","Toronja","Mandarina"],corazon:["Hoja de laurel","Jazmín"],fondo:["Ámbar gris","Madera de gaiac","Musgo de roble","Pachulí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°73",nombre:"La Nuit de L\'Homme",cat:"Masculino",familia:"Amaderada especiada",salida:["Cardamomo"],corazon:["Lavanda","Cedro","Bergamota"],fondo:["Vetiver","Alcaravea"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°74",nombre:"Le Male JPG",cat:"Masculino",familia:"Ámbar Fougère",salida:["Lavanda","Menta","Cardamomo","Bergamota"],corazon:["Canela","Flor de azahar","Alcaravea"],fondo:["Vainilla","Haba tonka","Ámbar","Sándalo","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°75",nombre:"Light Blue Masc.",cat:"Masculino",familia:"Cítrica aromática",salida:["Pomelo","Bergamota","Mandarina siciliana","Enebro"],corazon:["Pimienta","Romero","Palo de rosa"],fondo:["Almizcle","Incienso","Musgo de roble"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°76",nombre:"One Million",cat:"Masculino",familia:"Amaderada especiada",salida:["Mandarina roja","Pomelo","Menta"],corazon:["Canela","Notas especiadas","Rosa"],fondo:["Ámbar","Cuero","Notas amaderadas","Pachulí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°77",nombre:"Sauvage",cat:"Masculino",familia:"Aromática Fougère",salida:["Bergamota de Calabria","Pimienta"],corazon:["Pimienta de Sichuan","Lavanda","Pimienta rosa","Vetiver","Geranio"],fondo:["Ambroxan","Cedro","Ládano"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°78",nombre:"Sauvage Elixir",cat:"Masculino",familia:"Aromática",salida:["Nuez moscada","Canela","Cardamomo","Pomelo"],corazon:["Lavanda"],fondo:["Regaliz","Sándalo","Ámbar","Pachulí","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°79",nombre:"Spicebomb",cat:"Masculino",familia:"Amaderada especiada",salida:["Pimienta rosa","Elemí","Bergamota","Pomelo"],corazon:["Canela","Azafrán","Pimentón dulce"],fondo:["Tabaco","Cuero","Vetiver"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°80",nombre:"Stronger with You",cat:"Masculino",familia:"Aromática Fougère",salida:["Cardamomo","Pimienta rosa"],corazon:["Piña","Canela","Melón","Salvia","Lavanda"],fondo:["Vainilla","Castaña","Amberwood","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°81",nombre:"Terre d\'Hermès",cat:"Masculino",familia:"Amaderada especiada",salida:["Naranja","Pomelo"],corazon:["Pimienta","Pelargonio"],fondo:["Vetiver","Cedro","Pachulí","Benjuí"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°82",nombre:"The One Masc.",cat:"Masculino",familia:"Amaderada especiada",salida:["Pomelo","Cilantro","Albahaca"],corazon:["Jengibre","Cardamomo","Flor de azahar"],fondo:["Ámbar","Tabaco","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°83",nombre:"Ultra Male JPG",cat:"Masculino",familia:"Ámbar Fougère",salida:["Pera","Lavanda","Menta","Bergamota"],corazon:["Canela","Esclarea","Alcaravea"],fondo:["Vainilla negra","Ámbar","Pachulí","Cedro"],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°90",nombre:"Jungle Femenino",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°91",nombre:"Kenzo Amour",cat:"Femenino",familia:"Floral oriental",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°92",nombre:"Kenzo Flower",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°93",nombre:"Kenzo Homme",cat:"Masculino",familia:"Aromática Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"no"},
+  {num:"N°94",nombre:"Kenzo Power",cat:"Masculino",familia:"Amaderada aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°95",nombre:"Kenzo World",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°96",nombre:"L\'Eau d\'Issey Fem.",cat:"Femenino",familia:"Floral acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°97",nombre:"L\'Eau d\'Issey Masc.",cat:"Masculino",familia:"Acuática aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°98",nombre:"L\'Eau Par Kenzo Fem.",cat:"Femenino",familia:"Floral acuática",salida:[],corazon:[],fondo:[],s30:"no",s50:"ok",s100:"ok"},
+  {num:"N°99",nombre:"La Nuit l\'Homme",cat:"Masculino",familia:"Amaderada especiada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°100",nombre:"La Vida es Bella",cat:"Femenino",familia:"Floral frutal Gourmand",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°101",nombre:"Lady Million",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°102",nombre:"Le Beau Masculino",cat:"Masculino",familia:"Aromática acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°103",nombre:"Le Male",cat:"Masculino",familia:"Ámbar Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°104",nombre:"Le Parfum Elie Saab",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"no"},
+  {num:"N°105",nombre:"Legend Spirit",cat:"Masculino",familia:"Acuática aromática",salida:[],corazon:[],fondo:[],s30:"low",s50:"no",s100:"low"},
+  {num:"N°106",nombre:"Libre",cat:"Femenino",familia:"Ámbar Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°107",nombre:"Light Blue Femenino",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°108",nombre:"Light Blue Masculino",cat:"Masculino",familia:"Cítrica aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°109",nombre:"L\'Interdit",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"low",s50:"no",s100:"ok"},
+  {num:"N°110",nombre:"Midnight Poison",cat:"Femenino",familia:"Ámbar vainilla",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°111",nombre:"Miracle",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°112",nombre:"Miss Dior",cat:"Femenino",familia:"Chipre floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°113",nombre:"Miss Dior Cherie",cat:"Femenino",familia:"Chipre frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"low"},
+  {num:"N°114",nombre:"Mon Paris",cat:"Femenino",familia:"Chipre frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°115",nombre:"My Way",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°116",nombre:"Narciso For Her",cat:"Femenino",familia:"Floral amaderado",salida:[],corazon:[],fondo:[],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°117",nombre:"Neroli Portofino",cat:"Unisex",familia:"Cítrica aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°118",nombre:"Nina",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°119",nombre:"Nuit d\'Issey Masc.",cat:"Masculino",familia:"Ámbar amaderada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°120",nombre:"O Lancome",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°121",nombre:"Olympea",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°122",nombre:"Ombré Leather",cat:"Unisex",familia:"Cuero",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°123",nombre:"Omnia Coral",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"low"},
+  {num:"N°124",nombre:"Omnia Crystalline",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°125",nombre:"One Million",cat:"Masculino",familia:"Amaderada especiada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°126",nombre:"One Million Intense",cat:"Masculino",familia:"Amaderada especiada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°127",nombre:"Organza",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°128",nombre:"Oud Wood",cat:"Unisex",familia:"Ámbar amaderada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°129",nombre:"Paco Rabanne Masc.",cat:"Masculino",familia:"Aromática Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°130",nombre:"Phantom",cat:"Masculino",familia:"Aromática Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°131",nombre:"PI",cat:"Masculino",familia:"Ámbar aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°132",nombre:"Play Femenino",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°133",nombre:"Play Intense Femenino",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°134",nombre:"Play Masculino",cat:"Masculino",familia:"Aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°135",nombre:"Poeme",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"no"},
+  {num:"N°136",nombre:"Poison",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°137",nombre:"Poison Girl",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°138",nombre:"Polo Black",cat:"Masculino",familia:"Aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°139",nombre:"Polo Blue",cat:"Masculino",familia:"Aromática acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°140",nombre:"Polo Ralph Lauren Verde",cat:"Masculino",familia:"Aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"low"},
+  {num:"N°141",nombre:"Polo Red",cat:"Masculino",familia:"Aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°142",nombre:"Pure Poison",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"low",s50:"ok",s100:"ok"},
+  {num:"N°143",nombre:"Pure XS Femenino",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°144",nombre:"Pure XS Masculino",cat:"Masculino",familia:"Ámbar aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°145",nombre:"Ralph",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°146",nombre:"Ralph Blue Femenino",cat:"Femenino",familia:"Floral acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°147",nombre:"Ricci Ricci",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°148",nombre:"Sauvage",cat:"Masculino",familia:"Aromática Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°149",nombre:"Scandal Femenino",cat:"Femenino",familia:"Chipre floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°150",nombre:"Si Armani",cat:"Femenino",familia:"Chipre frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°151",nombre:"Spicebomb",cat:"Masculino",familia:"Amaderada especiada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"no"},
+  {num:"N°152",nombre:"Starwalker",cat:"Masculino",familia:"Acuática aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°153",nombre:"Stronger with You",cat:"Masculino",familia:"Aromática Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°154",nombre:"Terre Hermès",cat:"Masculino",familia:"Amaderada especiada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°155",nombre:"The One Femenino",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"low"},
+  {num:"N°156",nombre:"The One Masculino",cat:"Masculino",familia:"Amaderada especiada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°157",nombre:"Tobacco Vainilla",cat:"Unisex",familia:"Ámbar especiada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°158",nombre:"Tom Ford Extreme",cat:"Masculino",familia:"Amaderada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°159",nombre:"Tom Ford Noir",cat:"Masculino",familia:"Ámbar amaderada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°160",nombre:"Tommy Girl",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"low"},
+  {num:"N°161",nombre:"Tommy Hilfiger Masc.",cat:"Masculino",familia:"Aromática acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°162",nombre:"Toy Boy",cat:"Masculino",familia:"Ámbar especiada",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°163",nombre:"Tresor",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°164",nombre:"Tresor La Nuit",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°165",nombre:"Ultra Male",cat:"Masculino",familia:"Ámbar Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"no"},
+  {num:"N°166",nombre:"Ultraviolet Femenino",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°167",nombre:"Valentino Uomo",cat:"Masculino",familia:"Ámbar aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°168",nombre:"Very Irresistible Femenino",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°169",nombre:"Wanted",cat:"Masculino",familia:"Aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"no"},
+  {num:"N°170",nombre:"Womanity",cat:"Femenino",familia:"Frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°171",nombre:"212 Heroes Masculino",cat:"Masculino",familia:"Acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°172",nombre:"Versense",cat:"Femenino",familia:"Floral verde",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°173",nombre:"Wanted Girl",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"low",s50:"ok",s100:"ok"},
+  {num:"N°174",nombre:"Fame",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°175",nombre:"Scandal Masculino",cat:"Masculino",familia:"Aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°176",nombre:"Club de Nuit Intense",cat:"Masculino",familia:"Aromática acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°177",nombre:"Invictus Victory",cat:"Masculino",familia:"Acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°178",nombre:"Eros Femenino",cat:"Femenino",familia:"Almizcle floral amaderado",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°179",nombre:"Lost Cherry",cat:"Unisex",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"no",s50:"no",s100:"ok"},
+  {num:"N°180",nombre:"Si Passione",cat:"Femenino",familia:"Chipre frutal",salida:[],corazon:[],fondo:[],s30:"low",s50:"ok",s100:"ok"},
+  {num:"N°181",nombre:"Alien Goddess",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°182",nombre:"L\'Interdit Rouge",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°183",nombre:"J\'Adore in Joy",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°184",nombre:"Very Good Girl",cat:"Femenino",familia:"Floral frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"low",s100:"ok"},
+  {num:"N°185",nombre:"Eros Flame Masculino",cat:"Masculino",familia:"Aromática Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°186",nombre:"Irresistible Femenino",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"no",s50:"no",s100:"ok"},
+  {num:"N°187",nombre:"Le Petit Robe Noire",cat:"Femenino",familia:"Ámbar floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°188",nombre:"CK Be",cat:"Unisex",familia:"Almizcle floral amaderado",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°189",nombre:"212 Heroes Femenino",cat:"Femenino",familia:"Floral acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°190",nombre:"Scandal Le Parfum Fem.",cat:"Femenino",familia:"Chipre floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°191",nombre:"My Way Le Parfum",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"no"},
+  {num:"N°192",nombre:"Y Eau de Parfum Intense",cat:"Masculino",familia:"Aromática Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°193",nombre:"Invictus Victory Elixir",cat:"Masculino",familia:"Acuática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°194",nombre:"Erba Pura",cat:"Unisex",familia:"Oriental frutal",salida:[],corazon:[],fondo:[],s30:"no",s50:"no",s100:"ok"},
+  {num:"N°195",nombre:"Bade\'e Al Oud Honor & Glory",cat:"Unisex",familia:"Oriental",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°196",nombre:"Ishq Al Shuyukh Silver",cat:"Unisex",familia:"Oriental",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°198",nombre:"Sauvage Elixir",cat:"Masculino",familia:"Aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"no",s100:"ok"},
+  {num:"N°199",nombre:"Baccarat Rouge",cat:"Unisex",familia:"Oriental floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°200",nombre:"Noir de Noir",cat:"Unisex",familia:"Chipre",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°201",nombre:"Black Opium Over Red",cat:"Femenino",familia:"Floral frutal Gourmand",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°202",nombre:"Good Girl Blush Elixir",cat:"Femenino",familia:"Chipre floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°203",nombre:"Born in Roma",cat:"Femenino",familia:"Oriental floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°204",nombre:"La Belle Flower",cat:"Femenino",familia:"Floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°205",nombre:"Khamrah Qahwa",cat:"Unisex",familia:"Oriental vainilla",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°206",nombre:"Amber Oud Gold",cat:"Unisex",familia:"Oriental vainilla",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°207",nombre:"Erba Gold",cat:"Unisex",familia:"Oriental frutal",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°208",nombre:"Santal 33",cat:"Unisex",familia:"Amaderada aromática",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°209",nombre:"Le Male Elixir Absolu",cat:"Masculino",familia:"Ámbar Fougère",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°210",nombre:"La Vida es Bella Elixir",cat:"Femenino",familia:"Floral frutal Gourmand",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°211",nombre:"La Nuit Tresor Vainille",cat:"Femenino",familia:"Ámbar vainilla",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"},
+  {num:"N°212",nombre:"Scandal Intense Femenino",cat:"Femenino",familia:"Chipre floral",salida:[],corazon:[],fondo:[],s30:"ok",s50:"ok",s100:"ok"}
 ];
 
 function renderNotes(p){
@@ -326,10 +430,9 @@ function renderNotes(p){
     if(!arr||!arr.length) return '';
     return '<div class="nrow"><span class="ntier">'+tier+'</span><div class="npills">'+arr.map(function(n){return'<span class="npill '+cls+'">'+escH(n)+'</span>'}).join('')+'</div></div>';
   }
-  return '<div class="notes-sec"><div class="notes-lbl">Pir\xE1mide olfativa</div><div class="pyramid">'+row('Salida',p.salida,'s')+row('Coraz\xF3n',p.corazon,'c')+row('Base',p.fondo,'b')+'</div></div>';
+  return '<div class="notes-sec"><div class="notes-lbl">Pirámide olfativa</div><div class="pyramid">'+row('Salida',p.salida,'s')+row('Corazón',p.corazon,'c')+row('Base',p.fondo,'b')+'</div></div>';
 }
 
-// Convierte "N°88" → "ei-n88", "BS-1" → "ei-bs1"
 function imgKey(num){
   return num.toLowerCase().replace('°','').replace(/\s+/g,'').replace('-','');
 }
@@ -337,7 +440,7 @@ function imgSrc(num){ return 'img/ei-'+imgKey(num)+'.png'; }
 
 function cardHTML(p,vi){
   var key=imgKey(p.num);
-  var imgH='<img src="img/ei-'+key+'.png" alt="'+escH(p.nombre)+'" loading="lazy" style="/*width:100%;*/height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.25,.46,.45,.94)" '+
+  var imgH='<img src="img/ei-'+key+'.png" alt="'+escH(p.nombre)+'" loading="lazy" style="height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.25,.46,.45,.94)" '+
     'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+ 
     '<div style="display:none;width:100%;height:100%;align-items:flex-end;justify-content:center;gap:16px;padding:24px">'+
     '<div class="bp-side">'+svgOrig(p.cat)+'<span class="bp-lbl">Original</span></div>'+
@@ -351,7 +454,7 @@ function cardHTML(p,vi){
     '<div class="cnum">'+escH(p.num)+'</div>'+
     '<div class="ctags"><span class="ctag olf">'+escH(p.familia)+'</span><span class="ctag">'+escH(p.cat)+'</span>'+stTag(p)+'</div>'+
     '</div>'+
-    '<div class="cfoot"><div class="cprice">Consult\xE1 disponibilidad</div><span class="cue">Ver &rarr;</span></div>'+
+    '<div class="cfoot"><div class="cprice">Consultá disponibilidad</div><span class="cue">Ver &rarr;</span></div>'+
     '</div>';
 }
 
@@ -361,7 +464,7 @@ function render(list){
   var grid=document.getElementById('productsGrid');
   document.getElementById('gridCount').textContent=list.length+' extracto'+(list.length!==1?'s':'');
   if(!list.length){
-    grid.innerHTML='<div class="nores"><p>Sin resultados para esa b\xFAsqueda</p><button class="clrf" onclick="clearFilters()">Limpiar filtros</button></div>';
+    grid.innerHTML='<div class="nores"><p>Sin resultados para esa búsqueda</p><button class="clrf" onclick="clearFilters()">Limpiar filtros</button></div>';
     return;
   }
   var cats=['Femenino','Masculino','Unisex'],html='',vi=0;
@@ -392,7 +495,7 @@ function openPM(num){
     '<div class="pm-bot">'+svgExt(p.cat)+'<span class="pm-bot-lbl">Extracto</span></div>'+
     '</div>';
   document.getElementById('pmNotes').innerHTML=renderNotes(p);
-  var msg=encodeURIComponent('Hola! Me interesa el '+p.num+' \u2014 '+p.nombre+'. \xBFTienen disponible?');
+  var msg=encodeURIComponent('Hola! Me interesa el '+p.num+' — '+p.nombre+'. ¿Tienen disponible?');
   document.getElementById('pmWaBtn').href='https://wa.me/'+WA+'?text='+msg;
   document.getElementById('productOverlay').classList.add('on');
   document.body.style.overflow='hidden';
