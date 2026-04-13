@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FC Perfumes — Fragancias importadas originales. Argentina.">
+<meta property="og:title" content="FC Perfumes — Catálogo 2025">
+<title>FC Perfumes — Catálogo 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="img/Logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0f0d0b;--ink2:#2a2620;
+  --cream:#f9f6f0;--warm:#f2ece0;
+  --gold:#b8965a;--gold2:#d4ae78;--gold-pale:#f5edd8;
+  --muted:#9a9080;--border:#e4dcd0;
+  --success:#2e6645;--danger:#7a2828;
+  --wa:#25D366;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Tenor Sans',sans-serif;
+}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);min-height:100vh}
+
+/* HEADER */
+header{
+  background:#e8e0d0;padding:48px 24px 38px;
+  text-align:center;position:relative;overflow:hidden;
+}
+header::before{content:''}
+.h-inner{position:relative;z-index:1}
+.logo-wrap{display:flex;justify-content:center;margin-bottom:22px}
+.logo-wrap img{height:200px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 14px rgba(140,100,40,.22))}
+.h-rule{width:100px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 12px}
+.h-sub{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(50,40,28,.45);margin-bottom:30px}
+.trust{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.titem{display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(50,40,28,.55)}
+.tdot{width:17px;height:17px;border:1px solid rgba(184,150,90,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tdot svg{width:8px;height:8px;stroke:var(--gold);fill:none;stroke-width:2}
+
+/* ── NAV ENTRE SECCIONES ── */
+.sec-nav{background:var(--ink);display:flex;justify-content:center;border-bottom:1px solid rgba(184,150,90,.25)}
+.sec-nav a{padding:13px 28px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(249,246,240,.4);text-decoration:none;transition:color .2s;border-right:1px solid rgba(255,255,255,.06)}
+.sec-nav a:last-child{border-right:none}
+.sec-nav a:hover{color:var(--gold2)}
+.sec-nav a.active{color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold)}
+@media(max-width:480px){.sec-nav a{padding:11px 16px;font-size:8px}}
+
+/* FILTER BAR */
+.fbar{
+  background:white;border-bottom:1px solid var(--border);
+  padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  position:sticky;top:0;z-index:100;box-shadow:0 2px 14px rgba(15,13,11,.05);
+}
+.sw{flex:1;min-width:170px;position:relative}
+.sw svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:1.5;pointer-events:none}
+.sw input,.fbar select{
+  padding:9px 12px;border:1px solid var(--border);border-radius:2px;
+  font-family:var(--sans);font-size:12px;letter-spacing:.05em;
+  background:var(--cream);color:var(--ink);transition:border-color .2s;
+}
+.sw input{width:100%;padding-left:34px}
+.sw input:focus,.fbar select:focus{outline:none;border-color:var(--gold)}
+.sw input::placeholder{color:var(--muted)}
+.fbar select{cursor:pointer}
+.cbtn{
+  background:var(--ink);color:var(--cream);border:none;
+  padding:9px 17px;border-radius:2px;
+  font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .2s;white-space:nowrap;
+}
+.cbtn:hover{background:var(--ink2)}
+.cbadge{background:var(--gold);color:var(--ink);min-width:17px;height:17px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center}
+
+/* GRID */
+.gmeta{padding:18px 22px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.gcount{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:1px;background:var(--border)}
+
+/* CARD */
+.card{
+  background:white;cursor:pointer;display:flex;flex-direction:column;
+  transition:background .15s;position:relative;overflow:hidden;
+  animation:fup .4s ease both;
+}
+@keyframes fup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card:hover{background:var(--warm)}
+.card:hover .card-zoom img{transform:scale(1.06)}
+.card:hover .cue{opacity:1;transform:translateX(0)}
+.card-zoom{aspect-ratio:1;background:var(--cream);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card-zoom img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.cph{font-family:var(--serif);font-size:34px;color:var(--border);font-style:italic}
+.cbody{padding:13px 15px 0;flex:1;display:flex;flex-direction:column;gap:4px}
+.cbrand{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.cname{font-family:var(--serif);font-size:15px;line-height:1.3;color:var(--ink)}
+.ctags{display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
+.ctag{font-size:9px;letter-spacing:.09em;text-transform:uppercase;padding:3px 7px;border-radius:1px;border:1px solid var(--border);background:var(--cream);color:var(--muted)}
+.ctag.olf{border-color:rgba(184,150,90,.3);background:var(--gold-pale);color:#7a5c28}
+.cdesc{font-size:11px;color:var(--muted);line-height:1.6;margin-top:4px;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cfoot{display:flex;align-items:center;justify-content:space-between;padding:11px 15px 13px;margin-top:8px;border-top:1px solid var(--border)}
+.cprice{font-family:var(--serif);font-size:19px;color:var(--ink)}
+.cue{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:0;transform:translateX(5px);transition:all .2s}
+
+/* PULSE DOT */
+.adot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold2);animation:blink 1.2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+
+/* LOADER */
+.ploader{grid-column:1/-1;background:white;display:flex;flex-direction:column;align-items:center;padding:80px 20px;gap:14px}
+.lring{width:34px;height:34px;border:1px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ltxt{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:15px}
+
+/* PRODUCT MODAL */
+.ov{position:fixed;inset:0;background:rgba(15,13,11,.78);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.ov.on{opacity:1;pointer-events:all}
+.pm{background:white;width:100%;max-width:820px;max-height:92vh;border-radius:10px 10px 0 0;overflow:hidden;display:flex;flex-direction:column;transform:translateY(30px);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.ov.on .pm{transform:translateY(0)}
+.pm-in{display:flex;flex:1;overflow:hidden}
+.pm-img{width:40%;flex-shrink:0;background:var(--cream);display:flex;align-items:center;justify-content:center;padding:34px}
+.pm-img img{max-width:100%;max-height:290px;object-fit:contain}
+.pm-info{flex:1;overflow-y:auto;padding:34px 30px 30px 26px;display:flex;flex-direction:column}
+.pm-brand{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+.pm-name{font-family:var(--serif);font-size:clamp(19px,3.2vw,27px);font-weight:400;line-height:1.2;margin-bottom:13px}
+.pm-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.pchip{font-size:9px;letter-spacing:.11em;text-transform:uppercase;padding:4px 10px;border-radius:1px}
+.pc-fam{background:var(--gold-pale);color:#6e5020}
+.pc-gen{background:#eef2ee;color:#28502e}
+.pc-sz{background:#f0eeed;color:#503030}
+
+/* PYRAMID */
+.notes-sec{margin-bottom:18px}
+.notes-lbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.pyramid{display:flex;flex-direction:column;gap:7px}
+.nrow{display:flex;align-items:flex-start;gap:10px}
+.ntier{width:54px;flex-shrink:0;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:1px}
+.npills{display:flex;flex-wrap:wrap;gap:5px}
+.npill{font-size:10px;padding:3px 9px;border-radius:20px;font-family:var(--sans)}
+.npill.s{background:var(--gold-pale);color:#6e5020;border:1px solid rgba(184,150,90,.28)}
+.npill.c{background:#eef2f7;color:#2a3a58;border:1px solid rgba(60,100,180,.14)}
+.npill.b{background:#f1f0ee;color:#3a3430;border:1px solid rgba(80,70,60,.13)}
+
+.pm-dlbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.pm-desc{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.8;color:#3a3530;min-height:56px;flex:1}
+.pm-desc.loading{font-style:normal;font-size:13px;color:var(--border);display:flex;align-items:center;gap:8px}
+.pm-hr{border:none;border-top:1px solid var(--border);margin:18px 0 16px}
+.pm-act{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.pm-price{font-family:var(--serif);font-size:28px;font-weight:400}
+.pm-add{background:var(--ink);color:var(--cream);border:none;padding:12px 24px;border-radius:2px;font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.pm-add:hover{background:var(--ink2)}
+.pm-add.added{background:var(--success)}
+.pm-seal{display:flex;align-items:center;gap:7px;margin-top:12px;padding:8px 12px;background:var(--cream);border-radius:2px;font-size:10px;color:var(--muted);letter-spacing:.06em;border:1px solid var(--border)}
+.seal-dot{width:17px;height:17px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:var(--gold)}
+.pm-x{position:absolute;top:13px;right:13px;width:32px;height:32px;background:rgba(15,13,11,.07);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--ink);transition:background .2s;z-index:10}
+.pm-x:hover{background:rgba(15,13,11,.14)}
+
+/* CART MODAL */
+.cov{position:fixed;inset:0;background:rgba(15,13,11,.68);z-index:1100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(3px)}
+.cov.on{opacity:1;pointer-events:all}
+.cm{background:white;width:94%;max-width:496px;max-height:90vh;border-radius:6px;display:flex;flex-direction:column;overflow:hidden;transform:scale(.97);transition:transform .25s}
+.cov.on .cm{transform:scale(1)}
+.cm-head{display:flex;align-items:center;justify-content:space-between;padding:17px 21px;border-bottom:1px solid var(--border)}
+.cm-head h2{font-family:var(--serif);font-weight:400;font-size:19px;letter-spacing:.04em}
+.cm-x{background:none;border:none;font-size:19px;cursor:pointer;color:var(--muted);line-height:1}
+.cm-body{flex:1;overflow-y:auto;padding:0 21px}
+.ci{display:flex;align-items:center;padding:13px 0;border-bottom:1px solid var(--border);gap:11px}
+.ci:last-child{border-bottom:none}
+.ci-info{flex:1;min-width:0}
+.ci-brand{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.ci-name{font-family:var(--serif);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-ctrl{display:flex;align-items:center;gap:8px}
+.qty{display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:2px;padding:2px}
+.qb{width:23px;height:23px;background:none;border:none;cursor:pointer;font-size:14px;color:var(--ink);display:flex;align-items:center;justify-content:center;border-radius:1px;transition:background .1s}
+.qb:hover{background:var(--warm)}
+.qn{min-width:21px;text-align:center;font-size:12px}
+.ci-price{font-family:var(--serif);font-size:15px;min-width:68px;text-align:right}
+.ci-del{background:none;border:none;cursor:pointer;font-size:13px;color:var(--muted);padding:4px;transition:color .15s}
+.ci-del:hover{color:var(--danger)}
+.cm-total{padding:15px 21px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline}
+.ct-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.ct-amt{font-family:var(--serif);font-size:23px}
+.empty-cart{padding:54px 20px;text-align:center}
+.ec-icon{font-family:var(--serif);font-style:italic;font-size:38px;color:var(--border);margin-bottom:10px}
+.empty-cart p{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:17px}
+
+/* SHIPPING */
+.ship{padding:0 21px 16px}
+.ship-ttl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-top:2px}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+.fg2.full{grid-template-columns:1fr}
+.fg label{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.fg input{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:2px;font-family:var(--sans);font-size:13px;background:var(--cream);color:var(--ink);transition:border-color .2s}
+.fg input:focus{outline:none;border-color:var(--gold)}
+.fg input.err{border-color:var(--danger)}
+.ferr{font-size:10px;color:var(--danger);margin-top:3px;display:none}
+.cm-foot{padding:13px 21px;border-top:1px solid var(--border);display:flex;gap:9px;background:white}
+.wa-btn{flex:1;background:var(--wa);color:white;border:none;padding:12px 17px;border-radius:2px;font-family:var(--sans);font-size:10px;letter-spacing:.17em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .2s}
+.wa-btn:hover{background:#128C7E}
+.wa-btn:disabled{background:#ccc;cursor:default}
+.clr{background:none;border:1px solid var(--border);padding:12px 13px;border-radius:2px;cursor:pointer;font-size:13px;color:var(--muted);transition:all .15s}
+.clr:hover{border-color:var(--danger);color:var(--danger)}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--cream);padding:10px 16px;border-radius:2px;font-size:12px;letter-spacing:.05em;z-index:9999;box-shadow:0 8px 26px rgba(15,13,11,.22);transform:translateY(16px);opacity:0;transition:all .24s;pointer-events:none;border-left:2px solid var(--gold)}
+.toast.on{transform:translateY(0);opacity:1}
+
+/* NO RESULTS */
+.nores{grid-column:1/-1;background:white;padding:76px 20px;text-align:center}
+.nores p{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--muted)}
+.clrf{margin-top:16px;background:none;border:1px solid var(--gold);color:var(--gold);padding:9px 24px;border-radius:2px;cursor:pointer;font-family:var(--sans);font-size:10px;letter-spacing:.17em;text-transform:uppercase;transition:all .2s}
+.clrf:hover{background:var(--gold);color:white}
+
+@media(max-width:600px){
+  .pm-in{flex-direction:column}
+  .pm-img{width:100%;height:190px;padding:18px}
+  .pm-info{padding:20px 17px}
+  .fg2{grid-template-columns:1fr}
+  .toast{right:10px;left:10px;bottom:10px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div class="logo-wrap">
+      <img src="img/Logo.png" alt="FC Perfumes" onerror="this.style.display='none'">
+    </div>
+    <div class="h-rule"></div>
+    <p class="h-sub">Perfumeria multimarca</p>
+    <div class="trust">
+      <div class="titem"><div class="tdot"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>100% originales</div>
+      <div class="titem"><div class="tdot"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4"/><path d="M6 4v2l1.5 1.5"/></svg></div>Envío a todo el país</div>
+      <div class="titem"><div class="tdot"><svg viewBox="0 0 12 12"><path d="M6 1l1.3 2.6 2.9.4-2.1 2 .5 2.9L6 7.5 3.4 8.9l.5-2.9-2.1-2 2.9-.4z"/></svg></div>Marcas importadas</div>
+    </div>
+  </div>
+</header>
+
+<!-- ── NAVEGACIÓN ENTRE SECCIONES ── -->
+<nav class="sec-nav">
+  <a href="index.html" class="active">Fragancias Arabes</a>
+  <a href="extracto-importado.html">Extracto Importado</a>
+</nav>
+
+<div class="fbar">
+  <div class="sw">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Buscar perfume o marca…">
+  </div>
+  <select id="brandFilter"><option value="">Todas las marcas</option></select>
+  <select id="priceFilter">
+    <option value="">Todos los precios</option>
+    <option value="0-3000">Hasta $3.000</option>
+    <option value="3000-6000">$3.000 – $6.000</option>
+    <option value="6000-10000">$6.000 – $10.000</option>
+    <option value="10000+">Más de $10.000</option>
+  </select>
+  <button class="cbtn" onclick="openCart()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    Mi pedido <span class="cbadge" id="cartCount">0</span>
+  </button>
+</div>
+
+<div class="gmeta"><span class="gcount" id="gridCount"></span></div>
+<div id="productsGrid" class="products-grid">
+  <div class="ploader"><div class="lring"></div><p class="ltxt">Cargando catálogo…</p></div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="ov" id="productOverlay">
+  <div class="pm" style="position:relative">
+    <button class="pm-x" onclick="closePM()">✕</button>
+    <div class="pm-in">
+      <div class="pm-img" id="pmImg"></div>
+      <div class="pm-info">
+        <div class="pm-brand" id="pmBrand"></div>
+        <div class="pm-name" id="pmName"></div>
+        <div class="pm-chips" id="pmChips"></div>
+        <div id="pmNotes"></div>
+        <div class="pm-dlbl">Sobre esta fragancia</div>
+        <div class="pm-desc" id="pmDesc"></div>
+        <hr class="pm-hr">
+        <div class="pm-act">
+          <div class="pm-price" id="pmPrice"></div>
+          <button class="pm-add" id="pmAddBtn" onclick="addFromModal()">Agregar al pedido</button>
+        </div>
+        <div class="pm-seal"><div class="seal-dot">✓</div>Producto 100% original · Importado directamente</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="cov" id="cartOverlay">
+  <div class="cm">
+    <div class="cm-head"><h2>Mi pedido</h2><button class="cm-x" onclick="closeCart()">✕</button></div>
+    <div class="cm-body" id="cartBody"></div>
+    <div id="cartTotalRow" class="cm-total" style="display:none">
+      <span class="ct-lbl">Total</span><span class="ct-amt" id="cartTotal">$0</span>
+    </div>
+    <div id="shipSection" style="display:none">
+      <div class="ship">
+        <div class="ship-ttl">Datos de envío</div>
+        <div class="fg2 full"><div class="fg">
+          <label>Nombre completo *</label>
+          <input id="fNombre" type="text" placeholder="Juan Pérez">
+          <div class="ferr" id="eNombre">Ingresá tu nombre</div>
+        </div></div>
+        <div class="fg2 full"><div class="fg">
+          <label>Dirección *</label>
+          <input id="fDir" type="text" placeholder="Av. Corrientes 1234">
+          <div class="ferr" id="eDir">Ingresá tu dirección</div>
+        </div></div>
+        <div class="fg2">
+          <div class="fg"><label>Localidad *</label><input id="fLoc" type="text" placeholder="CABA"><div class="ferr" id="eLoc">Ingresá la localidad</div></div>
+          <div class="fg"><label>Provincia *</label><input id="fProv" type="text" placeholder="Buenos Aires"><div class="ferr" id="eProv">Ingresá la provincia</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cm-foot">
+      <button class="clr" id="clrBtn" style="display:none" onclick="clearCart()">🗑</button>
+      <button class="wa-btn" onclick="sendOrder()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.469 2 2 6.469 2 11.99c0 1.944.563 3.757 1.536 5.287L2 22l4.932-1.519A9.958 9.958 0 0011.99 22C17.511 22 22 17.531 22 12.01 22 6.469 17.511 2 11.99 2z"/></svg>
+        Enviar por WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SHEET_ID='1M28nZtrk1kFN-KdXTIjUFQ2AucK8cegr1weMa7J9GTk';
+const SHEET_NAME='Catalogo publico';
+const WHATSAPP='541140550053';
+const STORAGE_KEY='fcperfumes_v3';
+
+const NDB={
+  'YARA PINK':       {s:['Mandarina','Heliotropo','Orquídea'],c:['Frutas tropicales','Acorde gourmand'],b:['Vainilla','Almizcle','Sándalo']},
+  'YARA CANDY':      {s:['Caramelo de fresa','Mandarina verde'],c:['Fresa','Gardenia'],b:['Jarabe de vainilla','Sándalo','Ámbar']},
+  'YARA MOI':        {s:['Jazmín','Melocotón'],c:['Caramelo','Ámbar'],b:['Pachulí','Sándalo','Vainilla']},
+  'YARA TOUS':       {s:['Mango','Coco'],c:['Jazmín','Azahar'],b:['Vainilla','Cachemira']},
+  'YARA PINK ELIXIR':{s:['Fresa','Grosella negra'],c:['Azahar','Jazmín'],b:['Vainilla','Caramelo','Ámbar','Almizcle']},
+  'ASAD':            {s:['Bergamota','Cardamomo','Pimienta negra'],c:['Cuero','Rosa','Oud'],b:['Ámbar','Almizcle','Sándalo']},
+  'ASAD ZANZIBAR':   {s:['Naranja','Bergamota','Cardamomo'],c:['Rosa','Cuero','Jengibre'],b:['Oud','Sándalo','Ámbar']},
+  'ASAD BOURBON':    {s:['Bergamota','Ron','Vainilla'],c:['Cuero','Madera ahumada'],b:['Ámbar','Almizcle','Benjuí']},
+  'ASAD ELIXIR':     {s:['Pimienta negra','Bergamota'],c:['Cuero','Rosa'],b:['Oud','Ámbar','Vainilla']},
+  'KHAMRAH':         {s:['Canela','Nuez moscada','Bergamota'],c:['Dátiles','Pralinée','Tuberosa'],b:['Vainilla','Tonka','Ámbar','Mirra']},
+  'KHAMRAH QAWHA':   {s:['Café','Canela','Cardamomo'],c:['Rosa','Azafrán'],b:['Oud','Vainilla','Ámbar']},
+  'BADEE AL OUD FOR GLORY (NEGRO)':{s:['Bergamota','Limón'],c:['Rosa','Oud ahumado'],b:['Sándalo','Ámbar','Almizcle']},
+  'BADEE AL OUD AMETHYST':{s:['Frutas del bosque','Bergamota'],c:['Rosa','Oud'],b:['Almizcle','Vainilla','Sándalo']},
+  'BADEE AL OUD NOBLE BLUSH (ROSA)':{s:['Rosa','Frambuesa'],c:['Oud','Jazmín'],b:['Almizcle','Sándalo','Vainilla']},
+  'BADEE AL OUD SUBLIME':{s:['Manzana','Oud'],c:['Rosa','Jazmín'],b:['Ámbar','Almizcle']},
+  'ECLAIRE':         {s:['Caramelo','Vainilla'],c:['Pralinée','Sándalo'],b:['Almizcle','Ámbar']},
+  'QAED AL FURSAN':  {s:['Bergamota','Pomelo'],c:['Cuero','Rosa'],b:['Oud','Almizcle','Sándalo']},
+  'QAED AL FURSAN WHITE':{s:['Bergamota','Limón'],c:['Cedro','Almizcle'],b:['Sándalo','Ámbar']},
+  'FAKHAR ROSA':     {s:['Rosa','Frutas rojas'],c:['Jazmín','Almizcle'],b:['Sándalo','Vainilla']},
+  'FAKHAR GOLD':     {s:['Azafrán','Bergamota'],c:['Rosa','Cuero'],b:['Oud','Almizcle','Ámbar']},
+  'HAYAATI NEGRO':   {s:['Bergamota','Azafrán'],c:['Oud','Rosa'],b:['Sándalo','Almizcle']},
+  'HAYAATI FLORENCE ROSA':{s:['Rosa','Frutas'],c:['Jazmín','Ámbar'],b:['Almizcle','Sándalo']},
+  'HAYAATI GOLD ELIXIR':{s:['Bergamota','Canela'],c:['Oud','Rosa'],b:['Ámbar dorado','Almizcle']},
+  'HER CONFESSION':  {s:['Pera','Bergamota'],c:['Rosa','Almizcle'],b:['Vainilla','Sándalo']},
+  'EMAAN':           {s:['Frutas frescas'],c:['Floral suave'],b:['Almizcle','Sándalo','Vainilla']},
+  'SAKEENA':         {s:['Rosa','Floral'],c:['Jazmín','Almizcle'],b:['Sándalo','Ámbar']},
+  'HAYA ROSA':       {s:['Fresa','Rosa'],c:['Vainilla','Floral'],b:['Almizcle','Sándalo']},
+  'PRIDE SHAHEEN GOLD':{s:['Bergamota','Azafrán'],c:['Rosa','Oud'],b:['Ámbar dorado','Almizcle']},
+  'LATTAFA PRIDE ISHQ AL SHUYUKH SILVER 100ML':{s:['Rosa','Bergamota'],c:['Almizcle','Ámbar'],b:['Sándalo','Almizcle blanco']},
+  'LATTAFA PRIDE ISHQ AL SHUYUKH GOLD 100ML':{s:['Azafrán','Rosa'],c:['Oud','Ámbar'],b:['Almizcle','Sándalo']},
+  'MAYAR NATURAL INTENSE':{s:['Bergamota','Cítricos'],c:['Floral','Almizcle'],b:['Sándalo','Ámbar']},
+  'CONFIDENTIAL PRIVATE GOLD':{s:['Azafrán','Bergamota'],c:['Rosa','Oud'],b:['Ámbar','Almizcle','Cuero']},
+  'ANA ABIYEDH CORAL EDP 60 ML':{s:['Naranja','Bergamota'],c:['Almizcle','Floral'],b:['Almizcle blanco','Sándalo']},
+  'THE KINGDOM MASCULINO':{s:['Menta','Bergamota'],c:['Lavanda','Miel'],b:['Ámbar','Vainilla','Tonka']},
+  'LATTAFA ATLAS':   {s:['Bergamota','Pimienta'],c:['Cedro','Almizcle'],b:['Sándalo','Ámbar']},
+  'HABIK MASCULINO': {s:['Bergamota','Pimienta negra'],c:['Cedro','Vetiver'],b:['Almizcle','Ámbar']},
+  'PETRA':           {s:['Rosa','Bergamota'],c:['Oud','Jazmín'],b:['Sándalo','Almizcle']},
+  'VICTORIA':        {s:['Frutas frescas'],c:['Rosa','Jazmín'],b:['Almizcle','Sándalo']},
+  'RADIO VINTAGE':   {s:['Bergamota','Lavanda'],c:['Cuero','Sándalo'],b:['Ámbar','Almizcle']},
+  'RAVE NOW WOMAN':  {s:['Piña','Frutas tropicales'],c:['Floral','Jazmín'],b:['Almizcle','Vainilla']},
+  'CLUB DE NUIT MAN':{s:['Bergamota','Piña','Limón'],c:['Abedul','Rosa','Jazmín'],b:['Almizcle','Ámbar gris','Pachulí']},
+  'CLUB DE NUIT INTENSE MAN':{s:['Limón','Piña','Bergamota','Manzana'],c:['Abedul','Rosa','Jazmín'],b:['Almizcle','Ámbar gris','Pachulí','Vainilla']},
+  'CLUB DE NUIT URBAN MAN ELIXIR':{s:['Bergamota','Piña','Limón'],c:['Abedul','Jazmín'],b:['Ámbar gris','Sándalo','Almizcle']},
+  'CLUB DE NUIT ICONIC':{s:['Bergamota','Piña'],c:['Abedul','Rosa'],b:['Almizcle','Pachulí','Vainilla']},
+  'CLUB DE NUIT URBAN MAN':{s:['Bergamota','Limón'],c:['Abedul','Jazmín'],b:['Almizcle','Sándalo','Cedro']},
+  'CLUB DE NUIT WOMAN':{s:['Naranja','Bergamota'],c:['Rosa','Jazmín'],b:['Almizcle','Vainilla','Sándalo']},
+  'CLUB DE NUIT MALEKA':{s:['Frutas frescas','Bergamota'],c:['Rosa','Jazmín'],b:['Almizcle','Ámbar','Vainilla']},
+  'CLUB DE NUIT SILLAGE':{s:['Bergamota','Piña'],c:['Abedul','Rosa','Jazmín'],b:['Pachulí','Almizcle','Ámbar gris']},
+  'CLUB DE NUIT PRECIUX':{s:['Piña','Limón','Bergamota','Pimienta rosa'],c:['Musgo de roble','Madera blanca','Jazmín'],b:['Ambroxan','Almizcle','Pachulí','Cuero']},
+  'BLACK INFINITY EDP':{s:['Bergamota','Pimienta negra'],c:['Cedro','Vetiver'],b:['Ámbar','Almizcle','Cuero']},
+  'ODDYSEY MANDARIN':{s:['Mandarina','Bergamota'],c:['Jazmín','Almizcle'],b:['Sándalo','Ámbar']},
+  'ODYSSEY MANGO':   {s:['Mango','Frutas tropicales'],c:['Jazmín','Floral'],b:['Almizcle','Vainilla']},
+  'ODYSSEY MEGA':    {s:['Bergamota','Piña'],c:['Abedul','Jazmín'],b:['Almizcle','Sándalo']},
+  'ODYSSY AQUA':     {s:['Bergamota','Notas acuáticas'],c:['Almizcle','Cedro'],b:['Sándalo','Ámbar']},
+  'ODDYSEY BLACK':   {s:['Bergamota','Piña ahumada'],c:['Abedul','Jazmín'],b:['Pachulí','Almizcle','Ámbar']},
+  'ODYSSEY WHITE':   {s:['Bergamota','Naranja'],c:['Jazmín','Almizcle'],b:['Sándalo','Vainilla']},
+  'ODDYSEY CANDEE':  {s:['Caramelo','Frutas dulces'],c:['Floral','Almizcle'],b:['Vainilla','Ámbar']},
+  'ODDYSEY SPECTRA': {s:['Bergamota','Frutas frescas'],c:['Floral','Almizcle'],b:['Sándalo','Ámbar']},
+  'ODDYSEY LIMONI':  {s:['Limón','Bergamota'],c:['Notas verdes','Jazmín'],b:['Almizcle','Sándalo']},
+  'THURATHI ELECTRIC':{s:['Bergamota','Limón eléctrico'],c:['Almizcle','Cedro'],b:['Sándalo','Ámbar']},
+  '9PM BLACK':        {s:['Bergamota','Pimienta negra'],c:['Cuero','Oud'],b:['Almizcle','Sándalo','Ámbar']},
+  '9 AM DIVE':        {s:['Notas acuáticas','Bergamota'],c:['Cedro','Almizcle'],b:['Almizcle','Ámbar']},
+  '9 PM NIGHT OUT':   {s:['Bergamota','Cardamomo'],c:['Lavanda','Vainilla'],b:['Almizcle','Madera ahumada','Ámbar']},
+  '9 PM ELIXIR':      {s:['Bergamota','Pimienta'],c:['Cuero','Vainilla'],b:['Ámbar','Almizcle','Sándalo']},
+  'RARE REEF':        {s:['Notas acuáticas','Cítricos'],c:['Almizcle','Madera'],b:['Ámbar','Musgo de roble']},
+  'TOSCANO LEATHER':  {s:['Bergamota','Lavanda'],c:['Cuero','Rosa'],b:['Sándalo','Vetiver','Almizcle']},
+  'VICTORIOSO':       {s:['Bergamota','Cítricos'],c:['Madera amaderada','Ámbar'],b:['Almizcle','Sándalo']},
+  'ROSE SEDUCTION VIP POUR FEMME':{s:['Rosa','Frutas rojas'],c:['Jazmín','Ámbar'],b:['Almizcle','Sándalo','Vainilla']},
+  'DELILAH':          {s:['Frutas rojas','Rosa'],c:['Floral','Almizcle'],b:['Vainilla','Sándalo']},
+  'JEAN LOWE INMORTEL':{s:['Bergamota','Aldehídos'],c:['Rosa','Jazmín'],b:['Almizcle','Sándalo','Cuero']},
+  'JEAN LOWE VIBE EDP 100 ML':{s:['Bergamota','Pimienta rosa'],c:['Floral','Cedro'],b:['Almizcle','Ámbar']},
+  'BERRY BLAST':      {s:['Frutas del bosque','Fresa'],c:['Frutas rojas dulces'],b:['Vainilla','Almizcle']},
+  'AL HARAMAIN AMBER OUD GOLD':{s:['Azafrán','Bergamota'],c:['Rosa','Oud'],b:['Ámbar dorado','Almizcle','Sándalo']},
+  'AL HARAMAIN DUBAI NIGHT':{s:['Oud','Azafrán'],c:['Rosa','Ámbar'],b:['Almizcle','Sándalo']},
+  'AL HARAMAIN AQUA DUBAI':{s:['Notas acuáticas','Cítricos'],c:['Almizcle','Cedro'],b:['Ámbar','Sándalo']},
+  'VULCAN BAIE':     {s:['Bergamota','Hoja de violeta'],c:['Abedul','Jazmín'],b:['Almizcle','Sándalo','Ámbar']},
+  'VULCAN FEU':      {s:['Piña','Bergamota','Limón'],c:['Abedul','Rosa','Jazmín'],b:['Almizcle ahumado','Pachulí','Ámbar']},
+  'RAVINE GINGER EXTRAIT':{s:['Jengibre','Bergamota'],c:['Cedro','Almizcle'],b:['Sándalo','Ámbar','Benjuí']},
+  'TROPICAL KISS EDP 100 ML':{s:['Frutas tropicales','Cítricos'],c:['Floral','Almizcle'],b:['Vainilla','Almizcle']},
+  'ATLANTIS':        {s:['Notas acuáticas','Bergamota'],c:['Cedro','Almizcle'],b:['Sándalo','Ámbar']},
+  'IRIDA EXTRAIT':   {s:['Iris','Bergamota'],c:['Violeta','Almizcle'],b:['Cedro','Ámbar','Almizcle']},
+  'AETHER EXTRAIT':  {s:['Bergamota','Cítricos frescos'],c:['Cedro','Vetiver'],b:['Almizcle','Ámbar','Sándalo']},
+  'CHAOS EXTRAIT':   {s:['Bergamota','Pimienta negra'],c:['Oud','Cuero'],b:['Almizcle ahumado','Ámbar','Sándalo']},
+  'HAWAS ICE':  {s:['Manzana','Limón italiano','Bergamota'],c:['Ciruela','Azahar','Cardamomo'],b:['Ámbar gris','Almizcle','Pachulí']},
+  'HAWAS HIM':  {s:['Manzana','Bergamota','Limón','Canela'],c:['Notas acuáticas','Ciruela','Azahar'],b:['Ámbar gris','Almizcle','Madera','Pachulí']},
+  'HAWAS HER':  {s:['Bergamota','Frutas frescas'],c:['Rosa','Almizcle'],b:['Sándalo','Vainilla','Ámbar']},
+  'HAWAS DIVA': {s:['Frutas frescas','Bergamota'],c:['Rosa','Jazmín'],b:['Almizcle','Vainilla']},
+  'HAWAS TROPICAL':{s:['Frutas tropicales','Coco'],c:['Floral','Almizcle'],b:['Vainilla','Almizcle']},
+  'HAWAS MALIBU':{s:['Coco','Frutas tropicales'],c:['Vainilla','Floral'],b:['Almizcle','Sándalo']},
+  'RAYHAAN ITALIA':  {s:['Bergamota','Limón italiano'],c:['Rosa','Jazmín'],b:['Almizcle','Sándalo','Ámbar']},
+  'OPHIDIAN BLACK CHERRY':{s:['Cereza negra','Frutas rojas'],c:['Rosa','Almizcle'],b:['Vainilla','Ámbar']},
+  'INDOMITABLE 100 ML':{s:['Bergamota','Cítricos'],c:['Cuero','Almizcle'],b:['Sándalo','Ámbar']},
+  'FAYORA EDP':      {s:['Frutas frescas','Rosa'],c:['Jazmín','Almizcle'],b:['Vainilla','Sándalo']},
+  'AZM':             {s:['Bergamota','Pimienta'],c:['Cedro','Almizcle'],b:['Sándalo','Ámbar']},
+  'DULZURA':         {s:['Caramelo','Vainilla'],c:['Pralinée','Floral'],b:['Almizcle','Ámbar']},
+  'TASKEEN LACTEA DIVINA':{s:['Leche','Vainilla'],c:['Almizcle','Floral'],b:['Sándalo','Vainilla']},
+  'TASKEEN CARAMEL CASCADE':{s:['Caramelo','Toffee'],c:['Pralinée','Vainilla'],b:['Almizcle','Ámbar']},
+  'PARIS CORNER DATE CARAMEL':{s:['Caramelo','Dátiles'],c:['Pralinée','Vainilla'],b:['Ámbar','Almizcle']},
+  'FATIMA BY ZIMAYA':{s:['Rosa','Frutas rojas'],c:['Jazmín','Almizcle'],b:['Oud','Sándalo','Vainilla']},
+  'ZIMAYA TIRAMISU CARAMEL':{s:['Café','Caramelo'],c:['Pralinée','Vainilla'],b:['Almizcle','Ámbar','Sándalo']},
+  'KHADLAJ ISLAND':  {s:['Coco','Frutas tropicales'],c:['Floral','Vainilla'],b:['Almizcle','Sándalo']},
+};
+
+const IMG={
+  'YARA PINK':'yara-pink-lattafa.avif','YARA CANDY':'yara-candy-lattafa.avif',
+  'YARA MOI':'yara-moi-lattafa.avif','YARA TOUS':'yara-tous-lattafa.avif',
+  'ASAD':'asad-lattafa.avif','ASAD ZANZIBAR':'asad-zanzibar-lattafa.avif',
+  'ASAD BOURBON':'asad-bourbon-lattafa.avif','ASAD ELIXIR':'asad-elixir-lattafa.avif',
+  'YARA PINK ELIXIR':'yara-pink-elixir-lattafa.avif',
+  'HONOR Y GLORY (BLANCO)':'honor-y-glory-lattafa.avif',
+  'BADEE AL OUD FOR GLORY (NEGRO)':'badee-al-oud-for-glory-lattafa.avif',
+  'BADEE AL OUD AMETHYST':'amethist-lattafa.avif',
+  'BADEE AL OUD NOBLE BLUSH (ROSA)':'noble-blush-lattafa.avif',
+  'BADEE AL OUD SUBLIME':'badee-oud-sublime-lattafa.avif',
+  'ECLAIRE':'eclaire-lattafa.avif','QAED AL FURSAN':'qaed-al-fursan-black-lattafa.avif',
+  'QAED AL FURSAN WHITE':'qaed-al-fursan-lattafa.avif','KHAMRAH':'khamra-lattafa.avif',
+  'KHAMRAH QAWHA':'khamra-qawha-lattafa.avif','THE KINGDOM MASCULINO':'the-kingdom-lattafa.avif',
+  'CONFIDENTIAL PRIVATE GOLD':'confidential-private-gold-lattafa.avif',
+  'ANA ABIYEDH CORAL EDP 60 ML':'ana-abiyedh-coral-lattafa.avif',
+  'MAYAR NATURAL INTENSE':'mayar-natural-intense-lattafa.avif',
+  'HAYA ROSA':'haya-rosa-lattafa.avif','EMAAN':'emaan-lattafa.avif',
+  'SAKEENA':'sakeena-lattafa.avif','PRIDE SHAHEEN GOLD':'pride-shaheen-gold-lattafa.avif',
+  'LATTAFA PRIDE ISHQ AL SHUYUKH SILVER 100ML':'ishq-silver-lattafa.avif',
+  'LATTAFA PRIDE ISHQ AL SHUYUKH GOLD 100ML':'ishq-gold-lattafa.avif',
+  'HER CONFESSION':'her-confession-lattafa.avif','FAKHAR ROSA':'fakhar-pink-lattafa.avif',
+  'FAKHAR GOLD':'fakhar-gold-lattafa.avif','HAYAATI NEGRO':'hayaati-negro-lattafa.avif',
+  'HAYAATI FLORENCE ROSA':'hayaati-florence-lattafa.avif',
+  'HAYAATI GOLD ELIXIR':'hayaati-gold-lattafa.avif','LATTAFA ATLAS':'atlas-lattafa.avif',
+  'HABIK MASCULINO':'habik-masculino-lattafa.avif','PETRA':'petra-lattafa.avif',
+  'VICTORIA':'victoria-lattafa.avif','RADIO VINTAGE':'vintage-radio-lattafa.avif',
+  'RAVE NOW WOMAN':'rave-now-woman-lattafa.avif',
+  'SET ODYSSEY MANDARIN SKY 4 PRODUCTOS':'mandarin-sky-set-lattafa.png',
+  'CLUB DE NUIT MAN':'club-de-nuit-man.avif',
+  'CLUB DE NUIT INTENSE MAN':'club-de-nuit-intense-man-armaf.avif',
+  'CLUB DE NUIT URBAN MAN ELIXIR':'club-de-nuit-urban-elixir-armaf.avif',
+  'CLUB DE NUIT ICONIC':'club-de-nuit-iconic-armaf.avif',
+  'CLUB DE NUIT URBAN MAN':'club-de-nuit-urban.avif',
+  'CLUB DE NUIT WOMAN':'club-de-nuit-woman.avif',
+  'CLUB DE NUIT MALEKA':'club-de-nuit-maleka.avif',
+  'CLUB DE NUIT SILLAGE':'club-de-nuit-sillage.avif',
+  'CLUB DE NUIT PRECIUX':'club-de-nuit-preciux.avif',
+  'BLACK INFINITY EDP':'black-infinity-armaf.avif',
+  'ODDYSEY MANDARIN':'odyssey-limoni-armaf.avif','ODYSSEY MANGO':'oddyssey-mango-armaf.avif',
+  'ODYSSEY MEGA':'odyssey-mega-armaf.avif','ODYSSY AQUA':'odyssey-aqua-armaf.avif',
+  'ODDYSEY BLACK':'odyssey-black-armaf.avif','ODYSSEY WHITE':'odyssey-white-armaf.avif',
+  'ODDYSEY CANDEE':'odyssey-candee-armaf.avif','ODDYSEY SPECTRA':'odyssey-spectra-armaf.avif',
+  'ODDYSEY LIMONI':'odyssey-limoni-armaf.avif',
+  'THURATHI ELECTRIC':'turathi-electric-afnan.avif','9PM BLACK':'9pm-black-afnan.avif',
+  '9 AM DIVE':'9am-dive-afnan.avif','9 PM NIGHT OUT':'9pm-nigth-out-afnan.avif',
+  '9 PM ELIXIR':'9pm-elixir-afnan.avif','RARE REEF':'rare-reef-afnan.avif',
+  'TOSCANO LEATHER':'toscano-leather-ma.avif','VICTORIOSO':'victorioso-ma.avif',
+  'ROSE SEDUCTION VIP POUR FEMME':'rose-seduction-vip-rose-femme-ma.avif',
+  'DELILAH':'delilah-ma.avif','JEAN LOWE INMORTEL':'jean-lowe-inmortel-ma.avif',
+  'JEAN LOWE VIBE EDP 100 ML':'jean-lowe-vibe-ma.avif',
+  'BERRY BLAST':'berry-blast-tubbees.avif',
+  'AL HARAMAIN AMBER OUD GOLD':'amber-oud-gold-alharamain.avif',
+  'AL HARAMAIN DUBAI NIGHT':'nigth-dubai-alharamain.avif',
+  'AL HARAMAIN AQUA DUBAI':'aqua-dubai-alharamain.avif',
+  'VULCAN BAIE':'vulcan-baie-french.avif','VULCAN FEU':'vulcan-feu-french.avif',
+  'RAVINE GINGER EXTRAIT':'ravine-ginger-extrait-french.avif',
+  'TROPICAL KISS EDP 100 ML':'tropical-kiss-french.avif','ATLANTIS':'atlantis-french.avif',
+  'IRIDA EXTRAIT':'irida-extrait-french.avif','AETHER EXTRAIT':'aether-extrait-french.avif',
+  'CHAOS EXTRAIT':'chaos-extrait-french.avif',
+  'HAWAS ICE':'hawas-ice-rasasi.avif','HAWAS HIM':'hawas-for-him-rasasi.avif',
+  'HAWAS HER':'hawas-her-rasasi.avif','HAWAS DIVA':'hawas-diva-rasasi.avif',
+  'HAWAS TROPICAL':'hawas-tropical-rasasi.avif','HAWAS MALIBU':'hawas-malibu-rasasi.avif',
+  'RAYHAAN ITALIA':'italia-rayhaan.avif',
+  'OPHIDIAN BLACK CHERRY':'ophidian-black-cherry-pc.avif',
+  'INDOMITABLE 100 ML':'indomitable-pc.avif','FAYORA EDP':'fayora-pc.avif',
+  'AZM':'azm-pc.avif','DULZURA':'dulzura-pc.avif',
+  'TASKEEN LACTEA DIVINA':'taskeen-lactea-divina-pc.avif',
+  'TASKEEN CARAMEL CASCADE':'taskeen-caramel-cascade-pc.avif',
+  'PARIS CORNER  DATE CARAMEL':'date-caramel-pc.avif',
+  'FATIMA BY ZIMAYA':'fatima-zimaya.avif','ZIMAYA TIRAMISU CARAMEL':'tiramisu-caramel-zimaya.avif',
+  'BODY SPLASH PURE SEDUCTION SHIMMER':'pure-seduction-shimmer-secret.png',
+  'BODY SPLASH BARE VAINILLA SHIMMER':'bare-vanilla-shimmer-secret.avif',
+  'BODY SPLASH BARE VAINILLA':'bare-vanilla-secret.avif',
+  'BODY SPLASH LOVE SPELL':'love-spell-secret.avif',
+  'BODY SPLASH VELVET PETALS':'velvet-petals-secret.avif',
+  'BODY LOTION (CREMA PEAR GLACE)':'crema-pearl-glase-secret.png',
+  'KHADLAJ ISLAND':'island-khadlaj.avif',
+  '100ML':'extracto-100.png','50ML':'extracto-50.png',
+  '30ML':'extracto-30.jpeg','BODY SPLASH':'extracto-body.png','Set 3x15ML':'extracto-set.png'
+};
+
+function inferMeta(name,brand){
+  const n=name.toUpperCase(),b=brand.toUpperCase();
+  let family='',gender='',size='';
+  if(/OUD|AMBER|AMBAR|RESIN|KHAMR|AZAFRAN/.test(n)) family='Oriental · Oud';
+  else if(/LEATHER|CUERO|TOSCANO/.test(n)) family='Amaderado · Cuero';
+  else if(/AQUA|DIVE|REEF|ISLAND|MALIBU|TROPICAL|ATLANTIS/.test(n)) family='Acuático · Fresco';
+  else if(/FLOR|ROSE|ROSA|VELVET|JASMIN|DELILAH|SEDUCTION/.test(n)) family='Floral';
+  else if(/VANILLA|VAINILLA|CARAMEL|CARAMELO|TIRAMISU|CANDY|BERRY|DULZ|LACTEA/.test(n)) family='Gourmand · Dulce';
+  else if(/ICE|FRESH|FRESCO/.test(n)) family='Aromático · Fresco';
+  else if(/GOLD|ROYAL|PRIDE|HONOR|GLORY|IMPERIAL|NOBLE/.test(n)) family='Oriental · Especiado';
+  else if(/NOIR|NIGHT|BLACK|NUIT|NEGRO|EXTRAIT/.test(n)) family='Oscuro · Amaderado';
+  else if(/PINK|BLANC|WHITE|BLANCO/.test(n)) family='Floral · Suave';
+  else if(b.includes('LATTAFA')||b.includes('RASASI')||b.includes('AL HARAMAIN')) family='Oriental';
+  else if(b.includes('ARMAF')) family='Amaderado · Fresco';
+  else family='Eau de Parfum';
+  if(/\bWOMAN\b|FEMME|HER\b|ROSA|PINK|DIVA|FEMININE/.test(n)) gender='Femenino';
+  else if(/\bMAN\b|\bHIM\b|MASCULIN|HOMME|MALE/.test(n)) gender='Masculino';
+  else if(/BODY SPLASH|BODY LOTION/.test(n)) gender='Femenino';
+  else gender='Unisex';
+  const sm=n.match(/(\d+)\s*ML/);
+  if(sm) size=sm[1]+' ml';
+  else if(n.includes('SET')) size='Set';
+  else if(n.includes('BODY SPLASH')) size='Splash';
+  else if(n.includes('BODY LOTION')) size='Loción';
+  else size='100 ml';
+  return{family,gender,size};
+}
+
+const DV='v3';
+function gc(k){try{const r=localStorage.getItem('d_'+DV+'_'+k);return r?JSON.parse(r):null}catch(e){return null}}
+function sc(k,v){try{localStorage.setItem('d_'+DV+'_'+k,JSON.stringify(v))}catch(e){}}
+
+async function fetchDesc(name,brand,family,gender){
+  const key=name.replace(/\s+/g,'-').toLowerCase().slice(0,40);
+  const cached=gc(key);if(cached) return cached;
+  const notes=NDB[name];
+  const nh=notes?`Notas destacadas: ${notes.s.slice(0,2).join(', ')} (salida), ${notes.b.slice(0,2).join(', ')} (fondo).`:'';
+  const prompt=`Sos copywriter de perfumería de lujo para una tienda argentina. Describí "${name}" de ${brand} en máximo 2 oraciones (28-36 palabras). Familia: ${family}. Género: ${gender}. ${nh} Tono evocador, sensorial, elegante. Solo texto plano.`;
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:90,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    const t=d.content?.[0]?.text?.trim()||'';
+    if(t){sc(key,t);return t;}
+  }catch(e){}
+  return '';
+}
+
+let allProducts=[],cart=[],currentModal=null;
+
+function parseCSV(line){
+  const res=[];let cur='',q=false;
+  for(const c of line){
+    if(c==='"') q=!q;
+    else if(c===','&&!q){res.push(cur);cur='';}
+    else cur+=c;
+  }
+  res.push(cur);return res;
+}
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function escH(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML}
+function fmtARS(n){return'$'+Math.round(n).toLocaleString('es-AR')}
+
+async function loadData(){
+  try{
+    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+    const res=await fetch(url);if(!res.ok) throw new Error();
+    const csv=await res.text();
+    const rows=csv.split('\n').slice(3);
+    let lastBrand='';
+    allProducts=rows.map(row=>{
+      const col=parseCSV(row);
+      if(col[0]&&col[0].trim()!==''&&col[0]!=='""') lastBrand=col[0].replace(/"/g,'').trim();
+      if(!col[1]||col[1].trim()==='""'||col[1].trim()==='') return null;
+      const priceRaw=col[4]?col[4].replace(/"/g,'').trim():'0';
+      const priceNum=parseFloat(priceRaw.replace(/[$. ]/g,'').replace(',','.'))||0;
+      const name=col[1].replace(/"/g,'').trim();
+      const brand=lastBrand||'Importados';
+      const meta=inferMeta(name,brand);
+      return{brand,name,priceStr:priceRaw,priceNum,img:IMG[name]||'',...meta,desc:'',descLoaded:false};
+    }).filter(Boolean);
+    const bSel=document.getElementById('brandFilter');
+    [...new Set(allProducts.map(p=>p.brand))].sort().forEach(b=>{
+      const o=document.createElement('option');o.value=b;o.textContent=b;bSel.appendChild(o);
+    });
+    render(allProducts);
+  }catch(e){
+    document.getElementById('productsGrid').innerHTML='<div class="ploader"><p class="ltxt">Error al cargar. Verificá tu conexión.</p></div>';
+  }
+}
+
+function renderNotes(name){
+  const n=NDB[name];if(!n) return '';
+  const row=(tier,pills,cls)=>`<div class="nrow"><span class="ntier">${tier}</span><div class="npills">${pills.map(p=>`<span class="npill ${cls}">${escH(p)}</span>`).join('')}</div></div>`;
+  return`<div class="notes-sec"><div class="notes-lbl">Pirámide olfativa</div><div class="pyramid">
+    ${row('Salida',n.s,'s')}
+    ${n.c&&n.c.length?row('Corazón',n.c,'c'):''}
+    ${row('Base',n.b,'b')}
+  </div></div>`;
+}
+
+function render(list){
+  const grid=document.getElementById('productsGrid');
+  document.getElementById('gridCount').textContent=list.length+' producto'+(list.length!==1?'s':'');
+  if(!list.length){
+    grid.innerHTML=`<div class="nores"><p>Sin resultados para esa búsqueda</p><button class="clrf" onclick="clearFilters()">Limpiar filtros</button></div>`;
+    return;
+  }
+  grid.innerHTML=list.map((p,vi)=>{
+    const idx=allProducts.indexOf(p);
+    const imgH=p.img?`<img src="img/${escH(p.img)}" alt="${escH(p.name)}" loading="lazy" onerror="this.parentElement.innerHTML='<span class=\\'cph\\'>✦</span>'">`:`<span class="cph">✦</span>`;
+    return`<div class="card" onclick="openPM(${idx})" style="animation-delay:${(vi%16)*25}ms">
+      <div class="card-zoom">${imgH}</div>
+      <div class="cbody">
+        <div class="cbrand">${escH(p.brand)}</div>
+        <div class="cname">${escH(p.name)}</div>
+        <div class="ctags">
+          <span class="ctag olf">${escH(p.family)}</span>
+          <span class="ctag">${escH(p.gender)}</span>
+          <span class="ctag">${escH(p.size)}</span>
+        </div>
+        <div class="cdesc" id="cd_${idx}">${p.descLoaded&&p.desc?escH(p.desc):'<span class="adot"></span>'}</div>
+      </div>
+      <div class="cfoot">
+        <div class="cprice">${escH(p.priceStr)}</div>
+        <span class="cue">Ver →</span>
+      </div>
+    </div>`;
+  }).join('');
+  list.forEach(p=>{
+    if(!p.descLoaded){
+      fetchDesc(p.name,p.brand,p.family,p.gender).then(t=>{
+        p.desc=t;p.descLoaded=true;
+        const el=document.getElementById('cd_'+allProducts.indexOf(p));
+        if(el) el.innerHTML=t?escH(t):'';
+      });
+    }
+  });
+}
+
+function openPM(idx){
+  const p=allProducts[idx];if(!p) return;
+  currentModal=p;
+  document.getElementById('pmBrand').textContent=p.brand;
+  document.getElementById('pmName').textContent=p.name;
+  document.getElementById('pmPrice').textContent=p.priceStr;
+  document.getElementById('pmChips').innerHTML=
+    `<span class="pchip pc-fam">${escH(p.family)}</span>`+
+    `<span class="pchip pc-gen">${escH(p.gender)}</span>`+
+    `<span class="pchip pc-sz">${escH(p.size)}</span>`;
+  const imgEl=document.getElementById('pmImg');
+  imgEl.innerHTML=p.img?`<img src="img/${escH(p.img)}" alt="${escH(p.name)}" style="max-width:100%;max-height:290px;object-fit:contain" onerror="this.parentElement.innerHTML='<span style=\\'font-family:var(--serif);font-size:42px;color:var(--border);font-style:italic\\'>✦</span>'">`
+    :`<span style="font-family:var(--serif);font-size:42px;color:var(--border);font-style:italic">✦</span>`;
+  document.getElementById('pmNotes').innerHTML=renderNotes(p.name);
+  const de=document.getElementById('pmDesc');
+  if(p.descLoaded&&p.desc){de.className='pm-desc';de.textContent=p.desc;}
+  else{
+    de.className='pm-desc loading';de.innerHTML='<span class="adot"></span> Redactando…';
+    fetchDesc(p.name,p.brand,p.family,p.gender).then(t=>{
+      p.desc=t;p.descLoaded=true;
+      if(currentModal===p){de.className='pm-desc';de.textContent=t||'';}
+      const el=document.getElementById('cd_'+idx);if(el) el.innerHTML=t?escH(t):'';
+    });
+  }
+  const btn=document.getElementById('pmAddBtn');btn.textContent='Agregar al pedido';btn.className='pm-add';
+  document.getElementById('productOverlay').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closePM(){document.getElementById('productOverlay').classList.remove('on');document.body.style.overflow='';}
+function addFromModal(){
+  if(!currentModal) return;
+  addToCart(currentModal.name);
+  const btn=document.getElementById('pmAddBtn');
+  btn.textContent='✓ Agregado';btn.className='pm-add added';
+  setTimeout(()=>{btn.textContent='Agregar al pedido';btn.className='pm-add';},1800);
+}
+
+function addToCart(name){
+  const p=allProducts.find(x=>x.name===name);if(!p) return;
+  const ex=cart.find(x=>x.name===name);
+  if(ex) ex.quantity=(ex.quantity||1)+1;
+  else cart.push({...p,quantity:1});
+  saveCart();updateCartCount();showToast('Agregado al pedido');
+}
+function updateQty(i,d){cart[i].quantity=Math.max(1,Math.min(99,(cart[i].quantity||1)+d));saveCart();refreshCart();}
+function delItem(i){cart.splice(i,1);saveCart();updateCartCount();refreshCart();showToast('Eliminado');}
+function clearCart(){if(!cart.length) return;if(confirm('¿Vaciar el pedido?')){cart=[];saveCart();updateCartCount();closeCart();showToast('Pedido vaciado');}}
+function openCart(){refreshCart();document.getElementById('cartOverlay').classList.add('on');document.body.style.overflow='hidden';}
+function closeCart(){document.getElementById('cartOverlay').classList.remove('on');document.body.style.overflow='';}
+
+function refreshCart(){
+  const body=document.getElementById('cartBody'),tr=document.getElementById('cartTotalRow'),ss=document.getElementById('shipSection'),cb=document.getElementById('clrBtn');
+  if(!cart.length){
+    body.innerHTML=`<div class="empty-cart"><div class="ec-icon">✦</div><p>Tu pedido está vacío</p></div>`;
+    tr.style.display='none';ss.style.display='none';cb.style.display='none';return;
+  }
+  body.innerHTML=cart.map((it,i)=>`
+    <div class="ci">
+      <div class="ci-info"><div class="ci-brand">${escH(it.brand)}</div><div class="ci-name">${escH(it.name)}</div></div>
+      <div class="ci-ctrl">
+        <div class="qty">
+          <button class="qb" onclick="updateQty(${i},-1)">−</button>
+          <span class="qn">${it.quantity||1}</span>
+          <button class="qb" onclick="updateQty(${i},1)">+</button>
+        </div>
+        <div class="ci-price">${escH(it.priceStr)}</div>
+        <button class="ci-del" onclick="delItem(${i})" title="Eliminar">✕</button>
+      </div>
+    </div>`).join('');
+  const total=cart.reduce((s,it)=>s+(it.priceNum*(it.quantity||1)),0);
+  document.getElementById('cartTotal').textContent=fmtARS(total);
+  tr.style.display='flex';ss.style.display='block';cb.style.display='block';
+}
+
+function validate(){
+  let ok=true;
+  [['fNombre','eNombre'],['fDir','eDir'],['fLoc','eLoc'],['fProv','eProv']].forEach(([id,eid])=>{
+    const el=document.getElementById(id),er=document.getElementById(eid);
+    el.classList.remove('err');er.style.display='none';
+    if(!el.value.trim()){el.classList.add('err');er.style.display='block';ok=false;}
+  });
+  return ok;
+}
+function sendOrder(){
+  if(!cart.length){showToast('El pedido está vacío');return;}
+  if(!validate()){showToast('Completá los datos de envío');return;}
+  const n=document.getElementById('fNombre').value.trim();
+  const d=document.getElementById('fDir').value.trim();
+  const l=document.getElementById('fLoc').value.trim();
+  const p=document.getElementById('fProv').value.trim();
+  let msg=`🌟 *NUEVO PEDIDO — FC Perfumes*\n\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`👤 *${n}*\n📍 ${d}, ${l}, ${p}\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n\n`;
+  cart.forEach((it,i)=>{
+    const q=it.quantity||1;
+    msg+=`${i+1}. *${it.brand}* — ${it.name}\n`;
+    msg+=`   ${it.family} · ${it.size}\n`;
+    msg+=`   ${it.priceStr} × ${q} = *${fmtARS(it.priceNum*q)}*\n\n`;
+  });
+  const tot=cart.reduce((s,it)=>s+(it.priceNum*(it.quantity||1)),0);
+  msg+=`━━━━━━━━━━━━━━━━━━\n💵 *TOTAL: ${fmtARS(tot)}*\n━━━━━━━━━━━━━━━━━━`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
+  ['fNombre','fDir','fLoc','fProv'].forEach(id=>document.getElementById(id).value='');
+  showToast('Redirigiendo a WhatsApp…');
+}
+
+function updateCartCount(){document.getElementById('cartCount').textContent=cart.reduce((s,it)=>s+(it.quantity||1),0)}
+function saveCart(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(cart))}catch(e){}}
+function loadCart(){try{const s=localStorage.getItem(STORAGE_KEY);if(s){cart=JSON.parse(s);updateCartCount();}}catch(e){cart=[];}}
+
+function filterProducts(){
+  const sv=document.getElementById('searchInput').value;
+  const bv=document.getElementById('brandFilter').value;
+  const pv=document.getElementById('priceFilter').value;
+  const f=allProducts.filter(p=>{
+    const ms=!sv||norm(p.name).includes(norm(sv))||norm(p.brand).includes(norm(sv));
+    const mb=!bv||p.brand===bv;
+    let mp=true;
+    if(pv==='0-3000') mp=p.priceNum<=3000;
+    else if(pv==='3000-6000') mp=p.priceNum>3000&&p.priceNum<=6000;
+    else if(pv==='6000-10000') mp=p.priceNum>6000&&p.priceNum<=10000;
+    else if(pv==='10000+') mp=p.priceNum>10000;
+    return ms&&mb&&mp;
+  });
+  render(f);
+}
+function clearFilters(){
+  document.getElementById('searchInput').value='';
+  document.getElementById('brandFilter').value='';
+  document.getElementById('priceFilter').value='';
+  render(allProducts);
+}
+
+let toastT;
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2700);
+}
+
+document.getElementById('searchInput').addEventListener('input',filterProducts);
+document.getElementById('brandFilter').addEventListener('change',filterProducts);
+document.getElementById('priceFilter').addEventListener('change',filterProducts);
+document.getElementById('productOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('productOverlay')) closePM();});
+document.getElementById('cartOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('cartOverlay')) closeCart();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closePM();closeCart();}});
+
+loadCart();
+loadData();
+</script>
+</body>
+</html>
