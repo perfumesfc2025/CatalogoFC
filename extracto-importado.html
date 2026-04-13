@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extracto Importado · FC Perfumes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#0f0d0b;--ink2:#2a2620;--cream:#f9f6f0;--warm:#f2ece0;--gold:#b8965a;--gold2:#d4ae78;--gold-pale:#f5edd8;--muted:#9a9080;--border:#e4dcd0;--wa:#25D366;--serif:'Playfair Display',Georgia,serif;--sans:'Tenor Sans',sans-serif}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);min-height:100vh;font-size:13px}
+header{background:#e8e0d0;padding:48px 24px 38px;text-align:center;position:relative;overflow:hidden}
+.logo-wrap{display:flex;justify-content:center;margin-bottom:22px}
+.logo-wrap img{height:200px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 14px rgba(140,100,40,.22))}
+.h-rule{width:100px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 12px}
+.h-sub{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(50,40,28,.45);margin-bottom:30px}
+.trust{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.titem{display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(50,40,28,.55)}
+.tdot{width:17px;height:17px;border:1px solid rgba(184,150,90,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tdot svg{width:8px;height:8px;stroke:var(--gold);fill:none;stroke-width:2}
+.sec-nav{background:var(--ink);display:flex;justify-content:center;border-bottom:1px solid rgba(184,150,90,.25)}
+.sec-nav a{padding:13px 28px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(249,246,240,.4);text-decoration:none;transition:color .2s;border-right:1px solid rgba(255,255,255,.06)}
+.sec-nav a:last-child{border-right:none}
+.sec-nav a:hover{color:var(--gold2)}
+.sec-nav a.active{color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold)}
+.subnav{background:var(--ink2);display:flex;justify-content:center;border-bottom:1px solid rgba(184,150,90,.15)}
+.subnav button{background:none;border:none;padding:12px 24px;font-family:var(--sans);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(249,246,240,.4);cursor:pointer;transition:color .2s;border-right:1px solid rgba(255,255,255,.05)}
+.subnav button:last-child{border-right:none}
+.subnav button:hover{color:var(--gold2)}
+.subnav button.active{color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold)}
+@media(max-width:480px){.sec-nav a,.subnav button{padding:11px 14px;font-size:8px}}
+.fbar{background:white;border-bottom:1px solid var(--border);padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 14px rgba(15,13,11,.05)}
+.sw{flex:1;min-width:170px;position:relative}
+.sw svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:1.5;pointer-events:none}
+.sw input,.fbar select{padding:9px 12px;border:1px solid var(--border);border-radius:2px;font-family:var(--sans);font-size:12px;letter-spacing:.05em;background:var(--cream);color:var(--ink);transition:border-color .2s}
+.sw input{width:100%;padding-left:34px}
+.sw input:focus,.fbar select:focus{outline:none;border-color:var(--gold)}
+.fbar select{cursor:pointer}
+.cbtn{background:var(--ink);color:var(--cream);border:none;padding:9px 17px;border-radius:2px;font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:7px;text-decoration:none;white-space:nowrap}
+.cbtn:hover{background:var(--ink2)}
+.cbadge{background:var(--gold);color:var(--ink);min-width:17px;height:17px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center}
+.gmeta{padding:18px 22px 10px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:1px;background:var(--border)}
+.pcard{background:white;padding:18px;cursor:pointer;transition:background .2s;display:flex;flex-direction:column;align-items:center;text-align:center}
+.pcard:hover{background:var(--warm)}
+.pcard img{width:100%;max-width:180px;height:220px;object-fit:contain}
+.pcard .num{font-family:var(--serif);font-size:17px;letter-spacing:.12em;margin:14px 0 6px;color:var(--ink)}
+.pcard .cat{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.dset-panel{background:white;padding:30px 22px;max-width:680px;margin:0 auto}
+.dset-title{font-family:var(--serif);font-size:22px;text-align:center;margin-bottom:8px}
+.dset-sub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:24px}
+.dset-slots{display:flex;gap:10px;margin-bottom:20px}
+.dset-slot{flex:1;border:2px dashed var(--border);border-radius:4px;padding:18px 8px;text-align:center;font-size:11px;color:var(--muted);position:relative;min-height:78px}
+.dset-slot.filled{border-style:solid;border-color:var(--gold);background:var(--gold-pale);color:var(--ink)}
+.dset-slot .num{font-family:var(--serif);font-size:18px;display:block;margin-bottom:4px;color:var(--ink)}
+.dset-slot .equiv{font-size:10px;color:var(--muted)}
+.dset-slot .rm{position:absolute;top:4px;right:4px;background:var(--ink);color:white;border:none;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:11px}
+.dset-search{margin-bottom:14px;position:relative}
+.dset-search input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:3px;font-family:var(--sans);font-size:13px;background:var(--cream)}
+.dset-results{max-height:280px;overflow-y:auto;border:1px solid var(--border);border-radius:3px;background:white;margin-top:6px}
+.dset-results.hidden{display:none}
+.dset-row{padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.dset-row:hover{background:var(--gold-pale)}
+.dset-row .n{font-family:var(--serif);font-size:14px;color:var(--gold)}
+.dset-add{width:100%;background:var(--ink);color:white;border:none;padding:16px;font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:18px}
+.dset-add:disabled{background:#999;cursor:not-allowed}
+.ov{position:fixed;inset:0;background:rgba(15,13,11,.78);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
+.ov.open{display:flex}
+.pm{background:white;width:100%;max-width:560px;max-height:92vh;border-radius:10px 10px 0 0;overflow-y:auto;padding:24px;position:relative}
+.pm-x{position:absolute;top:13px;right:13px;width:32px;height:32px;background:rgba(15,13,11,.07);border:none;border-radius:50%;cursor:pointer;font-size:15px}
+.pm img{width:100%;max-width:240px;display:block;margin:0 auto 16px}
+.pm-num{font-family:var(--serif);font-size:24px;letter-spacing:.12em;text-align:center;margin-bottom:6px}
+.pm-cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:14px}
+.pm-fam{font-size:11px;color:var(--gold);text-align:center;margin-bottom:16px;font-style:italic}
+.pm-notas{background:var(--gold-pale);padding:14px;border-radius:4px;margin-bottom:16px;font-size:11px}
+.pm-notas div{margin-bottom:6px}
+.pm-notas b{color:#6e5020}
+.pres-sel{display:flex;gap:8px;margin:16px 0}
+.pres-btn{flex:1;padding:14px 8px;border:2px solid var(--border);background:white;cursor:pointer;border-radius:3px;text-align:center;font-size:11px;font-family:var(--sans)}
+.pres-btn.active{border-color:var(--gold);background:var(--gold-pale)}
+.pres-btn .ml{font-weight:bold;font-size:13px;display:block}
+.pres-btn .pr{display:block;margin-top:4px;color:var(--gold)}
+.add-btn{width:100%;background:var(--ink);color:white;border:none;padding:14px;font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:8px}
+.add-btn:disabled{background:#999;cursor:not-allowed}
+.add-btn.added{background:#2e6645}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--cream);padding:10px 16px;border-radius:2px;font-size:12px;z-index:9999;box-shadow:0 8px 26px rgba(15,13,11,.22);transform:translateY(16px);opacity:0;transition:all .24s;pointer-events:none;border-left:2px solid var(--gold)}
+.toast.on{transform:translateY(0);opacity:1}
+.loading{text-align:center;padding:40px;color:var(--muted);grid-column:1/-1;background:white}
+@media(max-width:600px){.toast{right:10px;left:10px;bottom:10px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo-wrap"><img src="img/Logo.png" alt="FC Perfumes" onerror="this.style.display='none'"></div>
+  <div class="h-rule"></div>
+  <p class="h-sub">Perfumeria multimarca</p>
+  <div class="trust">
+    <div class="titem"><div class="tdot"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>100% originales</div>
+    <div class="titem"><div class="tdot"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4"/><path d="M6 4v2l1.5 1.5"/></svg></div>Envío a todo el país</div>
+    <div class="titem"><div class="tdot"><svg viewBox="0 0 12 12"><path d="M6 1l1.3 2.6 2.9.4-2.1 2 .5 2.9L6 7.5 3.4 8.9l.5-2.9-2.1-2 2.9-.4z"/></svg></div>Marcas importadas</div>
+  </div>
+</header>
+<nav class="sec-nav">
+  <a href="index.html">Fragancias Arabes</a>
+  <a href="extracto-importado.html" class="active">Extracto Importado</a>
+</nav>
+<div class="subnav">
+  <button id="tab-ext" class="active" onclick="setTab('ext')">Extractos</button>
+  <button id="tab-bm" onclick="setTab('bm')">Body Mist</button>
+  <button id="tab-set" onclick="setTab('set')">Discovery Set</button>
+</div>
+<div class="fbar" id="fbar">
+  <div class="sw"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input id="search" type="text" placeholder="Buscar por número o equivalencia…"></div>
+  <select id="filterCat"><option value="">Todas las categorías</option><option>Femenino</option><option>Masculino</option><option>Unisex</option></select>
+  <a class="cbtn" href="index.html?cart=open">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    Mi pedido <span class="cbadge" id="cartbadge">0</span>
+  </a>
+</div>
+<div id="count" class="gmeta">Cargando…</div>
+<div id="grid" class="products-grid"><div class="loading">Cargando catálogo…</div></div>
+<div id="setpanel" class="dset-panel" style="display:none"></div>
+<div class="ov" id="pmov"><div class="pm" id="pmbox"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+var SHEET_BASE='https://docs.google.com/spreadsheets/d/e/2PACX-1vStjWhBT2OU8Hrf-y3xXnjSBUZjn_wwoImCmwmD4CJ8OSy3_LagA6pDxqgt5VPBAQ/pub';
+var GIDS={cfg:'1873220814',ext:'1640894856',bm:'510544924',set:'952340536'};
+var STORAGE_KEY='fcperfumes_v3';
+var CFG={ext30:20000,ext50:30000,ext100:50000,bm:25000,set:30000};
+var EXT=[],BM=[],TS=[],TAB='ext',SETSEL=[],cart=[];
+function fmt(n){return '$'+Math.round(n).toLocaleString('es-AR')}
+function escH(t){var d=document.createElement('div');d.textContent=String(t||'');return d.innerHTML}
+function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function parseCSV(txt){var lines=txt.trim().split(/\r?\n/);var heads=lines[0].split(',').map(function(h){return h.trim()});return lines.slice(1).map(function(line){var vals=[],cur='',inQ=false;for(var i=0;i<line.length;i++){var c=line[i];if(c==='"'){inQ=!inQ;continue}if(c===','&&!inQ){vals.push(cur);cur='';continue}cur+=c}vals.push(cur);var obj={};heads.forEach(function(h,i){obj[h]=(vals[i]||'').trim()});return obj})}
+function loadSheet(gid){return fetch(SHEET_BASE+'?gid='+gid+'&single=true&output=csv').then(function(r){return r.text()}).then(parseCSV)}
+function loadAll(){Promise.all([loadSheet(GIDS.cfg),loadSheet(GIDS.ext),loadSheet(GIDS.bm),loadSheet(GIDS.set)]).then(function(R){R[0].forEach(function(r){if(r.clave==='precio_ext_30')CFG.ext30=+r.valor;if(r.clave==='precio_ext_50')CFG.ext50=+r.valor;if(r.clave==='precio_ext_100')CFG.ext100=+r.valor;if(r.clave==='precio_body_mist')CFG.bm=+r.valor;if(r.clave==='precio_discovery_set')CFG.set=+r.valor});EXT=R[1].filter(function(r){return r.activo==='si'});BM=R[2].filter(function(r){return r.activo==='si'});TS=R[3].filter(function(r){return r.activo==='si'});render()}).catch(function(e){document.getElementById('grid').innerHTML='<div class="loading">Error cargando: '+e.message+'</div>'})}
+function loadCart(){try{var s=localStorage.getItem(STORAGE_KEY);if(s)cart=JSON.parse(s)}catch(e){cart=[]}updateBadge()}
+function saveCart(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(cart))}catch(e){}}
+function updateBadge(){document.getElementById('cartbadge').textContent=cart.reduce(function(s,it){return s+(it.quantity||1)},0)}
+function setTab(t){TAB=t;['ext','bm','set'].forEach(function(x){document.getElementById('tab-'+x).classList.toggle('active',x===t)});document.getElementById('fbar').style.display=(t==='set')?'none':'flex';document.getElementById('grid').style.display=(t==='set')?'none':'grid';document.getElementById('setpanel').style.display=(t==='set')?'block':'none';document.getElementById('count').style.display=(t==='set')?'none':'block';if(t==='set')renderSet();else render()}
+function render(){var q=norm(document.getElementById('search').value);var fc=document.getElementById('filterCat').value;var data=TAB==='ext'?EXT:BM;var prefix=TAB==='ext'?'ei-n':'bm-n';var filtered=data.filter(function(p){if(TAB==='ext'&&fc&&p.cat!==fc)return false;if(q){var hay=norm(p.numero+' '+p.equivalencia+' '+(p.familia||''));if(hay.indexOf(q)===-1)return false}return true});filtered.sort(function(a,b){return(+a.numero)-(+b.numero)});document.getElementById('count').textContent=filtered.length+' producto'+(filtered.length!==1?'s':'');document.getElementById('grid').innerHTML=filtered.map(function(p){return '<div class="pcard" onclick="openProduct(\''+TAB+'\','+p.numero+')"><img src="img/'+prefix+p.numero+'.png" alt="N°'+p.numero+'" onerror="this.style.opacity=0.2"><div class="num">N° '+p.numero+'</div><div class="cat">'+escH(p.cat||p.equivalencia)+'</div></div>'}).join('')||'<div class="loading">Sin resultados</div>'}
+function openProduct(tab,num){var data=tab==='ext'?EXT:BM;var p=data.find(function(x){return+x.numero===+num});if(!p)return;var prefix=tab==='ext'?'ei-n':'bm-n';var html='<button class="pm-x" onclick="closePM()">✕</button><img src="img/'+prefix+num+'.png" alt="N°'+num+'" onerror="this.style.display=\'none\'"><div class="pm-num">N° '+num+'</div>';if(tab==='ext'){var mls=[{k:'s30',ml:30,pr:CFG.ext30},{k:'s50',ml:50,pr:CFG.ext50},{k:'s100',ml:100,pr:CFG.ext100}];html+='<div class="pm-cat">'+escH(p.cat)+'</div><div class="pm-fam">'+escH(p.familia)+'</div><div class="pm-notas"><div><b>SALIDA:</b> '+escH(p.notas_salida)+'</div><div><b>CORAZÓN:</b> '+escH(p.notas_corazon)+'</div><div><b>FONDO:</b> '+escH(p.notas_fondo)+'</div></div><div class="pres-sel">'+mls.map(function(m){return '<button class="pres-btn" data-ml="'+m.ml+'" data-pr="'+m.pr+'" onclick="selectPres(this)"><span class="ml">'+m.ml+'ml</span><span class="pr">'+fmt(m.pr)+'</span></button>'}).join('')+'</div><button class="add-btn" id="addbtn" onclick="addCartExt('+num+')" disabled>Seleccioná una presentación</button>'}else{html+='<div class="pm-cat">Body Mist · '+escH(p.equivalencia)+'</div><div class="pres-sel"><button class="pres-btn active"><span class="ml">200ml</span><span class="pr">'+fmt(CFG.bm)+'</span></button></div><button class="add-btn" id="addbtn" onclick="addCartBM('+num+')">Agregar al pedido · '+fmt(CFG.bm)+'</button>'}document.getElementById('pmbox').innerHTML=html;document.getElementById('pmov').classList.add('open')}
+function selectPres(btn){document.querySelectorAll('.pres-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');var ab=document.getElementById('addbtn');ab.disabled=false;ab.textContent='Agregar al pedido · '+fmt(btn.dataset.pr)}
+function feedbackBtn(){var b=document.getElementById('addbtn');if(!b)return;var orig=b.textContent;b.textContent='✓ Agregado';b.classList.add('added');setTimeout(function(){b.textContent=orig;b.classList.remove('added')},1200)}
+function addCartExt(num){var sel=document.querySelector('.pres-btn.active');if(!sel)return;var p=EXT.find(function(x){return+x.numero===+num});cart.push({section:'extractos',type:'ext',num:num,brand:'EXTRACTO IMPORTADO',name:'N° '+num+' · '+p.equivalencia,family:p.familia||'',gender:p.cat||'',size:sel.dataset.ml+' ml',priceNum:+sel.dataset.pr,priceStr:fmt(+sel.dataset.pr),quantity:1});saveCart();updateBadge();feedbackBtn();showToast('Agregado al pedido')}
+function addCartBM(num){var p=BM.find(function(x){return+x.numero===+num});cart.push({section:'extractos',type:'bm',num:num,brand:'BODY MIST',name:'N° '+num+' · '+p.equivalencia,family:'Body Splash',gender:'',size:'200 ml',priceNum:CFG.bm,priceStr:fmt(CFG.bm),quantity:1});saveCart();updateBadge();feedbackBtn();showToast('Agregado al pedido')}
+function closePM(){document.getElementById('pmov').classList.remove('open')}
+function renderSet(){var slots='<div class="dset-slots">';for(var i=0;i<3;i++){if(SETSEL[i]){slots+='<div class="dset-slot filled"><button class="rm" onclick="rmSlot('+i+')">✕</button><span class="num">N° '+SETSEL[i].numero+'</span><span class="equiv">'+escH(SETSEL[i].equivalencia)+'</span></div>'}else{slots+='<div class="dset-slot">Slot '+(i+1)+'</div>'}}slots+='</div>';var btn='<button class="dset-add" '+(SETSEL.length===3?'':'disabled')+' onclick="addCartSet()">'+(SETSEL.length===3?'Agregar Set al pedido · '+fmt(CFG.set):'Elegí 3 fragancias ('+SETSEL.length+'/3)')+'</button>';document.getElementById('setpanel').innerHTML='<h2 class="dset-title">Discovery Set</h2><p class="dset-sub">3 muestras de 15ml · '+fmt(CFG.set)+'</p>'+slots+'<div class="dset-search"><input id="setSearch" type="text" placeholder="Buscar por número o equivalencia…" oninput="filterSet()" onfocus="filterSet()"><div id="setResults" class="dset-results hidden"></div></div>'+btn}
+function filterSet(){var q=norm(document.getElementById('setSearch').value);var res=document.getElementById('setResults');if(!q){res.classList.add('hidden');return}var ids=SETSEL.map(function(s){return+s.numero});var f=TS.filter(function(p){if(ids.indexOf(+p.numero)>-1)return false;var hay=norm(p.numero+' '+p.equivalencia);return hay.indexOf(q)>-1}).slice(0,10);res.innerHTML=f.map(function(p){return '<div class="dset-row" onclick="addSlot('+p.numero+')"><span><span class="n">N° '+p.numero+'</span> · '+escH(p.equivalencia)+'</span><span style="color:var(--gold);font-size:18px">+</span></div>'}).join('')||'<div class="dset-row" style="color:var(--muted)">Sin resultados</div>';res.classList.remove('hidden')}
+function addSlot(num){if(SETSEL.length>=3)return;var p=TS.find(function(x){return+x.numero===+num});if(!p)return;SETSEL.push(p);renderSet()}
+function rmSlot(i){SETSEL.splice(i,1);renderSet()}
+function addCartSet(){if(SETSEL.length!==3)return;var detail=SETSEL.map(function(x){return 'N°'+x.numero+' '+x.equivalencia}).join(' + ');cart.push({section:'extractos',type:'set',brand:'DISCOVERY SET',name:detail,family:'3 muestras 15ml',gender:'',size:'Set 3x15ml',priceNum:CFG.set,priceStr:fmt(CFG.set),quantity:1});saveCart();updateBadge();SETSEL=[];renderSet();showToast('Discovery Set agregado al pedido')}
+var toastT;
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on')},2700)}
+document.getElementById('search').addEventListener('input',render);
+document.getElementById('filterCat').addEventListener('change',render);
+document.getElementById('pmov').addEventListener('click',function(e){if(e.target===this)closePM()});
+loadCart();loadAll();
+</script>
+</body>
+</html>
