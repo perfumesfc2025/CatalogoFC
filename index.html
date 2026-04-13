@@ -773,7 +773,8 @@ function sendOrder(){
   msg+=`━━━━━━━━━━━━━━━━━━\n*TOTAL: ${fmtARS(tot)}*\n━━━━━━━━━━━━━━━━━━`;
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
   ['fNombre','fDir','fLoc','fProv'].forEach(id=>document.getElementById(id).value='');
-  showToast('Redirigiendo a WhatsApp…');
+  cart=[];saveCart();updateCartCount();refreshCart();closeCart();
+  showToast('Pedido enviado · Carrito vaciado');
 }
 
 function updateCartCount(){document.getElementById('cartCount').textContent=cart.reduce((s,it)=>s+(it.quantity||1),0)}
