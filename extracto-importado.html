@@ -46,24 +46,6 @@ header{background:#e8e0d0;padding:48px 24px 38px;text-align:center;position:rela
 .pcard img{width:100%;max-width:180px;height:220px;object-fit:contain}
 .pcard .num{font-family:var(--serif);font-size:17px;letter-spacing:.12em;margin:14px 0 6px;color:var(--ink)}
 .pcard .cat{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.dset-panel{background:white;padding:30px 22px;max-width:680px;margin:0 auto}
-.dset-title{font-family:var(--serif);font-size:22px;text-align:center;margin-bottom:8px}
-.dset-sub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:24px}
-.dset-slots{display:flex;gap:10px;margin-bottom:20px}
-.dset-slot{flex:1;border:2px dashed var(--border);border-radius:4px;padding:18px 8px;text-align:center;font-size:11px;color:var(--muted);position:relative;min-height:78px}
-.dset-slot.filled{border-style:solid;border-color:var(--gold);background:var(--gold-pale);color:var(--ink)}
-.dset-slot .num{font-family:var(--serif);font-size:18px;display:block;margin-bottom:4px;color:var(--ink)}
-.dset-slot .equiv{font-size:10px;color:var(--muted)}
-.dset-slot .rm{position:absolute;top:4px;right:4px;background:var(--ink);color:white;border:none;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:11px}
-.dset-search{margin-bottom:14px;position:relative}
-.dset-search input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:3px;font-family:var(--sans);font-size:13px;background:var(--cream)}
-.dset-results{max-height:280px;overflow-y:auto;border:1px solid var(--border);border-radius:3px;background:white;margin-top:6px}
-.dset-results.hidden{display:none}
-.dset-row{padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:12px}
-.dset-row:hover{background:var(--gold-pale)}
-.dset-row .n{font-family:var(--serif);font-size:14px;color:var(--gold)}
-.dset-add{width:100%;background:var(--ink);color:white;border:none;padding:16px;font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:18px}
-.dset-add:disabled{background:#999;cursor:not-allowed}
 .ov{position:fixed;inset:0;background:rgba(15,13,11,.78);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
 .ov.open{display:flex}
 .pm{background:white;width:100%;max-width:560px;max-height:92vh;border-radius:10px 10px 0 0;overflow-y:auto;padding:24px;position:relative}
@@ -107,7 +89,6 @@ header{background:#e8e0d0;padding:48px 24px 38px;text-align:center;position:rela
 <div class="subnav">
   <button id="tab-ext" class="active" onclick="setTab('ext')">Extractos</button>
   <button id="tab-bm" onclick="setTab('bm')">Body Mist</button>
-  <button id="tab-set" onclick="setTab('set')">Discovery Set</button>
 </div>
 <div class="fbar" id="fbar">
   <div class="sw"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input id="search" type="text" placeholder="Buscar por número o equivalencia…"></div>
@@ -119,25 +100,24 @@ header{background:#e8e0d0;padding:48px 24px 38px;text-align:center;position:rela
 </div>
 <div id="count" class="gmeta">Cargando…</div>
 <div id="grid" class="products-grid"><div class="loading">Cargando catálogo…</div></div>
-<div id="setpanel" class="dset-panel" style="display:none"></div>
 <div class="ov" id="pmov"><div class="pm" id="pmbox"></div></div>
 <div class="toast" id="toast"></div>
 <script>
 var SHEET_BASE='https://docs.google.com/spreadsheets/d/e/2PACX-1vStjWhBT2OU8Hrf-y3xXnjSBUZjn_wwoImCmwmD4CJ8OSy3_LagA6pDxqgt5VPBAQ/pub';
-var GIDS={cfg:'1873220814',ext:'1640894856',bm:'510544924',set:'952340536'};
+var GIDS={cfg:'1873220814',ext:'1640894856',bm:'510544924'};
 var STORAGE_KEY='fcperfumes_v3';
-var CFG={ext30:20000,ext50:30000,ext100:50000,bm:25000,set:30000};
-var EXT=[],BM=[],TS=[],TAB='ext',SETSEL=[],cart=[];
+var CFG={ext30:20000,ext50:30000,ext100:50000,bm:25000};
+var EXT=[],BM=[],TAB='ext',cart=[];
 function fmt(n){return '$'+Math.round(n).toLocaleString('es-AR')}
 function escH(t){var d=document.createElement('div');d.textContent=String(t||'');return d.innerHTML}
 function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
 function parseCSV(txt){var lines=txt.trim().split(/\r?\n/);var heads=lines[0].split(',').map(function(h){return h.trim()});return lines.slice(1).map(function(line){var vals=[],cur='',inQ=false;for(var i=0;i<line.length;i++){var c=line[i];if(c==='"'){inQ=!inQ;continue}if(c===','&&!inQ){vals.push(cur);cur='';continue}cur+=c}vals.push(cur);var obj={};heads.forEach(function(h,i){obj[h]=(vals[i]||'').trim()});return obj})}
 function loadSheet(gid){return fetch(SHEET_BASE+'?gid='+gid+'&single=true&output=csv').then(function(r){return r.text()}).then(parseCSV)}
-function loadAll(){Promise.all([loadSheet(GIDS.cfg),loadSheet(GIDS.ext),loadSheet(GIDS.bm),loadSheet(GIDS.set)]).then(function(R){R[0].forEach(function(r){if(r.clave==='precio_ext_30')CFG.ext30=+r.valor;if(r.clave==='precio_ext_50')CFG.ext50=+r.valor;if(r.clave==='precio_ext_100')CFG.ext100=+r.valor;if(r.clave==='precio_body_mist')CFG.bm=+r.valor;if(r.clave==='precio_discovery_set')CFG.set=+r.valor});EXT=R[1].filter(function(r){return r.activo==='si'});BM=R[2].filter(function(r){return r.activo==='si'});TS=R[3].filter(function(r){return r.activo==='si'});render()}).catch(function(e){document.getElementById('grid').innerHTML='<div class="loading">Error cargando: '+e.message+'</div>'})}
+function loadAll(){Promise.all([loadSheet(GIDS.cfg),loadSheet(GIDS.ext),loadSheet(GIDS.bm)]).then(function(R){R[0].forEach(function(r){if(r.clave==='precio_ext_30')CFG.ext30=+r.valor;if(r.clave==='precio_ext_50')CFG.ext50=+r.valor;if(r.clave==='precio_ext_100')CFG.ext100=+r.valor;if(r.clave==='precio_body_mist')CFG.bm=+r.valor});EXT=R[1].filter(function(r){return r.activo==='si'});BM=R[2].filter(function(r){return r.activo==='si'});render()}).catch(function(e){document.getElementById('grid').innerHTML='<div class="loading">Error cargando: '+e.message+'</div>'})}
 function loadCart(){try{var s=localStorage.getItem(STORAGE_KEY);if(s)cart=JSON.parse(s)}catch(e){cart=[]}updateBadge()}
 function saveCart(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(cart))}catch(e){}}
 function updateBadge(){document.getElementById('cartbadge').textContent=cart.reduce(function(s,it){return s+(it.quantity||1)},0)}
-function setTab(t){TAB=t;['ext','bm','set'].forEach(function(x){document.getElementById('tab-'+x).classList.toggle('active',x===t)});document.getElementById('fbar').style.display=(t==='set')?'none':'flex';document.getElementById('grid').style.display=(t==='set')?'none':'grid';document.getElementById('setpanel').style.display=(t==='set')?'block':'none';document.getElementById('count').style.display=(t==='set')?'none':'block';if(t==='set')renderSet();else render()}
+function setTab(t){TAB=t;['ext','bm'].forEach(function(x){document.getElementById('tab-'+x).classList.toggle('active',x===t)});render()}
 function render(){var q=norm(document.getElementById('search').value);var fc=document.getElementById('filterCat').value;var data=TAB==='ext'?EXT:BM;var prefix=TAB==='ext'?'ei-n':'bm-n';var filtered=data.filter(function(p){if(TAB==='ext'&&fc&&p.cat!==fc)return false;if(q){var hay=norm(p.numero+' '+p.equivalencia+' '+(p.familia||''));if(hay.indexOf(q)===-1)return false}return true});filtered.sort(function(a,b){return(+a.numero)-(+b.numero)});document.getElementById('count').textContent=filtered.length+' producto'+(filtered.length!==1?'s':'');document.getElementById('grid').innerHTML=filtered.map(function(p){return '<div class="pcard" onclick="openProduct(\''+TAB+'\','+p.numero+')"><img src="img/'+prefix+p.numero+'.png" alt="N°'+p.numero+'" onerror="this.style.opacity=0.2"><div class="num">N° '+p.numero+'</div><div class="cat">'+escH(p.cat||p.equivalencia)+'</div></div>'}).join('')||'<div class="loading">Sin resultados</div>'}
 function openProduct(tab,num){var data=tab==='ext'?EXT:BM;var p=data.find(function(x){return+x.numero===+num});if(!p)return;var prefix=tab==='ext'?'ei-n':'bm-n';var html='<button class="pm-x" onclick="closePM()">✕</button><img src="img/'+prefix+num+'.png" alt="N°'+num+'" onerror="this.style.display=\'none\'"><div class="pm-num">N° '+num+'</div>';if(tab==='ext'){var mls=[{k:'s30',ml:30,pr:CFG.ext30},{k:'s50',ml:50,pr:CFG.ext50},{k:'s100',ml:100,pr:CFG.ext100}];html+='<div class="pm-cat">'+escH(p.cat)+'</div><div class="pm-fam">'+escH(p.familia)+'</div><div class="pm-notas"><div><b>SALIDA:</b> '+escH(p.notas_salida)+'</div><div><b>CORAZÓN:</b> '+escH(p.notas_corazon)+'</div><div><b>FONDO:</b> '+escH(p.notas_fondo)+'</div></div><div class="pres-sel">'+mls.map(function(m){return '<button class="pres-btn" data-ml="'+m.ml+'" data-pr="'+m.pr+'" onclick="selectPres(this)"><span class="ml">'+m.ml+'ml</span><span class="pr">'+fmt(m.pr)+'</span></button>'}).join('')+'</div><button class="add-btn" id="addbtn" onclick="addCartExt('+num+')" disabled>Seleccioná una presentación</button>'}else{html+='<div class="pm-cat">Body Mist · '+escH(p.equivalencia)+'</div><div class="pres-sel"><button class="pres-btn active"><span class="ml">200ml</span><span class="pr">'+fmt(CFG.bm)+'</span></button></div><button class="add-btn" id="addbtn" onclick="addCartBM('+num+')">Agregar al pedido · '+fmt(CFG.bm)+'</button>'}document.getElementById('pmbox').innerHTML=html;document.getElementById('pmov').classList.add('open')}
 function selectPres(btn){document.querySelectorAll('.pres-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');var ab=document.getElementById('addbtn');ab.disabled=false;ab.textContent='Agregar al pedido · '+fmt(btn.dataset.pr)}
@@ -145,11 +125,6 @@ function feedbackBtn(){var b=document.getElementById('addbtn');if(!b)return;var 
 function addCartExt(num){var sel=document.querySelector('.pres-btn.active');if(!sel)return;var p=EXT.find(function(x){return+x.numero===+num});cart.push({section:'extractos',type:'ext',num:num,brand:'EXTRACTO IMPORTADO',name:'N° '+num+' · '+p.equivalencia,family:p.familia||'',gender:p.cat||'',size:sel.dataset.ml+' ml',priceNum:+sel.dataset.pr,priceStr:fmt(+sel.dataset.pr),quantity:1});saveCart();updateBadge();feedbackBtn();showToast('Agregado al pedido')}
 function addCartBM(num){var p=BM.find(function(x){return+x.numero===+num});cart.push({section:'extractos',type:'bm',num:num,brand:'BODY MIST',name:'N° '+num+' · '+p.equivalencia,family:'Body Splash',gender:'',size:'200 ml',priceNum:CFG.bm,priceStr:fmt(CFG.bm),quantity:1});saveCart();updateBadge();feedbackBtn();showToast('Agregado al pedido')}
 function closePM(){document.getElementById('pmov').classList.remove('open')}
-function renderSet(){var slots='<div class="dset-slots">';for(var i=0;i<3;i++){if(SETSEL[i]){slots+='<div class="dset-slot filled"><button class="rm" onclick="rmSlot('+i+')">✕</button><span class="num">N° '+SETSEL[i].numero+'</span><span class="equiv">'+escH(SETSEL[i].equivalencia)+'</span></div>'}else{slots+='<div class="dset-slot">Slot '+(i+1)+'</div>'}}slots+='</div>';var btn='<button class="dset-add" '+(SETSEL.length===3?'':'disabled')+' onclick="addCartSet()">'+(SETSEL.length===3?'Agregar Set al pedido · '+fmt(CFG.set):'Elegí 3 fragancias ('+SETSEL.length+'/3)')+'</button>';document.getElementById('setpanel').innerHTML='<h2 class="dset-title">Discovery Set</h2><p class="dset-sub">3 muestras de 15ml · '+fmt(CFG.set)+'</p>'+slots+'<div class="dset-search"><input id="setSearch" type="text" placeholder="Buscar por número o equivalencia…" oninput="filterSet()" onfocus="filterSet()"><div id="setResults" class="dset-results hidden"></div></div>'+btn}
-function filterSet(){var q=norm(document.getElementById('setSearch').value);var res=document.getElementById('setResults');if(!q){res.classList.add('hidden');return}var ids=SETSEL.map(function(s){return+s.numero});var f=TS.filter(function(p){if(ids.indexOf(+p.numero)>-1)return false;var hay=norm(p.numero+' '+p.equivalencia);return hay.indexOf(q)>-1}).slice(0,10);res.innerHTML=f.map(function(p){return '<div class="dset-row" onclick="addSlot('+p.numero+')"><span><span class="n">N° '+p.numero+'</span> · '+escH(p.equivalencia)+'</span><span style="color:var(--gold);font-size:18px">+</span></div>'}).join('')||'<div class="dset-row" style="color:var(--muted)">Sin resultados</div>';res.classList.remove('hidden')}
-function addSlot(num){if(SETSEL.length>=3)return;var p=TS.find(function(x){return+x.numero===+num});if(!p)return;SETSEL.push(p);renderSet()}
-function rmSlot(i){SETSEL.splice(i,1);renderSet()}
-function addCartSet(){if(SETSEL.length!==3)return;var detail=SETSEL.map(function(x){return 'N°'+x.numero+' '+x.equivalencia}).join(' + ');cart.push({section:'extractos',type:'set',brand:'DISCOVERY SET',name:detail,family:'3 muestras 15ml',gender:'',size:'Set 3x15ml',priceNum:CFG.set,priceStr:fmt(CFG.set),quantity:1});saveCart();updateBadge();SETSEL=[];renderSet();showToast('Discovery Set agregado al pedido')}
 var toastT;
 function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on')},2700)}
 document.getElementById('search').addEventListener('input',render);
