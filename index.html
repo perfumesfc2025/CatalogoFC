@@ -270,7 +270,7 @@ header::before{content:''}
 <!-- PRODUCT MODAL -->
 <div class="ov" id="productOverlay">
   <div class="pm" style="position:relative">
-    <button class="pm-x" onclick="closePM()">✕</button>
+    <button class="pm-x" onclick="closePM()" aria-label="Cerrar">✕</button>
     <div class="pm-in">
       <div class="pm-img" id="pmImg"></div>
       <div class="pm-info">
@@ -294,7 +294,7 @@ header::before{content:''}
 <!-- CART MODAL -->
 <div class="cov" id="cartOverlay">
   <div class="cm">
-    <div class="cm-head"><h2>Mi pedido</h2><button class="cm-x" onclick="closeCart()">✕</button></div>
+    <div class="cm-head"><h2>Mi pedido</h2><button class="cm-x" onclick="closeCart()" aria-label="Cerrar pedido">✕</button></div>
     <div class="cm-body" id="cartBody"></div>
     <div id="cartTotalRow" class="cm-total" style="display:none">
       <span class="ct-lbl">Total</span><span class="ct-amt" id="cartTotal">$0</span>
@@ -331,9 +331,10 @@ header::before{content:''}
 <div class="toast" id="toast"></div>
 
 <script>
-const SHEET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTo5BF6I_C-jokzTcDAF2ekVMr5do1FrkTG7tgIMvygMWBSJznklIoT-kjMPimSfXOPveBclh1XbrqG/pub?gid=1169067184&single=true&output=csv';;
+const SHEET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTo5BF6I_C-jokzTcDAF2ekVMr5do1FrkTG7tgIMvygMWBSJznklIoT-kjMPimSfXOPveBclh1XbrqG/pub?gid=1169067184&single=true&output=csv';
 const WHATSAPP='541140550053';
 const STORAGE_KEY='fcperfumes_v3';
+const CLAUDE_KEY='';
 
 const NDB={
   'YARA PINK':       {s:['Mandarina','Heliotropo','Orquídea'],c:['Frutas tropicales','Acorde gourmand'],b:['Vainilla','Almizcle','Sándalo']},
@@ -478,12 +479,12 @@ const IMG={
   'CLUB DE NUIT SILLAGE':'club-de-nuit-sillage.avif',
   'CLUB DE NUIT PRECIUX':'club-de-nuit-preciux.avif',
   'BLACK INFINITY EDP':'black-infinity-armaf.avif',
-  'ODDYSEY MANDARIN':'odyssey-limoni-armaf.avif','ODYSSEY MANGO':'oddyssey-mango-armaf.avif',
+  'ODYSSEY MANGO':'oddyssey-mango-armaf.avif',
   'ODYSSEY MEGA':'odyssey-mega-armaf.avif','ODYSSY AQUA':'odyssey-aqua-armaf.avif',
   'ODDYSEY BLACK':'odyssey-black-armaf.avif','ODYSSEY WHITE':'odyssey-white-armaf.avif',
   'ODDYSEY CANDEE':'odyssey-candee-armaf.avif','ODDYSEY SPECTRA':'odyssey-spectra-armaf.avif',
   'ODDYSEY LIMONI':'odyssey-limoni-armaf.avif',
-  'THURATHI ELECTRIC':'turathi-electric-afnan.avif','SUPREMACY COLLECTOR'S EDITION':'supremacy-collector-edition-afnan.avif','9PM BLACK':'9pm-black-afnan.avif',
+  'THURATHI ELECTRIC':'turathi-electric-afnan.avif','SUPREMACY COLLECTOR\'S EDITION':'supremacy-collector-edition-afnan.avif','9PM BLACK':'9pm-black-afnan.avif',
   '9 AM DIVE':'9am-dive-afnan.avif','9 PM REBEL':'9pm-rebel-afnan.avif','9 PM NIGHT OUT':'9pm-nigth-out-afnan.avif',
   '9 PM ELIXIR':'9pm-elixir-afnan.avif','RARE REEF':'rare-reef-afnan.avif','YEAH!':'yeah-ma.avif',
   'TOSCANO LEATHER':'toscano-leather-ma.avif','VICTORIOSO':'victorioso-ma.avif',
@@ -508,7 +509,7 @@ const IMG={
   'AZM':'azm-pc.avif','DULZURA':'dulzura-pc.avif',
   'TASKEEN LACTEA DIVINA':'taskeen-lactea-divina-pc.avif',
   'TASKEEN CARAMEL CASCADE':'taskeen-caramel-cascade-pc.avif',
-  'PARIS CORNER  DATE CARAMEL':'date-caramel-pc.avif',
+  'PARIS CORNER DATE CARAMEL':'date-caramel-pc.avif',
   'FATIMA BY ZIMAYA':'fatima-zimaya.avif','ZIMAYA TIRAMISU CARAMEL':'tiramisu-caramel-zimaya.avif',
   'BODY SPLASH PURE SEDUCTION SHIMMER':'pure-seduction-shimmer-secret.png',
   'BODY SPLASH BARE VAINILLA SHIMMER':'bare-vanilla-shimmer-secret.avif',
@@ -554,14 +555,17 @@ function gc(k){try{const r=localStorage.getItem('d_'+DV+'_'+k);return r?JSON.par
 function sc(k,v){try{localStorage.setItem('d_'+DV+'_'+k,JSON.stringify(v))}catch(e){}}
 
 async function fetchDesc(name,brand,family,gender){
+  if(!CLAUDE_KEY) return '';
   const key=name.replace(/\s+/g,'-').toLowerCase().slice(0,40);
   const cached=gc(key);if(cached) return cached;
   const notes=NDB[name];
   const nh=notes?`Notas destacadas: ${notes.s.slice(0,2).join(', ')} (salida), ${notes.b.slice(0,2).join(', ')} (fondo).`:'';
   const prompt=`Sos copywriter de perfumería de lujo para una tienda argentina. Describí "${name}" de ${brand} en máximo 2 oraciones (28-36 palabras). Familia: ${family}. Género: ${gender}. ${nh} Tono evocador, sensorial, elegante. Solo texto plano.`;
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':CLAUDE_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:90,messages:[{role:'user',content:prompt}]})});
+    if(!r.ok) return '';
     const d=await r.json();
     const t=d.content?.[0]?.text?.trim()||'';
     if(t){sc(key,t);return t;}
@@ -573,9 +577,12 @@ let allProducts=[],cart=[],currentModal=null;
 
 function parseCSV(line){
   const res=[];let cur='',q=false;
-  for(const c of line){
-    if(c==='"') q=!q;
-    else if(c===','&&!q){res.push(cur);cur='';}
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c==='"'){
+      if(q&&line[i+1]==='"'){cur+='"';i++;}
+      else q=!q;
+    } else if(c===','&&!q){res.push(cur);cur='';}
     else cur+=c;
   }
   res.push(cur);return res;
@@ -586,10 +593,9 @@ function fmtARS(n){return'$'+Math.round(n).toLocaleString('es-AR')}
 
 async function loadData(){
   try{
-    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
-    const res=await fetch(url);if(!res.ok) throw new Error();
+    const res=await fetch(SHEET_URL);if(!res.ok) throw new Error();
     const csv=await res.text();
-    const rows=csv.split('\n').slice(3);
+    const rows=csv.split(/\r?\n/).slice(3);
     let lastBrand='';
     allProducts=rows.map(row=>{
       const col=parseCSV(row);
@@ -785,7 +791,7 @@ function filterProducts(){
   const bv=document.getElementById('brandFilter').value;
   const pv=document.getElementById('priceFilter').value;
   const f=allProducts.filter(p=>{
-    const ms=!sv||norm(p.name).includes(norm(sv))||norm(p.brand).includes(norm(sv));
+    const ms=!sv||norm(p.name).includes(norm(sv))||norm(p.brand).includes(norm(sv))||norm(p.family).includes(norm(sv));
     const mb=!bv||p.brand===bv;
     let mp=true;
     if(pv==='0-3000') mp=p.priceNum<=3000;
@@ -809,7 +815,8 @@ function showToast(msg){
   clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2700);
 }
 
-document.getElementById('searchInput').addEventListener('input',filterProducts);
+let searchDebounce;
+document.getElementById('searchInput').addEventListener('input',()=>{clearTimeout(searchDebounce);searchDebounce=setTimeout(filterProducts,220);});
 document.getElementById('brandFilter').addEventListener('change',filterProducts);
 document.getElementById('priceFilter').addEventListener('change',filterProducts);
 document.getElementById('productOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('productOverlay')) closePM();});
