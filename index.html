@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FC Perfumes — Fragancias importadas originales. Argentina.">
+<meta property="og:title" content="FC Perfumes">
+<title>FC Perfumes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="img/Logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0f0d0b;--ink2:#2a2620;
+  --cream:#f9f6f0;--warm:#f2ece0;
+  --gold:#b8965a;--gold2:#d4ae78;--gold-pale:#f5edd8;
+  --muted:#9a9080;--border:#e4dcd0;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Tenor Sans',sans-serif;
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--sans);color:var(--ink);display:flex;flex-direction:column}
+
+header{
+  background:#e8e0d0;
+  padding:28px 24px 22px;
+  text-align:center;
+  flex-shrink:0;
+  animation:fadeDown .6s ease both;
+}
+.logo-wrap{display:flex;justify-content:center;margin-bottom:14px}
+.logo-wrap img{height:160px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 14px rgba(140,100,40,.22))}
+.h-rule{width:80px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 10px}
+.h-sub{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:rgba(50,40,28,.45)}
+
+/* SPLIT */
+.split{
+  display:flex;
+  flex:1;
+  min-height:0;
+}
+.split-line{
+  width:1px;
+  flex-shrink:0;
+  background:linear-gradient(to bottom,transparent 4%,rgba(184,150,90,.45) 28%,rgba(184,150,90,.45) 72%,transparent 96%);
+  pointer-events:none;
+}
+
+/* PANELS */
+.panel{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+  transition:flex .65s cubic-bezier(.25,.46,.45,.94);
+}
+.panel::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  transition:opacity .4s;
+  pointer-events:none;
+}
+
+/* DARK PANEL — Fragancias Árabes */
+.panel-dark{
+  background:linear-gradient(155deg,#1e1508 0%,#0f0d0b 100%);
+}
+.panel-dark::after{
+  background:radial-gradient(ellipse at 50% 88%,rgba(184,150,90,.18) 0%,transparent 65%);
+}
+.panel-dark:hover{flex:1.38}
+.panel-dark:hover::after{opacity:1.4}
+
+/* LIGHT PANEL — Extracto Importado */
+.panel-light{
+  background:linear-gradient(155deg,#faf7f2 0%,#e8ddc8 100%);
+}
+.panel-light::after{
+  background:radial-gradient(ellipse at 50% 88%,rgba(184,150,90,.15) 0%,transparent 65%);
+}
+.panel-light:hover{flex:1.38}
+
+/* CONTENT */
+.panel-content{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding:32px 40px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  transition:transform .45s cubic-bezier(.25,.46,.45,.94);
+  animation:fadeUp .7s ease both;
+}
+.panel:first-child .panel-content{animation-delay:.15s}
+.panel:last-child  .panel-content{animation-delay:.25s}
+.panel:hover .panel-content{transform:translateY(-5px)}
+
+.eyebrow{
+  font-size:8px;
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  margin-bottom:22px;
+  display:block;
+}
+.panel-dark .eyebrow{color:rgba(184,150,90,.55)}
+.panel-light .eyebrow{color:rgba(50,40,28,.38)}
+
+.panel-title{
+  font-family:var(--serif);
+  font-weight:400;
+  line-height:1.08;
+  font-size:clamp(30px,4.5vw,56px);
+  margin-bottom:22px;
+}
+.panel-title em{font-style:italic;display:block}
+.panel-dark .panel-title{color:var(--cream)}
+.panel-light .panel-title{color:var(--ink)}
+
+.panel-rule{
+  width:44px;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  margin-bottom:16px;
+}
+
+.panel-sub{
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  margin-bottom:34px;
+  line-height:2;
+}
+.panel-dark .panel-sub{color:rgba(249,246,240,.28)}
+.panel-light .panel-sub{color:rgba(50,40,28,.38)}
+
+.panel-btn{
+  font-size:8px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  padding:10px 24px;
+  border:1px solid;
+  border-radius:1px;
+  transition:background .25s, border-color .25s;
+}
+.panel-dark .panel-btn{color:var(--gold);border-color:rgba(184,150,90,.38)}
+.panel-dark:hover .panel-btn{background:rgba(184,150,90,.1);border-color:rgba(184,150,90,.7)}
+.panel-light .panel-btn{color:var(--ink2);border-color:rgba(50,40,28,.28)}
+.panel-light:hover .panel-btn{background:rgba(50,40,28,.05);border-color:rgba(50,40,28,.5)}
+
+/* ANIMATIONS */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* MOBILE */
+@media(max-width:600px){
+  html,body{overflow:auto}
+  .split{flex-direction:column;min-height:calc(100vh - 144px)}
+  .panel{min-height:46vmax;flex:1 !important}
+  .split-line{width:100%;height:1px;
+    background:linear-gradient(to right,transparent 4%,rgba(184,150,90,.45) 28%,rgba(184,150,90,.45) 72%,transparent 96%);
+  }
+  .panel-content{padding:32px 28px}
+  .panel-title{font-size:clamp(28px,9vw,40px)}
+  header{padding:22px 16px 18px}
+  .logo-wrap img{height:110px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <img src="img/Logo.png" alt="FC Perfumes">
+  </div>
+  <div class="h-rule"></div>
+  <p class="h-sub">Perfumeria multimarca</p>
+</header>
+
+<main class="split">
+
+  <a href="fragancias-arabes.html" class="panel panel-dark">
+    <div class="panel-content">
+      <span class="eyebrow">Explorar</span>
+      <h2 class="panel-title">Fragancias<em>Árabes</em></h2>
+      <div class="panel-rule"></div>
+      <p class="panel-sub">
+        Lattafa · Armaf<br>
+        Rasasi · Afnan
+      </p>
+      <span class="panel-btn">Ver colección →</span>
+    </div>
+  </a>
+
+  <div class="split-line"></div>
+
+  <a href="extracto-importado.html" class="panel panel-light">
+    <div class="panel-content">
+      <span class="eyebrow">Explorar</span>
+      <h2 class="panel-title">Extracto<em>Importado</em></h2>
+      <div class="panel-rule"></div>
+      <p class="panel-sub">
+        Inspiraciones premium<br>
+        30 ml · 50 ml · 100 ml
+      </p>
+      <span class="panel-btn">Ver colección →</span>
+    </div>
+  </a>
+
+</main>
+
+</body>
+</html>
