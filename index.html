@@ -27,12 +27,42 @@ header{
   padding:28px 24px 22px;
   text-align:center;
   flex-shrink:0;
+  position:relative;
   animation:fadeDown .6s ease both;
 }
 .logo-wrap{display:flex;justify-content:center;margin-bottom:14px}
 .logo-wrap img{height:160px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 14px rgba(140,100,40,.22))}
 .h-rule{width:80px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 10px}
 .h-sub{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:rgba(50,40,28,.45)}
+
+/* SOCIAL ICONS */
+.social{
+  position:absolute;
+  top:18px;
+  right:20px;
+  display:flex;
+  gap:10px;
+  z-index:2;
+}
+.social a{
+  width:34px;height:34px;
+  border-radius:50%;
+  background:rgba(255,255,255,.4);
+  border:1px solid rgba(184,150,90,.32);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#6a5a3c;
+  transition:all .25s ease;
+  text-decoration:none;
+}
+.social a:hover{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:white;
+  transform:translateY(-2px);
+}
+.social svg{width:15px;height:15px}
 
 /* SPLIT */
 .split{
@@ -152,6 +182,23 @@ header{
 .panel-light .panel-btn{color:var(--ink2);border-color:rgba(50,40,28,.28)}
 .panel-light:hover .panel-btn{background:rgba(50,40,28,.05);border-color:rgba(50,40,28,.5)}
 
+/* FOOTER */
+footer{
+  background:#0f0d0b;
+  padding:11px 24px;
+  text-align:center;
+  flex-shrink:0;
+  border-top:1px solid rgba(184,150,90,.22);
+}
+footer p{
+  font-size:8px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:rgba(184,150,90,.55);
+  font-family:var(--sans);
+}
+footer span{color:rgba(184,150,90,.32);margin:0 8px}
+
 /* ANIMATIONS */
 @keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -159,8 +206,8 @@ header{
 /* MOBILE */
 @media(max-width:600px){
   html,body{overflow:auto}
-  .split{flex-direction:column;min-height:calc(100vh - 144px)}
-  .panel{min-height:46vmax;flex:1 !important}
+  .split{flex-direction:column;min-height:calc(100vh - 220px)}
+  .panel{min-height:42vmax;flex:1 !important}
   .split-line{width:100%;height:1px;
     background:linear-gradient(to right,transparent 4%,rgba(184,150,90,.45) 28%,rgba(184,150,90,.45) 72%,transparent 96%);
   }
@@ -168,12 +215,25 @@ header{
   .panel-title{font-size:clamp(28px,9vw,40px)}
   header{padding:22px 16px 18px}
   .logo-wrap img{height:110px}
+  .social{top:12px;right:12px;gap:8px}
+  .social a{width:30px;height:30px}
+  .social svg{width:13px;height:13px}
+  footer p{font-size:7px;letter-spacing:.18em}
+  footer span{margin:0 5px}
 }
 </style>
 </head>
 <body>
 
 <header>
+  <div class="social">
+    <a href="https://wa.me/541140550053" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.469 2 2 6.469 2 11.99c0 1.944.563 3.757 1.536 5.287L2 22l4.932-1.519A9.958 9.958 0 0011.99 22C17.511 22 22 17.531 22 12.01 22 6.469 17.511 2 11.99 2z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/_perfumesfc" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+  </div>
   <div class="logo-wrap">
     <img src="img/Logo.png" alt="FC Perfumes">
   </div>
@@ -212,6 +272,10 @@ header{
   </a>
 
 </main>
+
+<footer>
+  <p>© 2026 FC Perfumes <span>·</span> Argentina</p>
+</footer>
 
 </body>
 </html>
