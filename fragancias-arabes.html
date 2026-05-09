@@ -494,7 +494,8 @@ const IMG={
   'ROSE SEDUCTION VIP POUR FEMME':'rose-seduction-vip-rose-femme-ma.avif',
   'DELILAH':'delilah-ma.avif','JEAN LOWE INMORTEL':'jean-lowe-inmortel-ma.avif',
   'JEAN LOWE VIBE EDP 100 ML':'jean-lowe-vibe-ma.avif',
-  'BERRY BLAST':'berry-blast-tubbees.avif','BHARARA KING EDP':'king-bharara.avif',
+  'BERRY BLAST':'berry-blast-tubbees.avif','BHARARA KING EDP':'king-bharara.avif','ROME POUR HOMME':'rome-pour-homme-bharara.avif','KISMET MAGIC':'kismet-ma.avif',
+  'AJWAD':'ajwad-lattafa.avif',
   'AL HARAMAIN AMBER OUD GOLD':'amber-oud-gold-alharamain.avif',
   'AL HARAMAIN DUBAI NIGHT':'nigth-dubai-alharamain.avif',
   'AL HARAMAIN AQUA DUBAI':'aqua-dubai-alharamain.avif','LIQUID BURN':'liquid-burn-french.avif',
@@ -524,8 +525,11 @@ const IMG={
 };
 
 function normalizeImgKey(s){
-  return s.trim().replace(/\s+/g,' ')
-    .replace(/ODDYSEY|ODYSSY/g,'ODYSSEY');
+  return s.toUpperCase()
+    .replace(/[^A-Z0-9\s]/g,'')
+    .replace(/\s+/g,' ')
+    .trim()
+    .replace(/OD+YS+E?Y/g,'ODYSSEY');
 }
 const IMG_NORM={};
 Object.keys(IMG).forEach(k=>{IMG_NORM[normalizeImgKey(k)]=IMG[k];});
